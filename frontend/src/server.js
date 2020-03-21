@@ -1,25 +1,30 @@
-import App from './App';
-import React from 'react';
-import { StaticRouter } from 'react-router-dom';
-import express from 'express';
-import { renderToString } from 'react-dom/server';
+import App from './App'
+import React from 'react'
+import { StaticRouter } from 'react-router-dom'
+import express from 'express'
+import { renderToString } from 'react-dom/server'
+import { createClient } from './lib/apollo'
+import { ApolloProvider } from 'react-apollo'
 
-const assets = require(process.env.RAZZLE_ASSETS_MANIFEST);
+const assets = require(process.env.RAZZLE_ASSETS_MANIFEST)
 
-const server = express();
+const server = express()
 server
   .disable('x-powered-by')
   .use(express.static(process.env.RAZZLE_PUBLIC_DIR))
   .get('/*', (req, res) => {
-    const context = {};
+    const context = {}
+    const client = createClient()
     const markup = renderToString(
-      <StaticRouter context={context} location={req.url}>
-        <App />
-      </StaticRouter>
-    );
+      <ApolloProvider client={client}>
+        <StaticRouter context={context} location={req.url}>
+          <App />
+        </StaticRouter>
+      </ApolloProvider>
+    )
 
     if (context.url) {
-      res.redirect(context.url);
+      res.redirect(context.url)
     } else {
       res.status(200).send(
         `<!doctype html>
@@ -44,8 +49,8 @@ server
         <div id="root">${markup}</div>
     </body>
 </html>`
-      );
+      )
     }
-  });
+  })
 
-export default server;
+export default server
