@@ -1,0 +1,52 @@
+{
+  "kind": "collectionType",
+  "connection": "default",
+  "collectionName": "slams",
+  "info": {
+    "name": "Slam"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "slammers": {
+      "via": "performances",
+      "plugin": "users-permissions",
+      "collection": "user",
+      "dominant": true
+    },
+    "audience": {
+      "via": "slams",
+      "plugin": "users-permissions",
+      "collection": "user",
+      "dominant": true
+    },
+    "host": {
+      "via": "hosted_slams",
+      "plugin": "users-permissions",
+      "model": "user"
+    },
+    "description": {
+      "type": "text"
+    },
+    "images": {
+      "collection": "file",
+      "via": "related",
+      "plugin": "upload",
+      "required": false
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "slam",
+        "jam",
+        "single_act",
+        "collaborative_act"
+      ]
+    }
+  }
+}
