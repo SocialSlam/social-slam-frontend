@@ -1,17 +1,8 @@
 import React from 'react'
 import './Home.css'
-import graphql from 'graphql-tag'
 import { Query } from 'react-apollo'
 
-const COMPANIES = graphql`
-  {
-    allCompanies {
-      id
-      name
-      industry
-    }
-  }
-`
+import artists from './queries/artists'
 
 class Home extends React.Component {
   render() {
@@ -26,32 +17,21 @@ class Home extends React.Component {
           To get started, edit <code>src/App.js</code> or{' '}
           <code>src/Home.js</code> and save to reload.
         </p>
-        <Query query={COMPANIES}>
+        <Query query={artists}>
           {({ data, loading }) =>
             loading ? (
               <h2>loading...</h2>
             ) : (
               <ul className="list list--nulled">
-                {data.allCompanies.map(c => (
-                  <li key={c.id} className="list__item">
-                    {c.name} ({c.industry})
+                {data.artists.map(a => (
+                  <li key={a.id} className="list__item">
+                    {a.name}
                   </li>
                 ))}
               </ul>
             )
           }
         </Query>
-        {/* <ul className="list list--nulled">
-          <li className="list__item">
-            <a href="https://github.com/jaredpalmer/razzle">Docs</a>
-          </li>
-          <li className="list__item">
-            <a href="https://github.com/jaredpalmer/razzle/issues">Issues</a>
-          </li>
-          <li className="list__item">
-            <a href="https://palmer.chat">Community Slack</a>
-          </li>
-        </ul> */}
       </div>
     )
   }
