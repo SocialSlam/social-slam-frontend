@@ -55,16 +55,12 @@
       "configurable": false
     },
     "performances": {
-      "collection": "slam",
-      "via": "slammers"
-    },
-    "slams": {
-      "collection": "slam",
-      "via": "audience"
+      "via": "slammers",
+      "collection": "slam"
     },
     "hosted_slams": {
-      "collection": "slam",
-      "via": "host"
+      "via": "host",
+      "collection": "slam"
     },
     "datetime": {
       "type": "datetime"
@@ -77,6 +73,10 @@
       "via": "related",
       "plugin": "upload",
       "required": false
+    },
+    "tickets": {
+      "collection": "ticket",
+      "via": "user"
     }
   }
 }

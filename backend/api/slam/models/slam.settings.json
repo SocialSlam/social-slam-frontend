@@ -14,21 +14,15 @@
       "type": "string"
     },
     "slammers": {
+      "plugin": "users-permissions",
+      "collection": "user",
       "via": "performances",
-      "plugin": "users-permissions",
-      "collection": "user",
-      "dominant": true
-    },
-    "audience": {
-      "via": "slams",
-      "plugin": "users-permissions",
-      "collection": "user",
       "dominant": true
     },
     "host": {
-      "via": "hosted_slams",
       "plugin": "users-permissions",
-      "model": "user"
+      "model": "user",
+      "via": "hosted_slams"
     },
     "description": {
       "type": "text"
@@ -47,6 +41,13 @@
         "single_act",
         "collaborative_act"
       ]
+    },
+    "tickets": {
+      "collection": "ticket",
+      "via": "slam"
+    },
+    "admission": {
+      "type": "float"
     }
   }
 }
