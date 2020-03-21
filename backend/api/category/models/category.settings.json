@@ -12,6 +12,10 @@
   "attributes": {
     "title": {
       "type": "string"
+    },
+    "artists": {
+      "via": "categories",
+      "collection": "artist"
     }
   }
 }

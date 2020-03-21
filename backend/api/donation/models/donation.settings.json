@@ -1,0 +1,34 @@
+{
+  "kind": "collectionType",
+  "connection": "default",
+  "collectionName": "donations",
+  "info": {
+    "name": "Donation"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "amount": {
+      "type": "float"
+    },
+    "donor": {
+      "plugin": "users-permissions",
+      "model": "user",
+      "via": "donations_given"
+    },
+    "artist": {
+      "plugin": "users-permissions",
+      "model": "user",
+      "via": "donations_received"
+    },
+    "event": {
+      "model": "slam",
+      "via": "donations"
+    },
+    "description": {
+      "type": "string"
+    }
+  }
+}

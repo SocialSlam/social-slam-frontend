@@ -3,7 +3,7 @@
   "connection": "default",
   "collectionName": "slams",
   "info": {
-    "name": "Slam"
+    "name": "Event"
   },
   "options": {
     "increments": true,
@@ -13,16 +13,10 @@
     "title": {
       "type": "string"
     },
-    "slammers": {
-      "plugin": "users-permissions",
-      "collection": "user",
-      "via": "performances",
-      "dominant": true
-    },
     "host": {
+      "via": "hosted_slams",
       "plugin": "users-permissions",
-      "model": "user",
-      "via": "hosted_slams"
+      "model": "user"
     },
     "description": {
       "type": "text"
@@ -37,9 +31,8 @@
       "type": "enumeration",
       "enum": [
         "slam",
-        "jam",
-        "single_act",
-        "collaborative_act"
+        "solo_act",
+        "exhibition"
       ]
     },
     "tickets": {
@@ -48,6 +41,14 @@
     },
     "admission": {
       "type": "float"
+    },
+    "performances": {
+      "collection": "performance",
+      "via": "event"
+    },
+    "donations": {
+      "via": "event",
+      "collection": "donation"
     }
   }
 }

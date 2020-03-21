@@ -54,13 +54,9 @@
       "plugin": "users-permissions",
       "configurable": false
     },
-    "performances": {
-      "via": "slammers",
-      "collection": "slam"
-    },
     "hosted_slams": {
-      "via": "host",
-      "collection": "slam"
+      "collection": "slam",
+      "via": "host"
     },
     "datetime": {
       "type": "datetime"
@@ -77,6 +73,22 @@
     "tickets": {
       "collection": "ticket",
       "via": "user"
+    },
+    "performances": {
+      "collection": "performance",
+      "via": "performer"
+    },
+    "artist": {
+      "model": "artist",
+      "via": "user"
+    },
+    "donations_given": {
+      "via": "donor",
+      "collection": "donation"
+    },
+    "donations_received": {
+      "via": "artist",
+      "collection": "donation"
     }
   }
 }
