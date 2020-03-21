@@ -14,14 +14,14 @@
       "type": "float"
     },
     "donor": {
+      "via": "donations_given",
       "plugin": "users-permissions",
-      "model": "user",
-      "via": "donations_given"
+      "model": "user"
     },
     "artist": {
+      "via": "donations_received",
       "plugin": "users-permissions",
-      "model": "user",
-      "via": "donations_received"
+      "model": "user"
     },
     "event": {
       "via": "donations",

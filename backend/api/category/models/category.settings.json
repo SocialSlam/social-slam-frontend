@@ -20,6 +20,11 @@
     "events": {
       "via": "category",
       "collection": "slam"
+    },
+    "users": {
+      "via": "preferred_categories",
+      "plugin": "users-permissions",
+      "collection": "user"
     }
   }
 }

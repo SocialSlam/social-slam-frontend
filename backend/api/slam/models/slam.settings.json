@@ -13,11 +13,6 @@
     "title": {
       "type": "string"
     },
-    "host": {
-      "plugin": "users-permissions",
-      "model": "user",
-      "via": "hosted_slams"
-    },
     "description": {
       "type": "text"
     },
@@ -50,11 +45,21 @@
       "model": "category",
       "via": "events"
     },
+    "featured_act": {
+      "via": "feature_events",
+      "plugin": "users-permissions",
+      "model": "user"
+    },
     "performers": {
+      "via": "performances",
       "plugin": "users-permissions",
       "collection": "user",
-      "via": "events",
       "dominant": true
+    },
+    "host": {
+      "via": "hosted_events",
+      "plugin": "users-permissions",
+      "model": "user"
     }
   }
 }

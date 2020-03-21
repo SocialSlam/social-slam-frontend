@@ -54,9 +54,9 @@
       "plugin": "users-permissions",
       "configurable": false
     },
-    "hosted_slams": {
-      "via": "host",
-      "collection": "slam"
+    "hosted_events": {
+      "collection": "slam",
+      "via": "host"
     },
     "datetime": {
       "type": "datetime"
@@ -79,16 +79,24 @@
       "via": "user"
     },
     "donations_given": {
-      "via": "donor",
-      "collection": "donation"
+      "collection": "donation",
+      "via": "donor"
     },
     "donations_received": {
-      "via": "artist",
-      "collection": "donation"
+      "collection": "donation",
+      "via": "artist"
     },
-    "events": {
-      "via": "performers",
-      "collection": "slam"
+    "performances": {
+      "collection": "slam",
+      "via": "performers"
+    },
+    "preferred_categories": {
+      "model": "category",
+      "via": "users"
+    },
+    "feature_events": {
+      "collection": "slam",
+      "via": "featured_act"
     }
   }
 }
