@@ -55,8 +55,8 @@
       "configurable": false
     },
     "hosted_slams": {
-      "collection": "slam",
-      "via": "host"
+      "via": "host",
+      "collection": "slam"
     },
     "datetime": {
       "type": "datetime"
@@ -74,10 +74,6 @@
       "collection": "ticket",
       "via": "user"
     },
-    "performances": {
-      "collection": "performance",
-      "via": "performer"
-    },
     "artist": {
       "model": "artist",
       "via": "user"
@@ -89,6 +85,10 @@
     "donations_received": {
       "via": "artist",
       "collection": "donation"
+    },
+    "events": {
+      "via": "performers",
+      "collection": "slam"
     }
   }
 }

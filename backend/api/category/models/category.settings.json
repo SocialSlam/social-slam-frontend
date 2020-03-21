@@ -16,6 +16,10 @@
     "artists": {
       "via": "categories",
       "collection": "artist"
+    },
+    "events": {
+      "via": "category",
+      "collection": "slam"
     }
   }
 }

@@ -24,8 +24,8 @@
       "via": "donations_received"
     },
     "event": {
-      "model": "slam",
-      "via": "donations"
+      "via": "donations",
+      "model": "slam"
     },
     "description": {
       "type": "string"

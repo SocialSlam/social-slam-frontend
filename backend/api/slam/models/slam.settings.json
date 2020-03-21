@@ -14,9 +14,9 @@
       "type": "string"
     },
     "host": {
-      "via": "hosted_slams",
       "plugin": "users-permissions",
-      "model": "user"
+      "model": "user",
+      "via": "hosted_slams"
     },
     "description": {
       "type": "text"
@@ -42,13 +42,19 @@
     "admission": {
       "type": "float"
     },
-    "performances": {
-      "collection": "performance",
+    "donations": {
+      "collection": "donation",
       "via": "event"
     },
-    "donations": {
-      "via": "event",
-      "collection": "donation"
+    "category": {
+      "model": "category",
+      "via": "events"
+    },
+    "performers": {
+      "plugin": "users-permissions",
+      "collection": "user",
+      "via": "events",
+      "dominant": true
     }
   }
 }
