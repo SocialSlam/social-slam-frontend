@@ -1,15 +1,14 @@
 import React from 'react'
 
-import logo from '../react.svg'
+import { Logo } from './atoms'
+import SearchBar from './SearchBar'
 
 function Header() {
   return (
     <header className="masthead grid grid--justify-center grid--center">
-      <div className="logo grid__column grid__column--1">
-        <img src={logo} className="Home-logo" alt="logo" />
-      </div>
+      <Logo />
       <div className="searchbar grid__column">
-        <span>Here be search</span>
+        <SearchBar />
       </div>
       <div className="profile grid__column grid__column--2">
         <span>Here be register/login</span>

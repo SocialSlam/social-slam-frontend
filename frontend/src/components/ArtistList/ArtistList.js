@@ -3,7 +3,7 @@ import ArtistCard from './ArtistCard/ArtistCard';
 
 import './ArtistList.scss'
 
-class ArtistList extends React.Component {
+export class ArtistList extends React.Component {
   render() {
 
     // TODO: Remove Dummy data and replace with query data
@@ -14,8 +14,8 @@ class ArtistList extends React.Component {
 
     let artist_list = [];
 
-    artists.forEach(artist => artist_list.push(
-      <ArtistCard artist={artist} />
+    artists.forEach((artist, i) => artist_list.push(
+      <ArtistCard key={i} artist={artist} />
     ));
 
     return(

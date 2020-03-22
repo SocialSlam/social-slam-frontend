@@ -2,9 +2,12 @@ import App from './App'
 import React from 'react'
 import { StaticRouter } from 'react-router-dom'
 import express from 'express'
+import { Provider } from 'react-redux'
 import { renderToString } from 'react-dom/server'
 import { createClient } from './lib/apollo'
 import { ApolloProvider } from 'react-apollo'
+import configureStore from './store'
+
 
 const assets = require(process.env.RAZZLE_ASSETS_MANIFEST)
 
@@ -15,12 +18,15 @@ server
   .get('/*', (req, res) => {
     const context = {}
     const client = createClient()
+    const store = configureStore()
     const markup = renderToString(
-      <ApolloProvider client={client}>
-        <StaticRouter context={context} location={req.url}>
-          <App />
-        </StaticRouter>
-      </ApolloProvider>
+      <Provider store={store}>
+        <ApolloProvider store={store} client={client}>
+          <StaticRouter context={context} location={req.url}>
+            <App />
+          </StaticRouter>
+        </ApolloProvider> 
+      </Provider>
     )
 
     if (context.url) {
