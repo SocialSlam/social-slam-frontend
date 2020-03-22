@@ -1,7 +1,7 @@
 import React from 'react'
 import { Pill } from '../atoms'
 
-export async function SearchBar() {
+export function SearchBar() {
   return (
     <>
       <div className="control control--block">
