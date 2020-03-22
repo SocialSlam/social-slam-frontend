@@ -2,9 +2,9 @@ import React from 'react';
 
 import './GenericList.scss'
 
-export function GenericList({ header, children }) {
+export function GenericList({ header, children, ...rest }) {
   return (
-    <div>
+    <div {...rest}>
       <h3>{header}</h3>
       <div className="generic-list">
         {children}

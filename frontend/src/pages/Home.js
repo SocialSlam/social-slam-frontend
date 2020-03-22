@@ -46,16 +46,20 @@ function Home() {
       <Header />
       <main className="mastcont">
         <Hero />
-        <GenericList header="Slammer der Woche">
-          { artists.length > 0 && artists.map(artist => (
-            <ArtistCard key={artist.id} artist={artist} />
-          ))}
-        </GenericList>
-        <GenericList header="Mehr aus der Kategory Poesie">
-          { poetry_event_objects.length > 0 && poetry_event_objects.map(event => (
-            <VideoCard key={event.id} event={event} />
-          ))}
-        </GenericList>
+        <div className="card card--feature">
+          <GenericList className="card__content" header="Slammer der Woche">
+            { artists.length > 0 && artists.map(artist => (
+              <ArtistCard key={artist.id} artist={artist} />
+            ))}
+          </GenericList>
+        </div>
+        <div className="card card--feature">
+          <GenericList className="card__content" header="Mehr aus der Kategory Poesie">
+            { poetry_event_objects.length > 0 && poetry_event_objects.map(event => (
+              <VideoCard key={event.id} event={event} />
+            ))}
+          </GenericList>
+        </div>
         {featured && <Featured />}
         {categories.length > 0 &&
           categories.map(category => (
