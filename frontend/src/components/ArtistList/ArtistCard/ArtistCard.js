@@ -1,17 +1,20 @@
 import React from 'react';
+import Avatar from 'react-avatar';
+
 import './ArtistCard.scss';
 
 class ArtistCard extends React.Component {
 
   render() {
+    let artist = this.props.artist;
+
+    let full_name = artist.last_name !== undefined ? artist.first_name + " " + artist.last_name : artist.first_name ;
     return (
       <div className='artist-card'>
-        <div className='avatar-image'>
-          <img src={this.props.artist.avatar_image}></img>
-        </div>
+
+          <Avatar src={artist.avatar_image} round="80px" />
         <div>
-          <span>{this.props.artist.first_name}</span>
-          <span>{this.props.artist.last_name}</span>
+          <span>{full_name}</span>
         </div>
       </div>
     )
