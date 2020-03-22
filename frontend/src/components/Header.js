@@ -1,20 +1,80 @@
-import React from 'react'
+import React from 'react';
+import HamburgerMenu from 'react-hamburger-menu';
+import { NavLink } from 'react-router-dom';
 
-import { Logo } from './atoms'
-import SearchBar from './SearchBar'
+import { Logo } from './atoms';
+import SearchBar from './SearchBar';
 
-function Header() {
-  return (
-    <header className="masthead grid grid--justify-center grid--center">
-      <Logo />
-      <div className="searchbar grid__column flex__item--bottom">
-        <SearchBar />
-      </div>
-      <div className="profile grid__column grid__column--2">
-        <span>Here be register/login</span>
-      </div>
-    </header>
-  )
+import './Header.scss';
+
+
+class Header extends React.Component {
+
+  constructor(){
+      super()
+      this.state = {
+          open: false,
+          hideOrShowHambugerDropDown: 'nav'
+      }
+  }
+
+  handleClick = () => {
+    this.setState({open: !this.state.open});
+  }
+
+  displayMobileMenu = () => {
+      return (
+          <ul className='hamburgerDropDown'>
+                  <li>Login</li>
+                  <li>Register</li>
+              </ul>
+      )
+  }
+
+    displayHamburgerMenu = () => {
+      return (
+          <HamburgerMenu
+                  isOpen={this.state.open}
+                  menuClicked={this.handleClick.bind(this)}
+                  width={18}
+                  height={15}
+                  strokeWidth={1}
+                  rotate={0}
+                  color='white'
+                  borderRadius={0}
+                  animationDuration={0.5}
+              />
+      )
+  }
+
+  render() {
+    return (
+      <header className="masthead grid grid--justify-center grid--center">
+        <Logo />
+        <div className="searchbar grid__column flex__item--bottom">
+          <SearchBar />
+        </div>
+        <div className="hamburger-nav">
+          <div className="profile grid__column grid__column--2">
+            <span>
+              <HamburgerMenu
+                      isOpen={this.state.open}
+                      menuClicked={this.handleClick.bind(this)}
+                      width={18}
+                      height={15}
+                      strokeWidth={1}
+                      rotate={0}
+                      color='black'
+                      borderRadius={0}
+                      animationDuration={0.5}
+                  />
+              { this.state.open ?  this.displayMobileMenu() : null}
+            </span>
+          </div>
+        </div>
+      </header>
+    )
+  }
 }
 
 export default Header
