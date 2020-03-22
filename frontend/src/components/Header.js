@@ -7,7 +7,7 @@ function Header() {
   return (
     <header className="masthead grid grid--justify-center grid--center">
       <Logo />
-      <div className="searchbar grid__column">
+      <div className="searchbar grid__column flex__item--bottom">
         <SearchBar />
       </div>
       <div className="profile grid__column grid__column--2">

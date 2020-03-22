@@ -1,3 +1,7 @@
+export { default as ArtistCard } from './ArtistCard'
 export { default as Featured } from './Featured'
+export { default as GenericList } from './GenericList'
 export { default as Header } from './Header'
 export { default as Hero } from './Hero'
+export { default as SearchBar } from './SearchBar'
+export { default as VideoCard } from './VideoCard'
