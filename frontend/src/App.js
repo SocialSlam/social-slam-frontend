@@ -5,6 +5,10 @@ import Home from './pages/Home';
 import './App.scss';
 import { ApolloProvider } from 'react-apollo';
 import { createClient } from  './lib/apollo'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faHeart } from '@fortawesome/free-solid-svg-icons'
+
+library.add(faHeart)
 
 const client = createClient()
 
