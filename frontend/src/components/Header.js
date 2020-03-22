@@ -25,8 +25,8 @@ class Header extends React.Component {
   displayMobileMenu = () => {
       return (
           <ul className='hamburgerDropDown'>
-                  <li className='nav-link'><NavLink to='#' >Login</NavLink></li>
-                  <li className='nav-link'><NavLink to='#'>Register</NavLink></li>
+                  <li>Login</li>
+                  <li>Register</li>
               </ul>
       )
   }
@@ -55,18 +55,22 @@ class Header extends React.Component {
           <SearchBar />
         </div>
         <div className="hamburger-nav">
-          <HamburgerMenu
-                  isOpen={this.state.open}
-                  menuClicked={this.handleClick.bind(this)}
-                  width={18}
-                  height={15}
-                  strokeWidth={1}
-                  rotate={0}
-                  color='black'
-                  borderRadius={0}
-                  animationDuration={0.5}
-              />
-          { this.state.open ?  this.displayMobileMenu() : null}
+          <div className="profile grid__column grid__column--2">
+            <span>
+              <HamburgerMenu
+                      isOpen={this.state.open}
+                      menuClicked={this.handleClick.bind(this)}
+                      width={18}
+                      height={15}
+                      strokeWidth={1}
+                      rotate={0}
+                      color='black'
+                      borderRadius={0}
+                      animationDuration={0.5}
+                  />
+              { this.state.open ?  this.displayMobileMenu() : null}
+            </span>
+          </div>
         </div>
       </header>
     )
