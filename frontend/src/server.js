@@ -5,7 +5,7 @@ import express from 'express'
 import { Provider } from 'react-redux'
 import { renderToString } from 'react-dom/server'
 import { createClient } from './lib/apollo'
-import { ApolloProvider } from 'react-apollo'
+import { ApolloProvider, getDataFromTree } from 'react-apollo'
 import configureStore from './store'
 
 
@@ -15,11 +15,12 @@ const server = express()
 server
   .disable('x-powered-by')
   .use(express.static(process.env.RAZZLE_PUBLIC_DIR))
-  .get('/*', (req, res) => {
+  .get('/*', async (req, res) => {
     const context = {}
     const client = createClient()
     const store = configureStore()
-    const markup = renderToString(
+    
+    const Root = () => (
       <Provider store={store}>
         <ApolloProvider store={store} client={client}>
           <StaticRouter context={context} location={req.url}>
@@ -28,6 +29,12 @@ server
         </ApolloProvider> 
       </Provider>
     )
+
+    await getDataFromTree(<Root />)
+
+
+    const markup = renderToString(<Root />)
+    const initialApolloState = client.extract()
 
     if (context.url) {
       res.redirect(context.url)
@@ -53,6 +60,12 @@ server
     </head>
     <body>
         <div id="root">${markup}</div>
+        <script>
+          window.__APOLLO_STATE__ = ${
+            JSON.stringify(initialApolloState)
+            .replace(/</g, '\\u003c')
+          }
+        </script>
     </body>
 </html>`
       )
