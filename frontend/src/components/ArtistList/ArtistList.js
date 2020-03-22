@@ -18,8 +18,11 @@ class ArtistList extends React.Component {
     ));
 
     return(
-      <div className="artist-list">
-        {artist_list}
+      <div>
+        <span>Slammer der Woche</span>
+        <div className="artist-list">
+          {artist_list}
+        </div>
       </div>
     )
   }

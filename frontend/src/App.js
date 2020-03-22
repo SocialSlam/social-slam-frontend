@@ -1,7 +1,6 @@
 import React from 'react';
 import { Route, Switch  }from 'react-router-dom';
 import Home from './pages/Home';
-import ArtistList from './components/ArtistList/ArtistList';
 
 import './App.scss';
 import { ApolloProvider } from 'react-apollo';
@@ -13,7 +12,6 @@ const App = () => (
   <ApolloProvider client={client}>
     <Switch>
       <Route exact path="/" component={Home} />
-      <Route exact path="/artist_list" component={ArtistList} />
     </Switch>
   </ApolloProvider>
 );
