@@ -46,20 +46,23 @@
       "via": "events"
     },
     "featured_act": {
-      "via": "feature_events",
       "plugin": "users-permissions",
-      "model": "user"
+      "model": "user",
+      "via": "feature_events"
     },
     "performers": {
-      "via": "performances",
       "plugin": "users-permissions",
       "collection": "user",
+      "via": "performances",
       "dominant": true
     },
     "host": {
-      "via": "hosted_events",
       "plugin": "users-permissions",
-      "model": "user"
+      "model": "user",
+      "via": "hosted_events"
+    },
+    "capacity": {
+      "type": "biginteger"
     }
   }
 }

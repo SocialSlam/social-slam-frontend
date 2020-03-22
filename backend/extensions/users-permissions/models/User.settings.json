@@ -55,8 +55,8 @@
       "configurable": false
     },
     "hosted_events": {
-      "collection": "slam",
-      "via": "host"
+      "via": "host",
+      "collection": "slam"
     },
     "datetime": {
       "type": "datetime"
@@ -87,16 +87,16 @@
       "via": "artist"
     },
     "performances": {
-      "collection": "slam",
-      "via": "performers"
+      "via": "performers",
+      "collection": "slam"
     },
     "preferred_categories": {
       "model": "category",
       "via": "users"
     },
     "feature_events": {
-      "collection": "slam",
-      "via": "featured_act"
+      "via": "featured_act",
+      "collection": "slam"
     }
   }
 }
