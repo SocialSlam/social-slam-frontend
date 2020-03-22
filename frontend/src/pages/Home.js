@@ -4,11 +4,9 @@ import { useQuery } from 'react-apollo'
 
 import { Featured, Header, Hero } from '../components'
 import GenericList from '../components/GenericList/GenericList';
-import ArtistCard from '../components/ArtistCard/ArtistCard';
 import VideoCard from '../components/VideoCard/VideoCard';
-import { ARTISTS, HOME_FEATURED } from '../queries'
-
-console.log(HOME_FEATURED)
+import ArtistCard from '../components/ArtistCard/ArtistCard';
+import { HOME_FEATURED } from '../queries'
 
 function Home() {
   const { featured, categories = [] } = {}
@@ -54,7 +52,7 @@ function Home() {
         <GenericList header="Mehr aus der Kategory Poesie" objectList={poetry_events} />
         {featured && <Featured />}
         {categories.length > 0 &&
-          categories.map(category => <Category category={category} />)}
+          categories.map(category => <Category key={category.id} category={category} />)}
       </main>
     </div>
   )
