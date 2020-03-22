@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route, Switch  }from 'react-router-dom';
 import Home from './pages/Home';
+
 import './App.scss';
 import { ApolloProvider } from 'react-apollo';
 import { createClient } from  './lib/apollo'

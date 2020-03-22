@@ -1,7 +1,10 @@
 import React from 'react'
 
 function Featured() {
-  return <span>Here be featured content</span>
+  return (
+    <div>
+    </div>
+  )
 }
 
 export default Featured
