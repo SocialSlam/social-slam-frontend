@@ -4,7 +4,7 @@ import { Layout } from '../components'
 export function Kuenstler() {
   return (
     <Layout>
-      HERE BE KÜNSTLER
+      HERE BE KÜNSTLER*INNEN
     </Layout>
   )
 }

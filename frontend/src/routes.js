@@ -13,16 +13,16 @@ export default [
   {
     path: '/abos',
     name: 'Abos',
-    component: Abos,
+    component: Home,
   },
   {
     path: '/veranstaltungen',
     name: 'Veranstaltungen',
-    component: Veranstaltungen,
+    component: Home,
   },
   {
     path: '/kuenstler',
-    name: 'Künstler',
-    component: Kuenstler,
+    name: 'Künstler*innen',
+    component: Home,
   },
 ]

@@ -5,7 +5,7 @@ import './Hero.scss';
 
 function Hero() {
 
-  const viewer_count = Math.floor(Math.random() * 1000);
+  const viewer_count = 426
 
   return (
     <div className="hero card card--feature">

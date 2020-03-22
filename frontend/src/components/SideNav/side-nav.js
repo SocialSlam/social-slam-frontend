@@ -25,7 +25,7 @@ export function SideNav() {
             {routes.length > 0 &&
               routes.map(({ path, name }) => (
                 <li key={path} className="list__item">
-                  <NavLink to={path} className="nav-link type-bold" activeClassName="nav-link__active">{name}</NavLink>
+                  <NavLink exact to={path} className="nav-link type-bold" activeClassName="nav-link__active">{name}</NavLink>
                 </li>
               ))}
           </ul>

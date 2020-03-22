@@ -16,8 +16,8 @@ const client = createClient()
 const App = () => (
   <ApolloProvider client={client}>
     <Switch>
-      { rotues.length > 0 && rotues.map(({ path, component, ...rest}, idx) => (
-        <Route key={idx} path={path} component={component} {...rest} />
+      { rotues.length > 0 && rotues.map(({ path, component, exact, ...rest}, idx) => (
+        <Route key={idx} path={path} exact component={component} {...rest} />
       ))}
     </Switch>
   </ApolloProvider>
