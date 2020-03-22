@@ -22,7 +22,14 @@ function Home() {
       avatar_image: '/images/Peter_Maffay.jpg',
     },
     { id: 1, first_name: 'Heino', avatar_image: '/images/Heino.jpeg' },
-    { id: 2, first_name: 'Roberto Blanco', avatar_image: '/images/Roberto_Blanco.jpg'},
+    { id: 2, first_name: 'Christina Wocinte', avatar_image: '/images/Profilbilder/christina-wocintechchat-com-Kpd-JMLeKJk-unsplash.png'},
+    { id: 3, first_name: 'Christie Campbell', avatar_image: 'images/Profilbilder/christopher-campbell-rDEOVtE7vOs-unsplash.png'},
+    { id: 4, first_name: 'Craig McKay', avatar_image: '/images/Profilbilder/craig-mckay-jmURdhtm7Ng-unsplash.png'},
+    { id: 5, first_name: 'Dan', avatar_image: '/images/Profilbilder/dan-ROJFuWCsfmA-unsplash.png'},
+    { id: 6, first_name: 'Eddy Klaus', avatar_image: '/images/Profilbilder/eddy-klaus-BHNxfaeNCTI-unsplash.png'},
+    { id: 7, first_name: 'Roberto Blanco', avatar_image: '/images/Roberto_Blanco.jpg'},
+    { id: 8, first_name: 'Svetlana Pochatun', avatar_image: '/images/Profilbilder/svetlana-pochatun-piIgyF0-gcY-unsplash.png'},
+    { id: 9, first_name: 'Yucel Moran', avatar_image: '/images/Profilbilder/yucel-moran-nd0AqhGk5ZI-unsplash.png'},
   ]
 
   let poetry_event_objects = [
