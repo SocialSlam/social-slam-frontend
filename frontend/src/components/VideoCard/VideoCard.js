@@ -2,7 +2,7 @@ import React from 'react';
 
 import './VideoCard.scss';
 
-class VideoCard extends React.Component {
+export class VideoCard extends React.Component {
 
   render() {
 

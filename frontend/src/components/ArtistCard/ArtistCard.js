@@ -3,7 +3,7 @@ import Avatar from 'react-avatar';
 
 import './ArtistCard.scss';
 
-class ArtistCard extends React.Component {
+export class ArtistCard extends React.Component {
 
   render() {
     let artist = this.props.artist;
