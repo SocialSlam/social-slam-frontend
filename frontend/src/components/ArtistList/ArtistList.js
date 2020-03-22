@@ -6,6 +6,7 @@ import './ArtistList.scss'
 class ArtistList extends React.Component {
   render() {
 
+    // TODO: Remove Dummy data and replace with query data
     let artists = [
       {first_name: "Peter", last_name: "Maffay", avatar_image: "/images/Peter_Maffay.jpg"},
       {first_name: "Heino", avatar_image: "/images/Heino.jpeg"},
