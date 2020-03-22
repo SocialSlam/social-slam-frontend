@@ -8,7 +8,6 @@ import { createClient } from './lib/apollo'
 import { ApolloProvider, getDataFromTree } from 'react-apollo'
 import configureStore from './store'
 
-
 const assets = require(process.env.RAZZLE_ASSETS_MANIFEST)
 
 const server = express()
@@ -19,19 +18,18 @@ server
     const context = {}
     const client = createClient()
     const store = configureStore()
-    
+
     const Root = () => (
       <Provider store={store}>
         <ApolloProvider store={store} client={client}>
           <StaticRouter context={context} location={req.url}>
             <App />
           </StaticRouter>
-        </ApolloProvider> 
+        </ApolloProvider>
       </Provider>
     )
 
     await getDataFromTree(<Root />)
-
 
     const markup = renderToString(<Root />)
     const initialApolloState = client.extract()
@@ -41,7 +39,7 @@ server
     } else {
       res.status(200).send(
         `<!doctype html>
-    <html lang="">
+    <html lang="de">
     <head>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta charset="utf-8" />
@@ -61,10 +59,9 @@ server
     <body>
         <div id="root">${markup}</div>
         <script>
-          window.__APOLLO_STATE__ = ${
-            JSON.stringify(initialApolloState)
-            .replace(/</g, '\\u003c')
-          }
+          window.__APOLLO_STATE__ = ${JSON.stringify(
+            initialApolloState
+          ).replace(/</g, '\\u003c')}
         </script>
     </body>
 </html>`
