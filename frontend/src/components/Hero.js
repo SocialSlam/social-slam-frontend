@@ -11,12 +11,12 @@ function Hero() {
     <div className="hero card card--feature">
       <div className="card__content">
           <video width="1280" height="720" controls>
-            <source src="/videos/HD Epic Sax Gandalf.mp4"></source>
+            <source src="https://cf-simple-s3-origin-social-slam-728773676825.s3.eu-central-1.amazonaws.com/WhatsApp+Video+2020-03-22+at+14.36.06.mp4"></source>
           </video>
           <div className="bottom__content">
             <div>
-              <h3>Mega Slam </h3>
-              <span>Paul Kalkbrenner</span>
+              <h3>Soul Summer Slam</h3>
+              <span>Maria</span>
             </div>
             <div className="controls">
                 <FontAwesomeIcon icon="heart" size="lg" />

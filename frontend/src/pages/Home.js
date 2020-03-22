@@ -22,22 +22,23 @@ function Home() {
       avatar_image: '/images/Peter_Maffay.jpg',
     },
     { id: 1, first_name: 'Heino', avatar_image: '/images/Heino.jpeg' },
+    { id: 2, first_name: 'Roberto Blanco', avatar_image: '/images/Roberto_Blanco.jpg'},
   ]
 
   let poetry_event_objects = [
     {
       id: 0,
       datetime: '21.03.20',
-      video: '/videos/HD Epic Sax Gandalf.mp4',
-      title: 'Mega Poetry Slam 2020',
+      video: 'https://cf-simple-s3-origin-social-slam-728773676825.s3.eu-central-1.amazonaws.com/julie2.mp4',
+      title: 'Fetzige Gesangsparade',
       host: artists[0],
     },
     {
       id: 1,
-      datetime: '21.03.20',
+      datetime: '27.04.20',
       video: '/videos/HD Epic Sax Gandalf.mp4',
-      title: 'Mega Poetry Slam 2020',
-      host: artists[0],
+      title: 'Corona verliert! #Wirvsvirus',
+      host: artists[1],
     },
   ]
 
@@ -52,7 +53,7 @@ function Home() {
         </GenericList>
       </div>
       <div className="card card--feature">
-        <GenericList className="card__content" header="Mehr aus der Kategory Poesie">
+        <GenericList className="card__content" header="Mehr aus der Kategory Musik">
           { poetry_event_objects.length > 0 && poetry_event_objects.map(event => (
             <VideoCard key={event.id} event={event} />
           ))}
