@@ -6,8 +6,8 @@ class GenericList extends React.Component {
   render() {
     return(
       <div>
-        <span>{this.props.header}</span>
-        <div className="artist-list">
+        <h3>{this.props.header}</h3>
+        <div className="generic-list">
           {this.props.objectList}
         </div>
       </div>
