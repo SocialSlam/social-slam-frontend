@@ -2,11 +2,8 @@ import React from 'react'
 import './Home.css'
 import { useQuery } from 'react-apollo'
 
-import { Featured, Header, Hero } from '../components'
-import ArtistList from '../components/ArtistList/ArtistList';
-import { ARTISTS, HOME_FEATURED } from '../queries'
-
-console.log(HOME_FEATURED)
+import { ArtistList, Featured, Header, Hero } from '../components'
+import { HOME_FEATURED } from '../queries'
 
 function Home() {
   const { featured, categories = [] } = {}
@@ -21,7 +18,7 @@ function Home() {
         <ArtistList />
         {featured && <Featured />}
         {categories.length > 0 &&
-          categories.map(category => <Category category={category} />)}
+          categories.map(category => <Category key={category.id} category={category} />)}
       </main>
     </div>
   )
