@@ -18,6 +18,7 @@ switch(app) {
       }
       process.exit(0)
     })
+    break
   
   case 'backend':
     exec('git subtree push --prefix backend backend master', err => {
@@ -27,6 +28,7 @@ switch(app) {
       }
       process.exit(0)
     })
+    break
   
   default:
     console.error(`Unknown app ${app}`)
