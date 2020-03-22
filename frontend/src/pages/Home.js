@@ -1,12 +1,12 @@
 import React from 'react'
-import './Home.css'
-import { useQuery } from 'react-apollo'
 
 import { Featured, Header, Hero } from '../components'
 import GenericList from '../components/GenericList/GenericList';
 import VideoCard from '../components/VideoCard/VideoCard';
 import ArtistCard from '../components/ArtistCard/ArtistCard';
-import { HOME_FEATURED } from '../queries'
+import { Featured, Header, Hero } from '../components'
+
+import './Home.scss'
 
 function Home() {
   const { featured, categories = [] } = {}
