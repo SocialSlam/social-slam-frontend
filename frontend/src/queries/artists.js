@@ -4,7 +4,6 @@ export default gql`
   {
     artists {
       id
-      name
     }
   }
 `
