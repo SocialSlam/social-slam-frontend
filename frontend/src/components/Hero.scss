@@ -1,2 +1,27 @@
-.donate-button {
+.hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  .card__content {
+    width: 1300px;
+    margin: auto;
+    .bottom__content {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+
+      .controls {
+        display: flex;
+        flex-direction: row;
+        img{
+          max-height: 26px;
+          max-width: 80px;
+        }
+        .svg-inline--fa{
+          width: 80px;
+          vertical-align: middle;
+        }
+      }
+    }
+  }
 }
