@@ -1,0 +1,22 @@
+/* Hambuger Menu Dropdown */
+
+/* The ul styling */
+.hamburgerDropDown {
+  position: fixed;
+  right: 20px;
+  top: 80px;
+  width: 300px;
+  background-color: white;
+  box-shadow: 2px 3px #88888822;
+}
+
+ul.hamburgerDropDown {
+  list-style-type: none;
+  padding: 10px;
+}
+
+/* Position of the hamburger symbol */
+.navbar div {
+  position: relative;
+  display: inline-block;
+}
