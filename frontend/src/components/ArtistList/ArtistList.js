@@ -1,13 +1,14 @@
 import React from 'react';
 import ArtistCard from './ArtistCard/ArtistCard';
-import Avatar from 'react-avatar';
+
+import './ArtistList.scss'
 
 class ArtistList extends React.Component {
   render() {
 
     let artists = [
       {first_name: "Peter", last_name: "Maffay", avatar_image: "/images/Peter_Maffay.jpg"},
-      {first_name: "Heino", avatar_image: "/images/Heino.jpeg"}
+      {first_name: "Heino", avatar_image: "/images/Heino.jpeg"},
     ]
 
     let artist_list = [];

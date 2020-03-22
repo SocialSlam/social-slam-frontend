@@ -11,11 +11,10 @@ class ArtistCard extends React.Component {
     let full_name = artist.last_name !== undefined ? artist.first_name + " " + artist.last_name : artist.first_name ;
     return (
       <div className='artist-card'>
-
+        <div className=''>
           <Avatar src={artist.avatar_image} round="80px" />
-        <div>
-          <span>{full_name}</span>
         </div>
+        <span>{full_name}</span>
       </div>
     )
   }
