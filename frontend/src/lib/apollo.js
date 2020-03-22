@@ -6,7 +6,7 @@ export function createClient() {
     connectToDevTools: process.browser,
     ssrMode: !process.browser, // Disables forceFetch on the server (so queries are only run once)
     link: new HttpLink({
-      uri: 'http://localhost:9002/graphql', // Server URL (must be absolute)
+      uri: 'https://social-slam-backend.herokuapp.com/graphql', // Server URL (must be absolute)
       // Use fetch() polyfill on the server
       fetch: !process.browser && fetch,
     }),
