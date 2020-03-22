@@ -2,9 +2,12 @@
   "defaultConnection": "default",
   "connections": {
     "default": {
-      "connector": "bookshelf",
+      "connector": "mongoose",
       "settings": {
-        "client": "sqlite",
+        "uri": "mongodb://heroku_brqkg8nc:o5bcu46uiraaoa392qm0lfle92@ds055732.mlab.com:55732/heroku_brqkg8nc",
+        "client": "mongo",
+        "host": "ds055732.mlab.com",
+        "port": "55732",
         "filename": ".tmp/data.db"
       },
       "options": {
