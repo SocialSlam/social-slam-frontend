@@ -19,6 +19,10 @@
       "via": "artist",
       "plugin": "users-permissions",
       "model": "user"
+    },
+    "skills": {
+      "via": "artist",
+      "collection": "skill"
     }
   }
 }
