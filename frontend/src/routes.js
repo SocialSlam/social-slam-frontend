@@ -2,10 +2,11 @@ import Home from './pages/Home'
 import Abos from './pages/Abos'
 import Veranstaltungen from './pages/Veranstaltungen'
 import Kuenstler from './pages/Kuenstler'
+import Landing from './pages/landing_page/Landing'
 
 export default [
   {
-    path: '/',
+    path: '/prototype',
     name: 'Home',
     exact: true,
     component: Home,
@@ -25,4 +26,9 @@ export default [
     name: 'Künstler*innen',
     component: Home,
   },
+  {
+    path: '/',
+    name: 'Landing Page',
+    component: Landing,
+  }
 ]
