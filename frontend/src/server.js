@@ -19,6 +19,9 @@ server
     const client = createClient()
     const store = configureStore()
 
+    console.log(process.env.RAZZLE_PUBLIC_DIR)
+    console.log(process.env.RAZZLE_ASSETS_MANIFEST)
+
     const Root = () => (
       <Provider store={store}>
         <ApolloProvider store={store} client={client}>
