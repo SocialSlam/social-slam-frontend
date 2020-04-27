@@ -48,10 +48,10 @@ function Landing(props){
         </div>
         <div className="social_media">
           <span>Folge uns für weitere Informationen auf</span>
-          <a href="https://www.facebook.com/SocialSlam.official/">
+          <a href="https://www.facebook.com/SocialSlam.official/" target="_blank">
             <img src="icons/facebook.svg"/>
           </a>
-          <a href="https://www.instagram.com/socialslam_official/">
+          <a href="https://www.instagram.com/socialslam_official/" target="_blank">
           <img src="icons/instagram.svg"/>
           </a>
         </div>
