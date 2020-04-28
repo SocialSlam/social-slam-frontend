@@ -19,9 +19,6 @@ server
     const client = createClient()
     const store = configureStore()
 
-    console.log(process.env.RAZZLE_PUBLIC_DIR)
-    console.log(process.env.RAZZLE_ASSETS_MANIFEST)
-
     const Root = () => (
       <Provider store={store}>
         <ApolloProvider store={store} client={client}>
@@ -46,7 +43,7 @@ server
     <head>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta charset="utf-8" />
-        <title>Welcome to Razzle</title>
+        <title>Social Slam Landing Page</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         ${
           assets.client.css
