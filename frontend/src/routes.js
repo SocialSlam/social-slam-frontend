@@ -3,8 +3,15 @@ import Abos from './pages/Abos'
 import Veranstaltungen from './pages/Veranstaltungen'
 import Kuenstler from './pages/Kuenstler'
 import Landing from './pages/landing_page/Landing'
+import Debug from './pages/Debug'
 
 export default [
+  {
+    path: '/debug',
+    name: 'DEBUG',
+    exact: true,
+    component: Debug,
+  },
   {
     path: '/prototype',
     name: 'Home',

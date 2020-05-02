@@ -1,7 +1,6 @@
 import React from 'react';
 import { Route, Switch  }from 'react-router-dom';
 
-import './App.scss';
 import { ApolloProvider } from 'react-apollo';
 import { createClient } from  './lib/apollo'
 import { library } from '@fortawesome/fontawesome-svg-core'
