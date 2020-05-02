@@ -13,6 +13,8 @@ const theme = {
     base: '#444444',
     baseInverse: '#ffffff',
     primary: '#5C63FF',
+    conture: 'rgba(0, 0, 0, 255)',
+    highlight: 'rgba(255,1,54, 255)',
   },
   fonts: {
     body: '"Montserrat", sans-serif',

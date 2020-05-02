@@ -9,12 +9,12 @@ import { selectors } from '../redux/selectors'
 import { Logo } from './Logo'
 import SearchBar from './SearchBar'
 
-const Header = ({ dropDown, toggleDropDown }) => (
+const Header = ({ menu, toggleMenu }) => (
   <Flex as="header" justifyContent="center" width="100%">
     <Logo height="3em" />
     <HamburgerMenu
-      isOpen={dropDown}
-      menuClicked={() => toggleDropDown()}
+      isOpen={menu}
+      menuClicked={() => toggleMenu()}
       width={18}
       height={15}
       strokeWidth={1}
@@ -24,20 +24,15 @@ const Header = ({ dropDown, toggleDropDown }) => (
       animationDuration={0.5}
     />
     <SearchBar flex="1" />
-    {dropDown && (
-      <ul className="hamburgerDropDown">
-        <li>Login</li>
-        <li>Register</li>
-      </ul>
-    )}
   </Flex>
 )
 
 const mapStateToProps = (state) => ({
-  dropDown: selectors.app.menu(state),
+  menu: selectors.app.menu(state),
 })
 
 const mapDispatchToProps = {
-  toggleDropDown: appActions.toggleMenu,
+  toggleMenu: appActions.toggleMenu,
 }
+
 export default connect(mapStateToProps, mapDispatchToProps)(Header)
