@@ -1,63 +1,70 @@
-import React from 'react';
+import React from 'react'
 
-import landing_page_texts from './landing_page_texts.json';
-import './Landing.scss';
+import texts from './landing_page_texts.json'
+import './Landing.scss'
+import { Layout } from '../../components'
 
-function Landing(props){
-  return (
+export const Landing = () => (
+  <Layout skipHeader={true} skipMenu={true}>
     <div className="column landing_page">
       <div className="row header">
-        <img src="icons/logo_black.svg"/>
+        <img src="icons/logo_black.svg" />
         <section className="column">
           <h1>SOCIAL SLAM</h1>
-          <p>{landing_page_texts.header}</p>
+          <p>{texts.header}</p>
         </section>
       </div>
       <div className="row section_row">
         <section className="column">
           <h3>Problem</h3>
-          <p>{landing_page_texts.problem}</p>
+          <p>{texts.problem}</p>
         </section>
         <section className="column">
           <h3>Strategie</h3>
-          <p>{landing_page_texts.strategy}</p>
+          <p>{texts.strategy}</p>
         </section>
         <section className="column">
           <h3>Lösung</h3>
-          <p>{landing_page_texts.solution}</p>
+          <p>{texts.solution}</p>
         </section>
       </div>
       <div className="row blue">
         <h2>Ziel der Plattform</h2>
-        <p>{landing_page_texts.platform_goal_1}</p>
-        <p>{landing_page_texts.platform_goal_2}</p>
+        <p>{texts.platform_goal_1}</p>
+        <p>{texts.platform_goal_2}</p>
       </div>
       <div className="row section_row">
         <section className="column">
           <h3>USP</h3>
-          <p>{landing_page_texts.USP}</p>
+          <p>{texts.USP}</p>
         </section>
         <section className="column">
           <h3>Zielgruppe</h3>
-          <p>{landing_page_texts.demographic}</p>
+          <p>{texts.demographic}</p>
         </section>
       </div>
       <footer className="row">
         <div>
-            <span>contact@socialslam.de</span>
+          <span>contact@socialslam.de</span>
         </div>
         <div className="social_media">
           <span>Folge uns für weitere Informationen auf</span>
-          <a href="https://www.facebook.com/SocialSlam.official/" target="_blank">
-            <img src="icons/facebook.svg"/>
+          <a
+            href="https://www.facebook.com/SocialSlam.official/"
+            target="_blank"
+          >
+            <img src="icons/facebook.svg" />
           </a>
-          <a href="https://www.instagram.com/socialslam_official/" target="_blank">
-          <img src="icons/instagram.svg"/>
+          <a
+            href="https://www.instagram.com/socialslam_official/"
+            target="_blank"
+          >
+            <img src="icons/instagram.svg" />
           </a>
         </div>
       </footer>
     </div>
-  )
-}
+  </Layout>
+)
 
 export default Landing
