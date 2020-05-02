@@ -1,80 +1,43 @@
-import React from 'react';
-import HamburgerMenu from 'react-hamburger-menu';
-import { NavLink } from 'react-router-dom';
+import React from 'react'
+import HamburgerMenu from 'react-hamburger-menu'
+import { connect } from 'react-redux'
+import { Flex } from 'rebass/styled-components'
 
-import { Logo } from './atoms';
-import SearchBar from './SearchBar';
+import { actions as appActions } from '../redux/modules/app'
+import { selectors } from '../redux/selectors'
 
-import './Header.scss';
+import { Logo } from './Logo'
+import SearchBar from './SearchBar'
 
+const Header = ({ dropDown, toggleDropDown }) => (
+  <Flex as="header" justifyContent="center" width="100%">
+    <Logo height="3em" />
+    <HamburgerMenu
+      isOpen={dropDown}
+      menuClicked={() => toggleDropDown()}
+      width={18}
+      height={15}
+      strokeWidth={1}
+      rotate={0}
+      color="black"
+      borderRadius={0}
+      animationDuration={0.5}
+    />
+    <SearchBar flex="1" />
+    {dropDown && (
+      <ul className="hamburgerDropDown">
+        <li>Login</li>
+        <li>Register</li>
+      </ul>
+    )}
+  </Flex>
+)
 
-class Header extends React.Component {
+const mapStateToProps = (state) => ({
+  dropDown: selectors.app.menu(state),
+})
 
-  constructor(){
-      super()
-      this.state = {
-          open: false,
-          hideOrShowHambugerDropDown: 'nav'
-      }
-  }
-
-  handleClick = () => {
-    this.setState({open: !this.state.open});
-  }
-
-  displayMobileMenu = () => {
-      return (
-          <ul className='hamburgerDropDown'>
-                  <li>Login</li>
-                  <li>Register</li>
-              </ul>
-      )
-  }
-
-    displayHamburgerMenu = () => {
-      return (
-          <HamburgerMenu
-                  isOpen={this.state.open}
-                  menuClicked={this.handleClick.bind(this)}
-                  width={18}
-                  height={15}
-                  strokeWidth={1}
-                  rotate={0}
-                  color='white'
-                  borderRadius={0}
-                  animationDuration={0.5}
-              />
-      )
-  }
-
-  render() {
-    return (
-      <header className="masthead grid grid--justify-center grid--center">
-        <Logo />
-        <div className="searchbar grid__column flex__item--bottom">
-          <SearchBar />
-        </div>
-        <div className="hamburger-nav">
-          <div className="profile grid__column grid__column--2">
-            <span>
-              <HamburgerMenu
-                      isOpen={this.state.open}
-                      menuClicked={this.handleClick.bind(this)}
-                      width={18}
-                      height={15}
-                      strokeWidth={1}
-                      rotate={0}
-                      color='black'
-                      borderRadius={0}
-                      animationDuration={0.5}
-                  />
-              { this.state.open ?  this.displayMobileMenu() : null}
-            </span>
-          </div>
-        </div>
-      </header>
-    )
-  }
+const mapDispatchToProps = {
+  toggleDropDown: appActions.toggleMenu,
 }
-
-export default Header
+export default connect(mapStateToProps, mapDispatchToProps)(Header)

@@ -110,7 +110,6 @@ export function Layout({ children, skipHeader, skipMenu, debug = false }) {
       <Flex
         minHeight="100vh"
         flexDirection="column"
-        p="3em"
         css={
           debug
             ? `
@@ -122,7 +121,7 @@ export function Layout({ children, skipHeader, skipMenu, debug = false }) {
       >
         {!skipMenu && <SideNav />}
         {!skipHeader && <Header />}
-        <Box as="main">{children}</Box>
+        <Box as="main" p="3em">{children}</Box>
       </Flex>
     </ThemeProvider>
   )

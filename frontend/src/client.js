@@ -1,24 +1,18 @@
-import App from './App'
-import { BrowserRouter } from 'react-router-dom'
+import { ConnectedRouter } from 'connected-react-router'
 import React from 'react'
 import { hydrate } from 'react-dom'
-import { ApolloProvider } from 'react-apollo'
+import { Provider } from 'react-redux'
 
-import configureStore from './store'
-import { createClient } from './lib/apollo'
+import App from './App'
+import { configureStore, history } from './redux/configureStore'
 
-const client = createClient()
-const store = configureStore()
+const store = configureStore(window.__PRELOADED_STATE__)
 
 hydrate(
-  <ApolloProvider client={client}>
-    <BrowserRouter>
+  <Provider store={store}>
+    <ConnectedRouter history={history}>
       <App />
-    </BrowserRouter>
-  </ApolloProvider>,
+    </ConnectedRouter>
+  </Provider>,
   document.getElementById('root')
 )
-
-if (module.hot) {
-  module.hot.accept()
-}

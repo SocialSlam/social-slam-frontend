@@ -1,38 +1,36 @@
-import App from './App'
-import React from 'react'
-import { StaticRouter } from 'react-router-dom'
 import express from 'express'
+import CookieParser from 'cookie-parser'
+import React from 'react'
 import { Provider } from 'react-redux'
 import { renderToString } from 'react-dom/server'
-import { createClient } from './lib/apollo'
-import { ApolloProvider, getDataFromTree } from 'react-apollo'
-import configureStore from './store'
+import { StaticRouter } from 'react-router-dom'
+import serializeJavascript from 'serialize-javascript'
+
+import App from './App'
+import configureStore from './redux/configureStore'
 
 const assets = require(process.env.RAZZLE_ASSETS_MANIFEST)
 
 const server = express()
 server
   .disable('x-powered-by')
+  .use(CookieParser())
   .use(express.static(process.env.RAZZLE_PUBLIC_DIR))
   .get('/*', async (req, res) => {
     const context = {}
-    const client = createClient()
-    const store = configureStore()
 
-    const Root = () => (
+    const store = configureStore(context)
+  
+
+    const markup = renderToString(
       <Provider store={store}>
-        <ApolloProvider store={store} client={client}>
-          <StaticRouter context={context} location={req.url}>
-            <App />
-          </StaticRouter>
-        </ApolloProvider>
+        <StaticRouter context={context} location={req.url}>
+          <App />
+        </StaticRouter>
       </Provider>
     )
 
-    await getDataFromTree(<Root />)
-
-    const markup = renderToString(<Root />)
-    const initialApolloState = client.extract()
+    const finalState = store.getState()
 
     if (context.url) {
       res.redirect(context.url)
@@ -59,9 +57,7 @@ server
     <body>
         <div id="root">${markup}</div>
         <script>
-          window.__APOLLO_STATE__ = ${JSON.stringify(
-            initialApolloState
-          ).replace(/</g, '\\u003c')}
+          window.__PRELOADED_STATE__ = ${serializeJavascript(finalState)}
         </script>
     </body>
 </html>`

@@ -17,14 +17,17 @@
     "start:prod": "HOST=http://social-slam.herokuapp.com/ NODE_ENV=production node build/server.js"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^1.2.27",
-    "@fortawesome/free-solid-svg-icons": "^5.12.1",
+    "@fortawesome/fontawesome-svg-core": "^1.2.28",
+    "@fortawesome/free-solid-svg-icons": "^5.13.0",
     "@fortawesome/react-fontawesome": "^0.1.9",
     "apollo-boost": "^0.4.7",
     "apollo-client": "^2.6.8",
+    "connected-react-router": "^6.8.0",
+    "cookie-parser": "^1.4.5",
     "express": "4.17.1",
     "graphql": "^14.6.0",
     "graphql-tag": "^2.10.3",
+    "history": "^4.10.1",
     "isomorphic-unfetch": "^3.0.0",
     "prop-types": "^15.7.2",
     "razzle": "3.0.0",
@@ -43,6 +46,8 @@
     "redux-logger": "^3.0.6",
     "redux-react-hook": "^4.0.1",
     "redux-thunk": "^2.3.0",
+    "reselect": "^4.0.0",
+    "serialize-javascript": "^3.0.0",
     "styled-components": "^5.1.0",
     "tent-css": "^1.4.3"
   },

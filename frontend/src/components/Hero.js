@@ -1,5 +1,6 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBell, faHeart } from '@fortawesome/free-solid-svg-icons';
 
 import './Hero.scss';
 
@@ -19,10 +20,10 @@ function Hero() {
               <span>Maria</span>
             </div>
             <div className="controls">
-                <FontAwesomeIcon icon="heart" size="lg" />
+                <FontAwesomeIcon icon={faHeart} size="lg" />
                 <img src="icons/donation_02.svg" />
                 <img src="icons/clap.svg" />
-                <FontAwesomeIcon icon="bell" size="lg" />
+                <FontAwesomeIcon icon={faBell} size="lg" />
             </div>
             <div>
               <span>Viewers: </span>

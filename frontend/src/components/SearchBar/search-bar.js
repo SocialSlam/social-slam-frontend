@@ -1,13 +1,10 @@
 import React from 'react'
-import { Pill } from '../atoms'
+import { Box } from 'rebass/styled-components'
+import styled from 'styled-components'
 
-export function SearchBar() {
+export const SearchBar = ({ ...props }) => {
   return (
-    <>
-      <div className="control control--block flex-align__bottom">
-        <input className="control__input" type="text" role="search" placeholder="Slams, Künstler, Kategorien finden" />
-      </div>
-    </>
+    <Box as="input" type="text" role="search" placeholder="Slams, Künstler, Kategorien finden" {...props}/>
   )
 }
 
