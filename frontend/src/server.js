@@ -20,7 +20,6 @@ server
     const context = {}
 
     const store = configureStore(context)
-  
 
     const markup = renderToString(
       <Provider store={store}>

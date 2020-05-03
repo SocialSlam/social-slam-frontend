@@ -23,11 +23,11 @@ function Home() {
         <h2 className="subtitle subtitle--xxl">#wirvsvirus</h2>
       </header>
       <p className="Home-intro">
-        To get started, edit <code>src/App.js</code> or{' '}
-        <code>src/Home.js</code> and save to reload.
+        To get started, edit <code>src/App.js</code> or <code>src/Home.js</code>{' '}
+        and save to reload.
       </p>
       <ul className="list list--nulled">
-        {data.artists.map(a => (
+        {data.artists.map((a) => (
           <li key={a.id} className="list__item">
             {a.name}
           </li>

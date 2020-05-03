@@ -20,7 +20,7 @@ export const history = isServer
 
 const loggerMiddleware = createLogger({
   level: 'info',
-  collapsed: true
+  collapsed: true,
 })
 
 const composeEnhancer = composeWithDevTools({ trace: true, traceLimit: 25 })
@@ -30,7 +30,10 @@ export const configureStore = (initialState) => {
     rootReducer(history),
     initialState,
     composeEnhancer(
-      applyMiddleware(/*epicMiddleware,*/ routerMiddleware(history), loggerMiddleware)
+      applyMiddleware(
+        /*epicMiddleware,*/ routerMiddleware(history),
+        loggerMiddleware
+      )
     )
   )
 

@@ -122,8 +122,10 @@ export function Layout({ children, skipHeader, skipMenu, debug = false }) {
         }
       >
         {!skipMenu && <SideNav />}
-        {!skipHeader && <Header />}
-        <Box as="main" p="3em">{children}</Box>
+        {!skipHeader && <Header px="3em" />}
+        <Box as="main" p="3em">
+          {children}
+        </Box>
       </Flex>
     </ThemeProvider>
   )

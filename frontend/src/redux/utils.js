@@ -1,6 +1,6 @@
 const types = {}
 
-export const type = typeName => {
+export const type = (typeName) => {
   if (types[typeName]) {
     throw new Error(`Duplicate action '${typeName}' defined`)
   }

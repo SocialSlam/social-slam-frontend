@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, createRef } from 'react'
 import { connect } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
@@ -58,8 +58,14 @@ const StyledNavLink = styled(NavLink)`
 `
 
 const SideNav = ({ menu, toggleMenu }) => {
+  const ref = createRef()
+
+  useEffect(() => {
+    ref.current.classList.toggle('side-nav__open', menu)
+  }, [menu])
+
   return (
-    <StyledNav className={`${menu ? ' side-nav__open' : ''}`}>
+    <StyledNav ref={ref}>
       {menu ? (
         <span className="vertical-text" onClick={() => toggleMenu()}>
           Menü

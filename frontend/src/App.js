@@ -1,14 +1,14 @@
-import React from 'react';
-import { Route, Switch  }from 'react-router-dom';
+import React from 'react'
+import { Route, Switch } from 'react-router-dom'
 
-import rotues from './routes'
+import Landing from './pages/landing_page/Landing'
+import Error404 from './pages/Error404'
 
 const App = () => (
   <Switch>
-    { rotues.length > 0 && rotues.map(({ path, component, exact, ...rest}, idx) => (
-      <Route key={idx} path={path} exact component={component} {...rest} />
-    ))}
+    <Route path="/" exact component={Landing} />
+    <Route component={Error404} />
   </Switch>
-);
+)
 
-export default App;
+export default App
