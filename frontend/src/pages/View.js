@@ -13,11 +13,6 @@ import io from 'socket.io-client'
 import Peer from 'simple-peer'
 import { v5 as uuid } from 'uuid'
 
-const StyledVideo = styled.video`
-  height: 40%;
-  width: 50%;
-`
-
 const tempInfo = {
   dateTime: '2020-04-27 20:00:00',
   title: 'Stream Title',
@@ -73,27 +68,51 @@ const tempInfo = {
 }
 
 const Video = (props) => {
-  //   const ref = useRef()
+  let vidContainer
+  let width
+  let height
+  //   try {
+  //     vidContainer = window.document.getElementById('video-container')
+  //     if (props.totalStreams === 1) {
+  //       width = vidContainer.clientWidth
+  //       height = vidContainer.clientHeight
+  //     } else if (props.totalStreams > 1) {
+  //       width = vidContainer.clientWidth / 2
+  //       height = vidContainer.clientHeight
+  //     }
+  //   } catch (e) {
+  //     console.log(e)
+  //   }
+  //   console.log(vidContainer, width, height)
 
-  //   useEffect(() => {
-  //     props.peer.on('stream', (stream) => {
-  //       ref.current.srcObject = stream
-  //     })
-  //   }, [])
-
-  return <StyledVideo playsInline autoPlay ref={props.stream} />
+  return (
+    <video
+      autoPlay
+      ref={props.stream}
+      style={{
+        width: width || '100%',
+        height: height || '100%',
+        objectFit: 'cover',
+      }}
+    />
+  )
 }
 
 const VideoContainer = (props) => {
-  //  {peers.map((peer, i) => (
-  //           <Box p={0} color="black" bg="blue">
-  //             <Video peer={peer} />
-  //           </Box>
-  //         ))}
-
-  return props.streams.map((el, i) => {
-    return <Video key={i} stream={el} />
-  })
+  return (
+    <Box
+      id="video-container"
+      sx={{
+        display: 'grid',
+        gridGap: 4,
+        gridTemplateColumns: 'repeat(auto-fit, minmax(128px, 1fr))',
+      }}
+    >
+      {props.streams.map((el, i) => {
+        return <Video key={i} stream={el} totalStreams={props.streams.length} />
+      })}
+    </Box>
+  )
 }
 
 const MiscContainer = (props) => {
@@ -150,11 +169,12 @@ const MiscContainer = (props) => {
 
 const ChatContainer = (props) => {
   const [chatText, setChatText] = useState([])
+  const { values, onSend } = props
 
   return (
     <Box>
       <Box py={2} px={3} overflowY="scroll" className="chat-log-container">
-        {tempInfo.chat.map((el, i) => (
+        {values.map((el, i) => (
           <Text key={i}>
             <b>{el.user}: </b>
             {el.text}
@@ -181,7 +201,7 @@ const ChatContainer = (props) => {
             <Box width={1 / 5} px={2}>
               <FontAwesomeIcon
                 onClick={() => {
-                  console.log(chatText)
+                  onSend({ text: chatText })
                   setChatText('')
                 }}
                 className="chat-button"
@@ -205,56 +225,108 @@ const ChatContainer = (props) => {
 }
 
 export const View = (props) => {
-  const [peers, setPeers] = useState([])
   const socketRef = useRef()
-  const userVideo = useRef()
   const peersRef = useRef([])
+  const [peers, setPeers] = useState([])
   const [viewerCount, setViewerCount] = useState(0)
+  const [chatLog, setChatLog] = useState([])
 
-  const jamId = props.match.params.streamId
+  const streamId = props.match.params.streamId
+  const username = 'John'
 
   useEffect(() => {
-    // socketRef.current = io.connect('/')
-    navigator.mediaDevices
-      .getUserMedia({ video: true, audio: true })
-      .then((stream) => {
-        userVideo.current.srcObject = stream
-        // socketRef.current.emit('connect', {
-        //   streamId: jamId,
-        //   username: 'alpha',
-        // })
+    socketRef.current = io('localhost:4000')
 
-        // socketRef.current.on('connections', ({ artists, sockets }) => {
-        //   const peers = []
-        //   artists.forEach((artistId) => {
-        //     const peer = createPeer(artistId, socketRef.current.id, stream)
-        //   })
-        // })
+    socketRef.current.emit('connect_to_room', {
+      streamId,
+      //   token:
+      //     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhbHBoYSIsImlhdCI6MTUxNjIzOTAyMn0.ok55AeE5LVEUYuWU4eLyBjdomKRBNtMoxuA3tkBMRuY',
+      token:
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJicmF2byIsImlhdCI6MTUxNjIzOTAyMn0.n-Fsy8Jx6q9IubgaNZUgooNcsUG_58OVgE9MUTLkMVs',
+    })
+
+    // artists: Set<string>, sockets: Set<string>
+    socketRef.current.on('connections', (payload) => {
+      const { artists, sockets } = payload
+      const peers = []
+
+      sockets.forEach((socketId) => {
+        const peer = createPeer(socketId, socketRef.current.id)
+        peers.push(peer)
+        if (artists.contains(socketId)) {
+          peersRef.current.push({
+            socketId,
+            peer,
+          })
+        }
       })
+
+      setViewerCount(peers.length)
+      setPeers(peers)
+    })
+
+    socketRef.current.on('message', (payload) => {
+      if (payload.error) {
+        console.error(payload)
+      } else {
+        console.info(payload)
+      }
+    })
+
+    socketRef.current.on('new_connection', (payload) => {
+      const peer = addPeer(payload.signal, payload.callerId)
+      peersRef.current.push({
+        socketId: payload.callerId,
+        peer,
+      })
+    })
+
+    socketRef.current.on('confirming_connection', (payload) => {
+      const connection = peersRef.current.find(
+        (p) => p.socketId === payload.socketId
+      )
+      connection.peer.signal(payload.signal)
+    })
   }, [])
 
-  // const createPeer = (userToSignal, callerID, stream) => {
-  //   const peer = new Peer({
-  //     initiator: true,
-  //     trickle: false,
-  //     stream,
-  //   })
+  const createPeer = (socketId, callerId) => {
+    const peer = new Peer({ initiator: true, trickle: false })
 
-  //   peer.on('message', (signal) => {
-  //     socketRef.current.emit('sending signal', {
-  //       userToSignal,
-  //       callerID,
-  //       signal,
-  //     })
-  //   })
+    peer.on('signal', (signal) => {
+      socketRef.current.emit('send_signal', {
+        socketId,
+        callerId,
+        signal,
+      })
+    })
 
-  //   return peer
-  // }
+    return peer
+  }
 
-  const gridElementOptions = {
-    padding: '2px',
-    alignSelf: 'stretch',
-    justifySelf: 'stretch',
+  const addPeer = (incomingSignal, callerId) => {
+    const peer = new Peer({
+      initiator: false,
+      trickle: false,
+    })
+
+    peer.on('signal', (signal) => {
+      socketRef.current.emit('receive_signal', { signal, callerId })
+    })
+
+    peer.on('data', (newMsg) => {
+      chatLog.push(newMsg)
+      setChatLog(chatLog)
+    })
+
+    peer.signal(incomingSignal)
+
+    return peer
+  }
+
+  const messagePeers = (newMsg) => {
+    peers.forEach((peer) => {
+      peer.send(newMsg)
+    })
   }
 
   return (
@@ -274,7 +346,17 @@ export const View = (props) => {
           </Box>
         </Box>
         <Box width={3 / 12} px={2} py={2}>
-          <ChatContainer />
+          {/* TODO: Replace the chat with a 3rd party module? */}
+          <ChatContainer
+            username
+            values={chatLog}
+            onSend={(newMsg) => {
+              newMsg.user = username
+              chatLog.push(newMsg)
+              setChatLog(chatLog)
+              messagePeers(newMsg)
+            }}
+          />
         </Box>
       </Flex>
     </Layout>
