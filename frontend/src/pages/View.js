@@ -275,10 +275,11 @@ export const View = (props) => {
 
     socketRef.current.on('new_connection', (payload) => {
       const peer = addPeer(payload.signal, payload.callerId)
-      peersRef.current.push({
-        socketId: payload.callerId,
-        peer,
-      })
+      peers.push(peer)
+      //         peersRef.current.push({
+      //     socketId: payload.callerId,
+      //     peer,
+      //   })
     })
 
     socketRef.current.on('confirming_connection', (payload) => {
@@ -339,7 +340,7 @@ export const View = (props) => {
           style={{ borderRight: 'lightgrey 2px solid' }}
         >
           <Box m={2} style={{ border: 'grey 1px solid' }}>
-            <VideoContainer streams={[userVideo, userVideo]} />
+            <VideoContainer streams={peersRef} />
           </Box>
           <Box m={2}>
             <MiscContainer viewerCount={viewerCount} streamers={['', '']} />
