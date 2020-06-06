@@ -1,13 +1,13 @@
-import React from 'react'
-import { Layout } from '../components'
+import * as React from 'react'
+import { Layout } from '../components/Layout'
 
-const Debug = () => (
+export const Debug:React.FC = () => (
   <Layout skipHeader={true}>
     <h1>Header One</h1>
 
     <p>Lorem ipsum <em>emphasised text</em> dolor sit amet, <strong>strong text</strong> 
     consectetur adipisicing elit, <abbr title="">abbreviated text</abbr> sed do eiusmod tempor 
-    <acronym title="">acronym text</acronym> incididunt ut labore et dolore magna aliqua. Ut 
+    acronym text incididunt ut labore et dolore magna aliqua. Ut
     <q>quoted text</q> enim ad minim veniam, quis nostrud exercitation <a href="/">link text</a> 
     ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute <del>deleted text</del> 
     <ins>inserted text</ins> irure dolor in reprehenderit in voluptate velit esse cillum 
@@ -123,5 +123,3 @@ const Debug = () => (
     <address>Author text</address>
   </Layout>
 )
-
-export default Debug
