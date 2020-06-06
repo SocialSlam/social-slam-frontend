@@ -1,7 +1,7 @@
 import * as React from 'react'
 import texts from './landing_page_texts.json'
 import './Landing.scss'
-import {Layout} from '../../components'
+import {Layout} from '../../components/Layout'
 
 export const Landing: React.FC = (props) => {
   return (
