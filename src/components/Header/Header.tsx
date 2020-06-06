@@ -1,6 +1,6 @@
 import * as React from 'react'
 import HamburgerMenu from 'react-hamburger-menu'
-// import { Logo } from './atoms';
+import { Logo } from '../Logo'
 import { SearchBar } from '../SearchBar'
 
 import './Header.scss'
@@ -52,7 +52,7 @@ export class Header extends React.Component<HeaderProps, HeaderState> {
   render() {
     return (
       <header className="masthead grid grid--justify-center grid--center">
-        {/*<Logo />*/}
+        <Logo />
         <div className="searchbar grid__column flex__item--bottom">
           <SearchBar />
         </div>
