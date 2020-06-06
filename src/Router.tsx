@@ -22,9 +22,6 @@ export const routes = [
     name: 'Landing Page',
     component: Landing,
   },
-  {
-    component: Error404
-  }
 ]
 
 export const Router: React.FC = (props) => {
@@ -35,6 +32,7 @@ export const Router: React.FC = (props) => {
         {routes.map((props, i) => (
           <Route key={i} {...props} />
         ))}
+        <Route component={Error404}/>
       </Switch>
     </BrowserRouter>
   )

@@ -8,14 +8,6 @@ export type LogoProps={
 
 export const SearchBar: React.FC<LogoProps> = (props) => {
   return (
-    <div className="control control--block flex-align__bottom">
-      <input
-        className="control__input"
-        type="text"
-        role="search"
-        placeholder="Slams, Künstler, Kategorien finden"
-        {...props}
-      />
-    </div>
+    <Box as="input" type="text" role="search" placeholder="Slams, Künstler, Kategorien finden" {...props}/>
   )
 }
