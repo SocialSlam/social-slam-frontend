@@ -1,17 +1,17 @@
-import React from 'react'
+import * as React from 'react'
 
-// import {
+import {
 //   ArtistCard,
 //   Featured,
 //   GenericList,
-//   Hero,
+  Hero,
+  Layout,
 //   VideoCard,
-// } from '../components'
+} from '../components'
 
 // import './Home.scss'
-import { Layout } from '../components'
 
-const Home=()=> {
+export const Home:React.FC=()=> {
   // @ts-ignore
   const { featured, categories = [] } = {}
 
@@ -52,7 +52,8 @@ const Home=()=> {
 
   return (
     <Layout>
-      {/*<Hero />*/}
+      <Hero />
+      {/*<div></div>*/}
       {/*<div className="card card--feature">*/}
       {/*  <GenericList className="card__content" header="Slammer der Woche">*/}
       {/*    { artists.length > 0 && artists.map(artist => (*/}
@@ -75,5 +76,3 @@ const Home=()=> {
     </Layout>
   )
 }
-
-export default Home
