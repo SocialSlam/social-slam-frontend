@@ -1,9 +1,9 @@
 {
   "name": "socialslam-app",
   "version": "0.1.0",
+  "repository": "https://github.com/SocialSlam/social-slam-frontend.git",
   "license": "MIT",
   "scripts": {
-    "pretest": "eslint --ignore-path .gitignore .",
     "prettier": "./node_modules/.bin/prettier --single-quote --check 'src/**/*.{js,jsx,ts,tsx,json,css,scss,md}'",
     "prettier:fix": "./node_modules/.bin/prettier --single-quote --write 'src/**/*.{js,jsx,ts,tsx,json,css,scss,md}'",
     "start": "parcel serve index.html",
