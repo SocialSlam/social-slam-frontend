@@ -1,20 +1,17 @@
 import * as React from 'react'
 import HamburgerMenu from 'react-hamburger-menu'
 // import { Logo } from './atoms';
-import {SearchBar} from '../SearchBar'
+import { SearchBar } from '../SearchBar'
 
 import './Header.scss'
 
-export interface HeaderProps {
-
-}
+export interface HeaderProps {}
 export interface HeaderState {
-  open:boolean
-  hideOrShowHambugerDropDown:string
+  open: boolean
+  hideOrShowHambugerDropDown: string
 }
 
-export class Header extends React.Component<HeaderProps,HeaderState> {
-
+export class Header extends React.Component<HeaderProps, HeaderState> {
   constructor(props) {
     super(props)
     this.state = {
@@ -24,12 +21,12 @@ export class Header extends React.Component<HeaderProps,HeaderState> {
   }
 
   handleClick = () => {
-    this.setState({open: !this.state.open})
+    this.setState({ open: !this.state.open })
   }
 
   displayMobileMenu = () => {
     return (
-      <ul className='hamburgerDropDown'>
+      <ul className="hamburgerDropDown">
         <li>Login</li>
         <li>Register</li>
       </ul>
@@ -45,7 +42,7 @@ export class Header extends React.Component<HeaderProps,HeaderState> {
         height={15}
         strokeWidth={1}
         rotate={0}
-        color='white'
+        color="white"
         borderRadius={0}
         animationDuration={0.5}
       />
@@ -57,7 +54,7 @@ export class Header extends React.Component<HeaderProps,HeaderState> {
       <header className="masthead grid grid--justify-center grid--center">
         {/*<Logo />*/}
         <div className="searchbar grid__column flex__item--bottom">
-          <SearchBar/>
+          <SearchBar />
         </div>
         <div className="hamburger-nav">
           <div className="profile grid__column grid__column--2">
@@ -69,7 +66,7 @@ export class Header extends React.Component<HeaderProps,HeaderState> {
                 height={15}
                 strokeWidth={1}
                 rotate={0}
-                color='black'
+                color="black"
                 borderRadius={0}
                 animationDuration={0.5}
               />

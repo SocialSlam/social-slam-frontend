@@ -1,15 +1,11 @@
 import * as React from 'react'
 
-import './pill.scss'
+import './Pill.scss'
 
 interface PillProps {
-  pillText:string
+  pillText: string
 }
 
-export const Pill:React.FC<PillProps>=({ pillText }) =>{
-  return (
-    <span className="pill">
-       { pillText }
-    </span>
-  )
+export const Pill: React.FC<PillProps> = ({ pillText }) => {
+  return <span className="pill">{pillText}</span>
 }
