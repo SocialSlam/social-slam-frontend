@@ -1,6 +1,6 @@
 import * as React from 'react'
 // import { Header, SideNav } from '../components'
-import {Header} from './Header'
+import {Header} from './Header/Header'
 import {SideNav} from './SideNav/SideNav'
 
 export const Layout: React.FC = ({children}) => {

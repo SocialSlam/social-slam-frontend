@@ -1,7 +1,7 @@
 import * as React from 'react'
 import HamburgerMenu from 'react-hamburger-menu'
 // import { Logo } from './atoms';
-import {SearchBar} from './SearchBar'
+import {SearchBar} from '../SearchBar'
 
 import './Header.scss'
 
