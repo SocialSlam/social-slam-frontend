@@ -38,9 +38,9 @@ You can again view your application at `http://localhost:3000`
 
 ### Authors
 
-* [Felix Dürrwald]()
-* [Halvard Mørstad]()
-* [Marc]()
+* [Felix Dürrwald](https://github.com/mplabs)
+* [Halvard Mørstad](https://github.com/halvardssm)
+* [Marc the Shark](https://github.com/Tschakabaka)
 
 ---
 
