@@ -1,12 +1,12 @@
-import React, { useState } from 'react'
+import * as React from 'react'
 import { NavLink } from 'react-router-dom'
 
-import routes from '../../routes'
+import {routes} from '../../Router'
 
 import './side-nav.scss'
 
-export function SideNav() {
-  const [isColapsed, toggle] = useState(true)
+export const SideNav=()=> {
+  const [isColapsed, toggle] = React.useState(true)
 
   let className = 'side-nav'
 
@@ -34,5 +34,3 @@ export function SideNav() {
     </nav>
   )
 }
-
-export default SideNav

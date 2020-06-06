@@ -1,15 +1,13 @@
 import * as React from 'react'
 
-import {
-//   ArtistCard,
-//   Featured,
-//   GenericList,
-  Hero,
-  Layout,
-//   VideoCard,
-} from '../components'
+import {Hero} from '../components/Hero'
+import {Layout} from '../components/Layout'
+import {Featured} from '../components/Featured'
+import {GenericList} from '../components/GenericList/GenericList'
+import {ArtistCard} from '../components/ArtistCard/ArtistCard'
+import {VideoCard} from '../components/VideoCard/VideoCard'
 
-// import './Home.scss'
+import './Home.scss'
 
 export const Home:React.FC=()=> {
   // @ts-ignore
@@ -53,22 +51,21 @@ export const Home:React.FC=()=> {
   return (
     <Layout>
       <Hero />
-      {/*<div></div>*/}
-      {/*<div className="card card--feature">*/}
-      {/*  <GenericList className="card__content" header="Slammer der Woche">*/}
-      {/*    { artists.length > 0 && artists.map(artist => (*/}
-      {/*      <ArtistCard key={artist.id} artist={artist} />*/}
-      {/*    ))}*/}
-      {/*  </GenericList>*/}
-      {/*</div>*/}
-      {/*<div className="card card--feature">*/}
-      {/*  <GenericList className="card__content" header="Mehr aus der Kategory Musik">*/}
-      {/*    { poetry_event_objects.length > 0 && poetry_event_objects.map(event => (*/}
-      {/*      <VideoCard key={event.id} event={event} />*/}
-      {/*    ))}*/}
-      {/*  </GenericList>*/}
-      {/*</div>*/}
-      {/*{featured && <Featured />}*/}
+      <div className="card card--feature">
+        <GenericList className="card__content" header="Slammer der Woche">
+          { artists.length > 0 && artists.map(artist => (
+            <ArtistCard key={artist.id} artist={artist} />
+          ))}
+        </GenericList>
+      </div>
+      <div className="card card--feature">
+        <GenericList className="card__content" header="Mehr aus der Kategory Musik">
+          { poetry_event_objects.length > 0 && poetry_event_objects.map(event => (
+            <VideoCard key={event.id} event={event} />
+          ))}
+        </GenericList>
+      </div>
+      {featured && <Featured />}
       {/*{categories.length > 0 &&*/}
       {/*  categories.map(category => (*/}
       {/*    <Category key={category.id} category={category} />*/}
