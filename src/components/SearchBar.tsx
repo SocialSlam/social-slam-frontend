@@ -1,6 +1,12 @@
 import * as React from 'react'
+import { Box } from 'rebass/styled-components'
+import styled from 'styled-components'
 
-export const SearchBar: React.FC = () => {
+export type LogoProps={
+  flex:string
+}
+
+export const SearchBar: React.FC<LogoProps> = (props) => {
   return (
     <div className="control control--block flex-align__bottom">
       <input
@@ -8,6 +14,7 @@ export const SearchBar: React.FC = () => {
         type="text"
         role="search"
         placeholder="Slams, Künstler, Kategorien finden"
+        {...props}
       />
     </div>
   )
