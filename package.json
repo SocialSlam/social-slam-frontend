@@ -34,12 +34,15 @@
     "redux-devtools-extension": "^2.13.8",
     "redux-logger": "^3.0.6",
     "redux-react-hook": "^4.0.1",
+    "reselect": "^4.0.0",
     "styled-components": "^5.1.0"
   },
   "devDependencies": {
     "@types/react": "^16.9.35",
     "@types/react-dom": "^16.9.8",
+    "@types/react-hamburger-menu": "0.0.3",
     "@types/react-helmet": "^6.0.0",
+    "@types/react-redux": "^7.1.9",
     "@types/react-router-dom": "^5.1.5",
     "@types/rebass": "^4.0.6",
     "@types/styled-components": "^5.1.0",

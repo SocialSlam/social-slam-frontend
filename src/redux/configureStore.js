@@ -1,22 +1,11 @@
-import { routerMiddleware } from 'connected-react-router'
-import { createBrowserHistory, createMemoryHistory } from 'history'
+import { createBrowserHistory } from 'history'
 import { createStore, applyMiddleware } from 'redux'
 import { createLogger } from 'redux-logger'
 import { composeWithDevTools } from 'redux-devtools-extension'
 
 import { rootReducer } from './modules/root'
 
-export const isServer = !(
-  typeof window !== 'undefined' &&
-  window.document &&
-  window.document.createElement
-)
-
-export const history = isServer
-  ? createMemoryHistory({
-      initialEntries: ['/'],
-    })
-  : createBrowserHistory()
+export const history = createBrowserHistory()
 
 const loggerMiddleware = createLogger({
   level: 'info',
@@ -31,21 +20,10 @@ export const configureStore = (initialState) => {
     initialState,
     composeEnhancer(
       applyMiddleware(
-        /*epicMiddleware,*/ routerMiddleware(history),
         loggerMiddleware
       )
     )
   )
 
-  if (module.hot) {
-    // Enable Webpack hot module replacement for reducers
-    module.hot.accept('./modules/root', () => {
-      const nextRootReducer = require('./modules/root').rootReducer
-      store.replaceReducer(nextRootReducer)
-    })
-  }
-
   return store
 }
-
-export default configureStore

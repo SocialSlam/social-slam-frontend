@@ -28,6 +28,7 @@ export const routes = [
 ]
 
 export const Router: React.FC = (props) => {
+  // @ts-ignore
   return (
     <BrowserRouter>
       <Switch>

@@ -17,7 +17,7 @@ export interface HeaderState {
   hideOrShowHambugerDropDown: string
 }
 
-const Header = ({ menu, toggleMenu, ...props }) => (
+const HeaderComponent = ({ menu, toggleMenu, ...props }) => (
   <Flex as="header" alignItems="center" width="100%" {...props}>
     <Box px={3}>
       <HamburgerMenu
@@ -53,5 +53,6 @@ const mapDispatchToProps = {
   toggleMenu: appActions.toggleMenu,
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Header)
+export const Header = connect(mapStateToProps, mapDispatchToProps)(HeaderComponent)
+
 
