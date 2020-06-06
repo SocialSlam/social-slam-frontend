@@ -1,8 +1,8 @@
-import {Home} from './pages/Home/Home'
-import {Landing} from './pages/Landing/Landing'
-import {BrowserRouter, Route, Switch} from 'react-router-dom'
+import { Home } from './pages/Home'
+import { Landing } from './pages/Landing/Landing'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import * as React from 'react'
-import {Debug} from './pages/Debug'
+import { Debug } from './pages/Debug'
 
 export const routes = [
   {
@@ -27,7 +27,7 @@ export const Router: React.FC = (props) => {
   return (
     <BrowserRouter>
       <Switch>
-        {routes.map(({path, component, ...rest}, i) => (
+        {routes.map(({ path, component, ...rest }, i) => (
           <Route key={i} path={path} exact component={component} {...rest} />
         ))}
       </Switch>

@@ -5,4 +5,4 @@ import { faHeart, faBell } from '@fortawesome/free-solid-svg-icons'
 
 library.add(faHeart, faBell)
 
-export const App: React.FC = () => <Router/>
+export const App: React.FC = () => <Router />

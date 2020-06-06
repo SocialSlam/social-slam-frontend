@@ -1,11 +1,15 @@
 import * as React from 'react'
-import {Header} from './Header/Header'
-import {SideNav} from './SideNav/SideNav'
-import {Helmet} from 'react-helmet'
-import {Box, Flex} from 'rebass/styled-components'
-import {createGlobalStyle, ThemeProvider} from 'styled-components'
+import { Header } from './Header/Header'
+import { SideNav } from './SideNav/SideNav'
+import { Helmet } from 'react-helmet'
+import { Box, Flex } from 'rebass/styled-components'
+import { createGlobalStyle, ThemeProvider } from 'styled-components'
 
-const theme = {
+export type GlobalStyleProps = {
+  theme: typeof defaultTheme
+}
+
+const defaultTheme = {
   breakpoints: [0, '576px', '768px', '992px', '1200px', '1400px', '1600px'],
   colors: {
     background: '#ffffff',
@@ -19,7 +23,7 @@ const theme = {
 }
 
 // @ts-ignore
-const GlobalStyle = createGlobalStyle`
+const GlobalStyle = createGlobalStyle<GlobalStyleProps>`
   *,
   *::after,
   *::before {
@@ -34,9 +38,9 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    background-color: ${({theme}) => theme.colors.background};
-    color: ${({theme}) => theme.colors.base};
-    font-family: ${({theme}) => theme.fonts.body};
+    background-color: ${({ theme }) => theme.colors.background};
+    color: ${({ theme }) => theme.colors.base};
+    font-family: ${({ theme }) => theme.fonts.body};
     font-weight: 400;
     font-size: 16px;
     line-height: 1.5;
@@ -98,21 +102,26 @@ const GlobalStyle = createGlobalStyle`
 `
 
 interface LayoutProps {
-  skipHeader?:boolean;
-  skipMenu?:boolean;
-  debug?:boolean;
+  skipHeader?: boolean
+  skipMenu?: boolean
+  debug?: boolean
 }
 
-export const Layout: React.FC<LayoutProps> = ({children, skipHeader, skipMenu, debug = false}) => {
+export const Layout: React.FC<LayoutProps> = ({
+  children,
+  skipHeader,
+  skipMenu,
+  debug = false,
+}) => {
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={defaultTheme}>
       <Helmet>
         <link
           href="https://fonts.googleapis.com/css?family=Montserrat&display=swap"
           rel="stylesheet"
         />
       </Helmet>
-      <GlobalStyle/>
+      <GlobalStyle />
       <Flex
         minHeight="100vh"
         flexDirection="column"
@@ -126,8 +135,8 @@ export const Layout: React.FC<LayoutProps> = ({children, skipHeader, skipMenu, d
             : ``
         }
       >
-        {!skipMenu && <SideNav/>}
-        {!skipHeader && <Header/>}
+        {!skipMenu && <SideNav />}
+        {!skipHeader && <Header />}
         <Box as="main">{children}</Box>
       </Flex>
     </ThemeProvider>

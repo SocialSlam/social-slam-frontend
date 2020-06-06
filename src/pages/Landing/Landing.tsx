@@ -1,14 +1,14 @@
 import * as React from 'react'
 import texts from './landing_page_texts.json'
 import './Landing.scss'
-import {Layout} from '../../components/Layout'
+import { Layout } from '../../components/Layout'
 
 export const Landing: React.FC = (props) => {
   return (
     <Layout skipHeader={true} skipMenu={true}>
       <div className="column landing_page">
         <div className="row header">
-          <img src="icons/logo_black.svg"/>
+          <img src="icons/logo_black.svg" />
           <section className="column">
             <h1>SOCIAL SLAM</h1>
             <p>{texts.header}</p>
@@ -54,14 +54,14 @@ export const Landing: React.FC = (props) => {
               target="_blank"
               rel="noreferrer"
             >
-              <img src="icons/facebook.svg"/>
+              <img src="icons/facebook.svg" />
             </a>
             <a
               href="https://www.instagram.com/socialslam_official/"
               target="_blank"
               rel="noreferrer"
             >
-              <img src="icons/instagram.svg"/>
+              <img src="icons/instagram.svg" />
             </a>
           </div>
         </footer>
