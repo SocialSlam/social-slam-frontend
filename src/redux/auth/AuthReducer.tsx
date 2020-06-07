@@ -1,27 +1,8 @@
 import { Reducer, Action } from 'redux'
-import { ValueOf } from '../../TypeUtils'
-
-export const AUTH_ACTIONS = {
-  START: "START",
-  SUCCESS: "SUCCESS",
-  FAIL: "FAIL",
-  LOGOUT: "LOGOUT"
-}
-
-export const ASYNC_STATUS = {
-  IDLE: "IDLE",
-  PENDING: "PENDING",
-  SUCCESS: "SUCCESS",
-  FAIL: "FAIL",
-}
-
-const initialState: AuthState = {
-  status: ASYNC_STATUS.IDLE as AsyncStatus,
-}
+import { AUTH_ACTIONS, ASYNC_STATUS } from '../../Constants'
 
 export type AsyncStatus = keyof typeof ASYNC_STATUS
 export type ActionType = keyof typeof AUTH_ACTIONS
-
 export type AuthState = {
   status: AsyncStatus
   token?: string
@@ -34,6 +15,10 @@ export interface AuthAction extends Action<ActionType> {
   email?: string
   password?: string
   error?: string
+}
+
+const initialState: AuthState = {
+  status: ASYNC_STATUS.IDLE as AsyncStatus,
 }
 
 export const authReducer: Reducer<AuthState, AuthAction> = (state = initialState, action) => {

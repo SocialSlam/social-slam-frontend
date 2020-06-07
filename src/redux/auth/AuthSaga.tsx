@@ -1,12 +1,6 @@
 import axios from 'axios';
 import { call, cancel, cancelled, fork, put, take } from 'redux-saga/effects';
-import { AUTH_ACTIONS } from './AuthReducer';
-
-const BASE_URL = 'http://localhost:3001'
-const URL_LOGIN = BASE_URL + '/login'
-
-const FLOW_LOGIN = "FLOW_LOGIN"
-const FLOW_LOGOUT = "FLOW_LOGOUT"
+import { BASE_URL, URL_LOGIN, FLOW_LOGIN, FLOW_LOGOUT, AUTH_ACTIONS } from '../../Constants'
 
 export type AuthRequestBody = {
   email: string
