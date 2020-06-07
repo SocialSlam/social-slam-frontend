@@ -1,6 +1,6 @@
 import { Home } from './pages/Home'
 import { Landing } from './pages/Landing/Landing'
-import { MemoryRouter, Route, Switch } from 'react-router-dom'
+import { Route, Switch, BrowserRouter } from 'react-router-dom'
 import * as React from 'react'
 import { Debug } from './pages/Debug'
 import { Error404 } from './pages/Error404'
@@ -27,13 +27,13 @@ export const routes = [
 export const Router: React.FC = (props) => {
   // @ts-ignore
   return (
-    <MemoryRouter>
+    <BrowserRouter>
       <Switch>
         {routes.map((props, i) => (
           <Route key={i} {...props} />
         ))}
         <Route component={Error404} />
       </Switch>
-    </MemoryRouter >
+    </BrowserRouter>
   )
 }
