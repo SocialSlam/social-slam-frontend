@@ -5,9 +5,6 @@ import styled from 'styled-components'
 
 import { routes } from '../../Router'
 
-import { selectors } from '../../redux/selectors'
-import { actions as appActions } from '../../redux/modules/app'
-
 const StyledNav = styled.nav`
   position: absolute;
   top: 0;
@@ -67,37 +64,35 @@ const SideNavComponent = ({ menu, toggleMenu }) => {
           Menü
         </span>
       ) : (
-        <>
-          <span className="side-nav__toggle" onClick={() => toggleMenu()}>
-            &#x2B83;
+          <>
+            <span className="side-nav__toggle" onClick={() => toggleMenu()}>
+              &#x2B83;
           </span>
-          <ul className="side-nav__list list list--unstyled">
-            {routes.length > 0 &&
-              routes.map(({ path, name }) => (
-                <li key={path} className="list__item">
-                  <NavLink
-                    exact
-                    to={path}
-                    className="nav-link type-bold"
-                    activeClassName="nav-link__active"
-                  >
-                    {name}
-                  </NavLink>
-                </li>
-              ))}
-          </ul>
-        </>
-      )}
+            <ul className="side-nav__list list list--unstyled">
+              {routes.length > 0 &&
+                routes.map(({ path, name }) => (
+                  <li key={path} className="list__item">
+                    <NavLink
+                      exact
+                      to={path}
+                      className="nav-link type-bold"
+                      activeClassName="nav-link__active"
+                    >
+                      {name}
+                    </NavLink>
+                  </li>
+                ))}
+            </ul>
+          </>
+        )}
     </StyledNav>
   )
 }
 
 const mapStateToProps = (state) => ({
-  menu: selectors.app.menu(state),
 })
 
 const mapDispatchToProps = {
-  toggleMenu: appActions.toggleMenu,
 }
 
 export const SideNav = connect(mapStateToProps, mapDispatchToProps)(SideNavComponent)

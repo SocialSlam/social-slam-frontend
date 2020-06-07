@@ -6,8 +6,6 @@ import { Flex, Box } from 'rebass/styled-components'
 
 import { Logo } from '../Logo'
 import { SearchBar } from '../SearchBar'
-import { actions as appActions } from '../../redux/modules/app'
-import { selectors } from '../../redux/selectors'
 
 import './Header.scss'
 
@@ -46,11 +44,9 @@ const HeaderComponent = ({ menu, toggleMenu, ...props }) => (
 )
 
 const mapStateToProps = (state) => ({
-  menu: selectors.app.menu(state),
 })
 
 const mapDispatchToProps = {
-  toggleMenu: appActions.toggleMenu,
 }
 
 export const Header = connect(mapStateToProps, mapDispatchToProps)(HeaderComponent)
