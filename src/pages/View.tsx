@@ -6,7 +6,7 @@ import moment from 'moment'
 import React, { Fragment, useEffect, useRef, useState } from 'react'
 import { Box, Flex, Link, Text } from 'rebass'
 import styled from 'styled-components'
-import { Layout } from '../components'
+import { Layout } from '../components/Layout'
 import './View.scss'
 
 import io from 'socket.io-client'
@@ -188,7 +188,7 @@ const ChatContainer = (props) => {
               <Textarea
                 className={`chat-input ${
                   chatText.length > 0 ? 'color-grey' : 'color-lightgrey'
-                }`}
+                  }`}
                 style={{ resize: 'none' }}
                 value={chatText}
                 onChange={(e) => {
@@ -363,5 +363,3 @@ export const View = (props) => {
     </Layout>
   )
 }
-
-export default View

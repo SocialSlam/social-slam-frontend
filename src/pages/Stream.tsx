@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 
-import { Layout } from '../components'
+import { Layout } from '../components/Layout'
 import { Box } from 'rebass'
 import styled from 'styled-components'
 
@@ -27,5 +27,3 @@ export const Stream = (props) => {
 
   return <Layout skipHeader={true} skipMenu={true}></Layout>
 }
-
-export default Stream

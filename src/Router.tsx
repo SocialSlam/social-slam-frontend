@@ -4,11 +4,15 @@ import { Route, Switch, BrowserRouter } from 'react-router-dom'
 import * as React from 'react'
 import { Debug } from './pages/Debug'
 import { Error404 } from './pages/Error404'
+import {Stream} from './pages/Stream'
+import {View} from './pages/View'
+
 
 export const routes = [
   {
     path: '/',
     name: 'Home',
+    exact: undefined,
     component: Home,
   },
   {
@@ -20,7 +24,20 @@ export const routes = [
   {
     path: '/landing',
     name: 'Landing Page',
+    exact: undefined,
     component: Landing,
+  },
+  {
+    path: '/stream',
+    name: 'Stream',
+    exact: undefined,
+    component: Stream,
+  },
+  {
+    path: '/view',
+    name: 'View',
+    exact: undefined,
+    component: View,
   },
 ]
 
