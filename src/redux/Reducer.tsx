@@ -1,10 +1,10 @@
 import { combineReducers, Reducer } from 'redux'
-import { } from './auth/AuthReducer'
+import { authReducer } from './auth/AuthReducer'
 
 
 
 const combinedReducers = combineReducers({
-
+  authReducer
 })
 
 export const reducer: Reducer = (state, action) => {
