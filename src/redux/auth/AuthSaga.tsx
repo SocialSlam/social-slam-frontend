@@ -1,6 +1,12 @@
-import axios from 'axios';
-import { call, cancel, cancelled, fork, put, take } from 'redux-saga/effects';
-import { BASE_URL, URL_LOGIN, FLOW_LOGIN, FLOW_LOGOUT, AUTH_ACTIONS } from '../../Constants'
+import axios from 'axios'
+import { call, cancel, cancelled, fork, put, take } from 'redux-saga/effects'
+import {
+  BASE_URL,
+  URL_LOGIN,
+  FLOW_LOGIN,
+  FLOW_LOGOUT,
+  AUTH_ACTIONS,
+} from '../../Constants'
 
 export type AuthRequestBody = {
   email: string
@@ -12,33 +18,39 @@ export type AuthResponseBody = {
   password: string
 }
 
-export function requestAuthorize(email: string, password: string): Promise<AuthResponseBody> {
+export function requestAuthorize(
+  email: string,
+  password: string
+): Promise<AuthResponseBody> {
   const body: AuthRequestBody = {
     email,
-    password
+    password,
   }
 
   return new Promise(async (resolve, reject) => {
     try {
       const result = await axios.get(URL_LOGIN, {
-        data: body
-      });
-      resolve(result.data);
+        data: body,
+      })
+      resolve(result.data)
     } catch (error) {
-      reject(error);
+      reject(error)
     }
-  });
+  })
 }
 
 export function* authorize(email: string, password: string) {
   yield put({ type: AUTH_ACTIONS.START })
   try {
-    const { token }: AuthResponseBody = yield call(requestAuthorize, email, password)
+    const { token }: AuthResponseBody = yield call(
+      requestAuthorize,
+      email,
+      password
+    )
     yield put({ type: AUTH_ACTIONS.SUCCESS, email, password, token })
   } catch (error) {
     yield put({ type: AUTH_ACTIONS.FAIL, error })
-  }
-  finally {
+  } finally {
     if (yield cancelled()) {
       yield put({ type: AUTH_ACTIONS.LOGOUT })
     }
@@ -59,6 +71,6 @@ export function* loginFlow() {
 export function* logActions() {
   while (true) {
     const action = yield take('*')
-    console.log(action.type);
+    console.log(action.type)
   }
 }

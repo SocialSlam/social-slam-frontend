@@ -9,7 +9,7 @@ import { SearchBar } from '../SearchBar'
 
 import './Header.scss'
 
-export interface HeaderProps { }
+export interface HeaderProps {}
 export interface HeaderState {
   open: boolean
   hideOrShowHambugerDropDown: string
@@ -43,12 +43,11 @@ const HeaderComponent = ({ menu, toggleMenu, ...props }) => (
   </Flex>
 )
 
-const mapStateToProps = (state) => ({
-})
+const mapStateToProps = (state) => ({})
 
-const mapDispatchToProps = {
-}
+const mapDispatchToProps = {}
 
-export const Header = connect(mapStateToProps, mapDispatchToProps)(HeaderComponent)
-
-
+export const Header = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(HeaderComponent)

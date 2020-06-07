@@ -21,14 +21,17 @@ const initialState: AuthState = {
   status: ASYNC_STATUS.IDLE as AsyncStatus,
 }
 
-export const authReducer: Reducer<AuthState, AuthAction> = (state = initialState, action) => {
+export const authReducer: Reducer<AuthState, AuthAction> = (
+  state = initialState,
+  action
+) => {
   switch (action.type) {
     case AUTH_ACTIONS.START:
       return {
         ...state,
         error: undefined,
-        status: ASYNC_STATUS.PENDING as AsyncStatus
-      };
+        status: ASYNC_STATUS.PENDING as AsyncStatus,
+      }
 
     case AUTH_ACTIONS.SUCCESS:
       return {
@@ -37,8 +40,8 @@ export const authReducer: Reducer<AuthState, AuthAction> = (state = initialState
         token: action.token,
         email: action.email,
         password: action.password,
-        status: ASYNC_STATUS.SUCCESS as AsyncStatus
-      };
+        status: ASYNC_STATUS.SUCCESS as AsyncStatus,
+      }
 
     case AUTH_ACTIONS.FAIL:
       return {
@@ -47,7 +50,7 @@ export const authReducer: Reducer<AuthState, AuthAction> = (state = initialState
         password: undefined,
         token: undefined,
         error: action.error,
-        status: ASYNC_STATUS.FAIL as AsyncStatus
+        status: ASYNC_STATUS.FAIL as AsyncStatus,
       }
 
     case AUTH_ACTIONS.LOGOUT:
@@ -57,10 +60,10 @@ export const authReducer: Reducer<AuthState, AuthAction> = (state = initialState
         password: undefined,
         token: undefined,
         error: undefined,
-        status: ASYNC_STATUS.IDLE as AsyncStatus
+        status: ASYNC_STATUS.IDLE as AsyncStatus,
       }
 
     default:
-      return state;
+      return state
   }
 }

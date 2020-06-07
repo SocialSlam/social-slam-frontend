@@ -2,7 +2,7 @@ import { combineReducers, Reducer } from 'redux'
 import { authReducer } from './auth/AuthReducer'
 
 const combinedReducers = combineReducers({
-  authReducer
+  authReducer,
 })
 
 export const reducer: Reducer = (state, action) => {

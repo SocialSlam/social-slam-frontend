@@ -64,35 +64,36 @@ const SideNavComponent = ({ menu, toggleMenu }) => {
           Menü
         </span>
       ) : (
-          <>
-            <span className="side-nav__toggle" onClick={() => toggleMenu()}>
-              &#x2B83;
+        <>
+          <span className="side-nav__toggle" onClick={() => toggleMenu()}>
+            &#x2B83;
           </span>
-            <ul className="side-nav__list list list--unstyled">
-              {routes.length > 0 &&
-                routes.map(({ path, name }) => (
-                  <li key={path} className="list__item">
-                    <NavLink
-                      exact
-                      to={path}
-                      className="nav-link type-bold"
-                      activeClassName="nav-link__active"
-                    >
-                      {name}
-                    </NavLink>
-                  </li>
-                ))}
-            </ul>
-          </>
-        )}
+          <ul className="side-nav__list list list--unstyled">
+            {routes.length > 0 &&
+              routes.map(({ path, name }) => (
+                <li key={path} className="list__item">
+                  <NavLink
+                    exact
+                    to={path}
+                    className="nav-link type-bold"
+                    activeClassName="nav-link__active"
+                  >
+                    {name}
+                  </NavLink>
+                </li>
+              ))}
+          </ul>
+        </>
+      )}
     </StyledNav>
   )
 }
 
-const mapStateToProps = (state) => ({
-})
+const mapStateToProps = (state) => ({})
 
-const mapDispatchToProps = {
-}
+const mapDispatchToProps = {}
 
-export const SideNav = connect(mapStateToProps, mapDispatchToProps)(SideNavComponent)
+export const SideNav = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SideNavComponent)
