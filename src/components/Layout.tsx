@@ -16,6 +16,8 @@ const defaultTheme = {
     base: '#444444',
     baseInverse: '#ffffff',
     primary: '#5C63FF',
+    conture: 'rgba(0, 0, 0, 255)',
+    highlight: 'rgba(255,1,54, 255)',
   },
   fonts: {
     body: '"Montserrat", sans-serif',
@@ -125,7 +127,6 @@ export const Layout: React.FC<LayoutProps> = ({
       <Flex
         minHeight="100vh"
         flexDirection="column"
-        p="3em"
         css={
           debug
             ? `
@@ -136,8 +137,10 @@ export const Layout: React.FC<LayoutProps> = ({
         }
       >
         {!skipMenu && <SideNav />}
-        {!skipHeader && <Header />}
-        <Box as="main">{children}</Box>
+        {!skipHeader && <Header px="3em" />}
+        <Box as="main" p="3em">
+          {children}
+        </Box>
       </Flex>
     </ThemeProvider>
   )
