@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { Header } from './Header/Header'
-import { SideNav } from './SideNav/SideNav'
+import { SideNav } from './SideNav'
 import { Helmet } from 'react-helmet'
 import { Box, Flex } from 'rebass/styled-components'
 import { createGlobalStyle, ThemeProvider } from 'styled-components'
@@ -115,6 +115,8 @@ export const Layout: React.FC<LayoutProps> = ({
   skipMenu,
   debug = false,
 }) => {
+  const [showSidebar, setShowSidebar] = React.useState(false)
+
   return (
     <ThemeProvider theme={defaultTheme}>
       <Helmet>
@@ -136,8 +138,12 @@ export const Layout: React.FC<LayoutProps> = ({
             : ``
         }
       >
-        {!skipMenu && <SideNav />}
-        {!skipHeader && <Header px="3em" />}
+        {!skipMenu && (
+          <SideNav showMenu={showSidebar} toggleMenu={setShowSidebar} />
+        )}
+        {!skipHeader && (
+          <Header showMenu={showSidebar} toggleMenu={setShowSidebar} px="3em" />
+        )}
         <Box as="main" p="3em">
           {children}
         </Box>
