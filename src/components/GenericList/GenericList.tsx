@@ -1,0 +1,21 @@
+import * as React from 'react'
+
+import './GenericList.scss'
+
+export interface GenericListProps {
+  header: string
+  [prop: string]: any
+}
+
+export const GenericList: React.FC<GenericListProps> = ({
+  header,
+  children,
+  ...rest
+}) => {
+  return (
+    <div {...rest}>
+      <h3>{header}</h3>
+      <div className="generic-list">{children}</div>
+    </div>
+  )
+}

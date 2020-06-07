@@ -1,13 +1,59 @@
 {
-  "name": "social-slam",
+  "name": "social-slam-frontend",
   "version": "0.1.0",
+  "repository": "https://github.com/SocialSlam/social-slam-frontend.git",
+  "license": "MIT",
   "scripts": {
-    "postinstall": "npm install --prefix backend && npm install --save node-sass --prefix frontend",
-    "start": "npm start --prefix frontend"
+    "prettier": "./node_modules/.bin/prettier --single-quote --check 'src/**/*.{js,jsx,ts,tsx,json,css,scss,md}'",
+    "prettier:fix": "./node_modules/.bin/prettier --single-quote --write 'src/**/*.{js,jsx,ts,tsx,json,css,scss,md}'",
+    "start": "parcel serve index.html",
+    "build": "parcel build public/index.html",
+    "prestart": "npm run copy",
+    "prestart:prod": "npm run build",
+    "prebuild": "npm run copy",
+    "start:prod": "HOST=http://social-slam.herokuapp.com/ NODE_ENV=production node build/server.js",
+    "copy": "cp -R ./static ./dist"
   },
-  "engines": {
-    "node": ">= 12.0.0",
-    "npm": ">= 6.0.0"
+  "dependencies": {
+    "@apollo/client": "^3.0.0-rc.2",
+    "@fortawesome/fontawesome-svg-core": "^1.2.28",
+    "@fortawesome/free-solid-svg-icons": "^5.13.0",
+    "@fortawesome/react-fontawesome": "^0.1.10",
+    "axios": "^0.19.2",
+    "graphql": "^15.1.0",
+    "graphql-tag": "^2.10.3",
+    "react": "^16.13.1",
+    "react-avatar": "^3.9.7",
+    "react-dom": "^16.13.1",
+    "react-hamburger-menu": "^1.2.1",
+    "react-helmet": "^6.0.0",
+    "react-redux": "^7.2.0",
+    "react-router-dom": "^5.2.0",
+    "rebass": "^4.0.7",
+    "redux": "^4.0.5",
+    "redux-devtools-extension": "^2.13.8",
+    "redux-saga": "^1.1.3",
+    "styled-components": "^5.1.0"
   },
-  "dependencies": {}
+  "devDependencies": {
+    "@types/node": "^14.0.11",
+    "@types/react": "^16.9.35",
+    "@types/react-dom": "^16.9.8",
+    "@types/react-hamburger-menu": "0.0.3",
+    "@types/react-helmet": "^6.0.0",
+    "@types/react-redux": "^7.1.9",
+    "@types/react-router-dom": "^5.1.5",
+    "@types/rebass": "^4.0.6",
+    "@types/styled-components": "^5.1.0",
+    "@typescript-eslint/eslint-plugin": "^3.1.0",
+    "@typescript-eslint/parser": "^3.1.0",
+    "eslint": "^7.2.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-prettier": "^3.1.3",
+    "eslint-plugin-react": "^7.20.0",
+    "parcel": "^2.0.0-nightly.280",
+    "prettier": "^2.0.5",
+    "sass": "^1.26.8",
+    "typescript": "^3.9.5"
+  }
 }
