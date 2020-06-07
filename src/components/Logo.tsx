@@ -1,7 +1,7 @@
 import React from 'react'
-import { Box } from 'rebass'
+import { Box, BoxProps } from 'rebass'
 
-export type LogoProps = {
+export interface LogoProps extends BoxProps {
   height: string
 }
 export const Logo: React.FC<LogoProps> = (props) => (
