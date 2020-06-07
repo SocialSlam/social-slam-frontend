@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Header } from './Header/Header'
+import { Header } from './Header'
 import { SideNav } from './SideNav'
 import { Helmet } from 'react-helmet'
 import { Box, Flex } from 'rebass/styled-components'
