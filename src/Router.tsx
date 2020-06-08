@@ -1,10 +1,10 @@
+import * as React from 'react'
 import { Home } from './pages/Home'
 import { Landing } from './pages/Landing/Landing'
 import { Route, Switch, BrowserRouter } from 'react-router-dom'
-import * as React from 'react'
 import { Debug } from './pages/Debug'
 import { Error404 } from './pages/Error404'
-// import {Stream} from './pages/Stream'
+import { Stream } from './pages/Stream'
 // import {View} from './pages/View'
 
 
@@ -27,12 +27,12 @@ export const routes = [
     exact: true,
     component: Landing,
   },
-  // {
-  //   path: '/stream',
-  //   name: 'Stream',
-  //   exact: undefined,
-  //   component: Stream,
-  // },
+  {
+    path: '/stream/:streamId',
+    name: 'Stream',
+    exact: true,
+    component: Stream,
+  },
   // {
   //   path: '/view',
   //   name: 'View',

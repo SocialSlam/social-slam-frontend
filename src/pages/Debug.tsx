@@ -10,32 +10,32 @@ const LoremIpsum = () => (
     <p>
       Lorem ipsum <em>emphasised text</em> dolor sit amet,{' '}
       <strong>strong text</strong>
-  consectetur adipisicing elit, <abbr title="">abbreviated text</abbr> sed
-  do eiusmod tempor acronym text incididunt ut labore et dolore magna
-  aliqua. Ut
-  <q>quoted text</q> enim ad minim veniam, quis nostrud exercitation{' '}
+      consectetur adipisicing elit, <abbr title="">abbreviated text</abbr> sed
+      do eiusmod tempor acronym text incididunt ut labore et dolore magna
+      aliqua. Ut
+      <q>quoted text</q> enim ad minim veniam, quis nostrud exercitation{' '}
       <a href="/">link text</a>
-  ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute{' '}
+      ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute{' '}
       <del>deleted text</del>
       <ins>inserted text</ins> irure dolor in reprehenderit in voluptate velit
-  esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat{' '}
+      esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat{' '}
       <code>code text</code> cupidatat non proident, sunt in culpa qui officia
-  deserunt mollit anim id est laborum.
-</p>
+      deserunt mollit anim id est laborum.
+    </p>
 
     <blockquote>
       <p>
         Blockquote. Velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
         sint occaecat cupidatat non proident, sunt in culpa qui officia
-  </p>
+      </p>
     </blockquote>
 
     <p>
       <cite>
         <a href="/">Cite author with link text</a>
       </cite>
-  , 2008
-</p>
+      , 2008
+    </p>
 
     <h2>Header 2</h2>
 
@@ -47,7 +47,7 @@ const LoremIpsum = () => (
       voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
       sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
       mollit anim id est laborum.
-</p>
+    </p>
 
     <ol>
       <li>Ordered list</li>
@@ -55,7 +55,7 @@ const LoremIpsum = () => (
       <li>
         Item 3 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
         eiusmod tempor incididunt ut labore et dolore magna aliqua
-  </li>
+      </li>
       <li>Item 4</li>
       <li>Item 5</li>
     </ol>
@@ -64,14 +64,14 @@ const LoremIpsum = () => (
       Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
       dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
       proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-</p>
+    </p>
 
     <h3>Header 3</h3>
 
     <p>
       Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
       tempor incididunt ut labore et dolore magna aliqua.
-</p>
+    </p>
 
     <ul>
       <li>Unordered list</li>
@@ -79,7 +79,7 @@ const LoremIpsum = () => (
       <li>
         Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua
-  </li>
+      </li>
       <li>Item</li>
       <li>Item</li>
       <li>Item</li>
@@ -88,20 +88,20 @@ const LoremIpsum = () => (
     <p>
       Lorem ipsum dolor sit amet,consectetur adipisicing elit, sed do eiusmod
       tempor incididunt ut labore et dolore magna aliqua.
-</p>
+    </p>
 
     <p>
       Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
       dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
       proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-</p>
+    </p>
 
     <h4>Header 4</h4>
 
     <p>
       Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
       tempor incididunt ut labore et dolore magna aliqua.
-</p>
+    </p>
 
     <dl>
       <dt>Definition list</dt>
@@ -109,31 +109,31 @@ const LoremIpsum = () => (
         Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
         et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
         exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-  </dd>
+      </dd>
       <dt>Lorem ipsum dolor sit amet</dt>
       <dd>
         Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
         et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
         exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-  </dd>
+      </dd>
       <dt>Lorem ipsum dolor sit amet</dt>
       <dd>
         Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
         et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
         exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-  </dd>
+      </dd>
       <dt>Lorem ipsum dolor sit amet</dt>
       <dd>
         Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
         et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
         exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-  </dd>
+      </dd>
     </dl>
 
     <p>
       Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
       tempor incididunt ut labore et dolore magna aliqua.
-</p>
+    </p>
 
     <table summary="Table summary">
       <caption>Table Caption</caption>
@@ -182,10 +182,17 @@ const LoremIpsum = () => (
   </div>
 )
 
-
 export const Debug: React.FC = () => (
   <Layout skipHeader={true}>
-    {/* <VideoCard event={{ video: "https://cf-simple-s3-origin-social-slam-728773676825.s3.eu-central-1.amazonaws.com/julie2.mp4", host: { first_name: "fname", last_name: "lname" }, title: "Title", datetime: "asdf" }} /> */}
-    <Hero />
+    {/* <VideoCard
+      event={{
+        video:
+          'https://cf-simple-s3-origin-social-slam-728773676825.s3.eu-central-1.amazonaws.com/julie2.mp4',
+        host: { first_name: 'fname', last_name: 'lname' },
+        title: 'Title',
+        datetime: 'asdf',
+      }}
+    /> */}
+    {/* <Hero /> */}
   </Layout>
 )

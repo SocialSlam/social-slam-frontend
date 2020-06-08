@@ -1,6 +1,8 @@
-import { faThumbsUp } from '@fortawesome/free-regular-svg-icons'
+import { faPaperPlane, faThumbsUp } from '@fortawesome/free-regular-svg-icons'
 import { faHandHoldingHeart } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { Textarea } from '@rebass/forms'
+import moment from 'moment'
 import React, { Fragment, useEffect, useRef, useState } from 'react'
 import { Box, Flex, Link, Text } from 'rebass'
 import styled from 'styled-components'
@@ -8,7 +10,6 @@ import { Layout } from '../components/Layout'
 import Peer from 'simple-peer'
 import { v5 as uuid } from 'uuid'
 import './View.scss'
-import { Chat } from '../components/VideoChat'
 
 const tempInfo = {
   dateTime: '2020-04-27 20:00:00',
@@ -64,14 +65,171 @@ const tempInfo = {
   ],
 }
 
+const Video = (props) => {
+  let vidContainer
+  let width
+  let height
+  //   try {
+  //     vidContainer = window.document.getElementById('video-container')
+  //     if (props.totalStreams === 1) {
+  //       width = vidContainer.clientWidth
+  //       height = vidContainer.clientHeight
+  //     } else if (props.totalStreams > 1) {
+  //       width = vidContainer.clientWidth / 2
+  //       height = vidContainer.clientHeight
+  //     }
+  //   } catch (e) {
+  //     console.log(e)
+  //   }
+  //   console.log(vidContainer, width, height)
+
+  return (
+    <video
+      autoPlay
+      ref={props.stream}
+      style={{
+        width: width || '100%',
+        height: height || '100%',
+        objectFit: 'cover',
+      }}
+    />
+  )
+}
+
+const VideoContainer = (props) => {
+  return (
+    <Box
+      id="video-container"
+      sx={{
+        display: 'grid',
+        gridGap: 4,
+        gridTemplateColumns: 'repeat(auto-fit, minmax(128px, 1fr))',
+      }}
+    >
+      {props.streams.map((el, i) => {
+        return <Video key={i} stream={el} totalStreams={props.streams.length} />
+      })}
+    </Box>
+  )
+}
+
+const MiscContainer = (props) => {
+  const date = moment(tempInfo.dateTime)
+  return (
+    <Box>
+      <Flex justifyContent="space-between" className="misc-video-info">
+        <Box p={2} width={1 / 3} flex="flex-grow">
+          {date.format('L')} - {date.format('LT')}
+        </Box>
+        <Box p={2} width={1 / 3} className="misc-interract-btns-container">
+          {props.streamers.map((el, i) => {
+            return (
+              <Text className="misc-interract-btns" key={i}>
+                <FontAwesomeIcon icon={faThumbsUp} className="cursor-pointer" />
+                &nbsp; &nbsp;
+                <FontAwesomeIcon
+                  icon={faHandHoldingHeart}
+                  className="cursor-pointer"
+                />
+              </Text>
+            )
+          })}
+        </Box>
+        <Box p={3} width={1 / 3}></Box>
+      </Flex>
+      <Box>
+        <Box p={3}>
+          <Text>
+            <b>{tempInfo.title}</b>{' '}
+            <span className="float-right color-lightgrey">
+              Viewers: {props.viewerCount.toString()}
+            </span>
+          </Text>
+          <Text fontSize={1}>
+            {tempInfo.tags.map((tag, i) => (
+              <Fragment key={i}>
+                <Link href={`#${tag}`} className="link-unstyled">
+                  <b>#{tag}</b>
+                </Link>
+                &nbsp;
+              </Fragment>
+            ))}
+          </Text>
+        </Box>
+        <Box p={3}>
+          <Text mb={2}>Description</Text>
+          <Text>{tempInfo.description}</Text>
+        </Box>
+      </Box>
+    </Box>
+  )
+}
+
 export const View = (props) => {
   const socketRef = useRef()
-  const peersRef = useRef<HTMLVideoElement>([])
+  const peersRef = useRef([])
   const [peers, setPeers] = useState([])
   const [viewerCount, setViewerCount] = useState(0)
   const [chatLog, setChatLog] = useState([])
 
-  useEffect(() => {}, [])
+  const streamId = props.match.params.streamId
+  const username = 'John'
+
+  useEffect(() => {
+    socketRef.current = io('localhost:4000')
+
+    socketRef.current.emit('connect_to_room', {
+      streamId,
+      //   token:
+      //     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhbHBoYSIsImlhdCI6MTUxNjIzOTAyMn0.ok55AeE5LVEUYuWU4eLyBjdomKRBNtMoxuA3tkBMRuY',
+      token:
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJicmF2byIsImlhdCI6MTUxNjIzOTAyMn0.n-Fsy8Jx6q9IubgaNZUgooNcsUG_58OVgE9MUTLkMVs',
+    })
+
+    // artists: Set<string>, sockets: Set<string>
+    socketRef.current.on('connections', (payload) => {
+      const { artists, sockets } = payload
+      const peers = []
+
+      sockets.forEach((socketId) => {
+        const peer = createPeer(socketId, socketRef.current.id)
+        peers.push(peer)
+        if (artists.contains(socketId)) {
+          peersRef.current.push({
+            socketId,
+            peer,
+          })
+        }
+      })
+
+      setViewerCount(peers.length)
+      setPeers(peers)
+    })
+
+    socketRef.current.on('message', (payload) => {
+      if (payload.error) {
+        console.error(payload)
+      } else {
+        console.info(payload)
+      }
+    })
+
+    socketRef.current.on('new_connection', (payload) => {
+      const peer = addPeer(payload.signal, payload.callerId)
+      peers.push(peer)
+      //         peersRef.current.push({
+      //     socketId: payload.callerId,
+      //     peer,
+      //   })
+    })
+
+    socketRef.current.on('confirming_connection', (payload) => {
+      const connection = peersRef.current.find(
+        (p) => p.socketId === payload.socketId
+      )
+      connection.peer.signal(payload.signal)
+    })
+  }, [])
 
   const createPeer = (socketId, callerId) => {
     const peer = new Peer({ initiator: true, trickle: false })
@@ -131,9 +289,10 @@ export const View = (props) => {
         </Box>
         <Box width={3 / 12} px={2} py={2}>
           {/* TODO: Replace the chat with a 3rd party module? */}
-          <Chat
-            chatLog={chatLog}
-            onSend={(newMsg: string) => {
+          <ChatContainer
+            username
+            values={chatLog}
+            onSend={(newMsg) => {
               newMsg.user = username
               chatLog.push(newMsg)
               setChatLog(chatLog)
