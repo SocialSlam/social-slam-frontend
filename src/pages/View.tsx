@@ -7,11 +7,9 @@ import React, { Fragment, useEffect, useRef, useState } from 'react'
 import { Box, Flex, Link, Text } from 'rebass'
 import styled from 'styled-components'
 import { Layout } from '../components/Layout'
-import './View.scss'
-
-import io from 'socket.io-client'
 import Peer from 'simple-peer'
 import { v5 as uuid } from 'uuid'
+import './View.scss'
 
 const tempInfo = {
   dateTime: '2020-04-27 20:00:00',

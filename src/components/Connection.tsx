@@ -1,94 +1,120 @@
-import io from 'socket.io-client'
+import { SOCKET_URL } from '../Constants'
 
-const socketConnection = ({ url, token, streamId }) => {
-  const socketRef = io(url)
+export const Connection = (streamId: string, token: string): WebSocket => {
+  const ws = new WebSocket(SOCKET_URL)
 
-  socketRef.emit('connect_to_room', {
-    streamId,
-    token,
-  })
+  ws.onopen = () => {
+    ws.send(JSON.stringify({ streamId, token }))
+  }
 
-  // artists: Set<string>, sockets: Set<string>
-  socketRef.on('connections', (payload) => {
-    const { artists, sockets } = payload
-    const peers = []
+  ws.onmessage = (msg: MessageEvent) => {
+    const message = JSON.parse(msg.data)
 
-    sockets.forEach((socketId) => {
-      const peer = createPeer(socketId, socketRef.id)
-      peers.push(peer)
-      if (artists.contains(socketId)) {
-        peersRef.push({
-          socketId,
-          peer,
-        })
-      }
-    })
+    console.log(message)
+  }
 
-    setViewerCount(peers.length)
-    setPeers(peers)
-  })
+  // @ts-ignore
+  ws.onclose = (code: number, msg: string) => {
+    console.log(code, msg)
+  }
 
-  socketRef.on('message', (payload) => {
-    if (payload.error) {
-      console.error(payload)
-    } else {
-      console.info(payload)
-    }
-  })
-
-  socketRef.on('new_connection', (payload) => {
-    const peer = addPeer(payload.signal, payload.callerId)
-    peers.push(peer)
-    //         peersRef.push({
-    //     socketId: payload.callerId,
-    //     peer,
-    //   })
-  })
-
-  socketRef.on('confirming_connection', (payload) => {
-    const connection = peersRef.find((p) => p.socketId === payload.socketId)
-    connection.peer.signal(payload.signal)
-  })
-
-  return socketRef
+  return ws
 }
 
-const createPeer = (socketId, callerId) => {
-  const peer = new Peer({ initiator: true, trickle: false })
 
-  peer.on('signal', (signal) => {
-    socketRef.current.emit('send_signal', {
-      socketId,
-      callerId,
-      signal,
-    })
-  })
 
-  return peer
-}
 
-const addPeer = (incomingSignal, callerId) => {
-  const peer = new Peer({
-    initiator: false,
-    trickle: false,
-  })
+// import io from 'socket.io-client'
 
-  peer.on('signal', (signal) => {
-    socketRef.current.emit('receive_signal', { signal, callerId })
-  })
+// const socketConnection = ({ url, token, streamId }) => {
+//   const socketRef = io(url)
 
-  peer.on('data', (newMsg) => {
-    chatLog.push(newMsg)
-    setChatLog(chatLog)
-  })
+//   socketRef.emit('connect_to_room', {
+//     streamId,
+//     token,
+//   })
 
-  peer.signal(incomingSignal)
+//   // artists: Set<string>, sockets: Set<string>
+//   socketRef.on('connections', (payload) => {
+//     const { artists, sockets } = payload
+//     const peers = []
 
-  return peer
-}
+//     sockets.forEach((socketId) => {
+//       const peer = createPeer(socketId, socketRef.id)
+//       peers.push(peer)
+//       if (artists.contains(socketId)) {
+//         peersRef.push({
+//           socketId,
+//           peer,
+//         })
+//       }
+//     })
 
-const messagePeers = (newMsg) => {
-  peers.forEach((peer) => {
-    peer.send(newMsg)
-  })
-}
+//     setViewerCount(peers.length)
+//     setPeers(peers)
+//   })
+
+//   socketRef.on('message', (payload) => {
+//     if (payload.error) {
+//       console.error(payload)
+//     } else {
+//       console.info(payload)
+//     }
+//   })
+
+//   socketRef.on('new_connection', (payload) => {
+//     const peer = addPeer(payload.signal, payload.callerId)
+//     peers.push(peer)
+//     //         peersRef.push({
+//     //     socketId: payload.callerId,
+//     //     peer,
+//     //   })
+//   })
+
+//   socketRef.on('confirming_connection', (payload) => {
+//     const connection = peersRef.find((p) => p.socketId === payload.socketId)
+//     connection.peer.signal(payload.signal)
+//   })
+
+//   return socketRef
+// }
+
+// const createPeer = (socketId, callerId) => {
+//   const peer = new Peer({ initiator: true, trickle: false })
+
+//   peer.on('signal', (signal) => {
+//     socketRef.current.emit('send_signal', {
+//       socketId,
+//       callerId,
+//       signal,
+//     })
+//   })
+
+//   return peer
+// }
+
+// const addPeer = (incomingSignal, callerId) => {
+//   const peer = new Peer({
+//     initiator: false,
+//     trickle: false,
+//   })
+
+//   peer.on('signal', (signal) => {
+//     socketRef.current.emit('receive_signal', { signal, callerId })
+//   })
+
+//   peer.on('data', (newMsg) => {
+//     chatLog.push(newMsg)
+//     setChatLog(chatLog)
+//   })
+
+//   peer.signal(incomingSignal)
+
+//   return peer
+// }
+
+// const messagePeers = (newMsg) => {
+//   peers.forEach((peer) => {
+//     peer.send(newMsg)
+//   })
+// }

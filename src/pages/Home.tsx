@@ -1,10 +1,10 @@
 import * as React from 'react'
-import { Hero } from '../components/Hero/Hero'
+import { Hero } from '../components/Hero'
 import { Layout } from '../components/Layout'
 import { Featured } from '../components/Featured'
-import { GenericList } from '../components/GenericList/GenericList'
-import { ArtistCard } from '../components/ArtistCard/ArtistCard'
-import { VideoCard } from '../components/VideoCard/VideoCard'
+import { GenericList } from '../components/GenericList'
+import { ArtistCard } from '../components/ArtistCard'
+import { VideoCard } from '../components/VideoCard'
 
 export const Home: React.FC = () => {
   // @ts-ignore
