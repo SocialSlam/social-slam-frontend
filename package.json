@@ -6,13 +6,13 @@
   "scripts": {
     "prettier": "./node_modules/.bin/prettier --single-quote --check 'src/**/*.{js,jsx,ts,tsx,json,css,scss,md}'",
     "prettier:fix": "./node_modules/.bin/prettier --single-quote --write 'src/**/*.{js,jsx,ts,tsx,json,css,scss,md}'",
-    "start": "parcel serve index.html",
-    "build": "parcel build public/index.html",
+    "start": "parcel serve src/index.html",
+    "build": "parcel build src/index.html",
     "prestart": "npm run copy",
     "prestart:prod": "npm run build",
     "prebuild": "npm run copy",
     "start:prod": "HOST=http://social-slam.herokuapp.com/ NODE_ENV=production node build/server.js",
-    "copy": "cp -R ./static ./dist"
+    "copy": "rm -rf dist && cp -r ./static ./dist"
   },
   "dependencies": {
     "@apollo/client": "^3.0.0-rc.2",
