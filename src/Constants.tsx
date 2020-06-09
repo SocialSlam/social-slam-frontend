@@ -1,4 +1,4 @@
-export const SOCKET_URL = "ws://localhost:4000"
+export const SOCKET_URL = 'ws://localhost:8080'
 
 export const BASE_URL = 'http://localhost:3001'
 export const URL_LOGIN = BASE_URL + '/login'

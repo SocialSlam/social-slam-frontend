@@ -97,10 +97,10 @@ export const Home: React.FC = () => {
           className="card__content"
           header="Mehr aus der Kategory Musik"
         >
-          {poetry_event_objects.length > 0 &&
+          {/* {poetry_event_objects.length > 0 &&
             poetry_event_objects.map((event) => (
-              <VideoCard key={event.id} event={event} />
-            ))}
+              // <VideoCard key={event.id} event={event} />
+            ))} */}
         </GenericList>
       </div>
       {featured && <Featured />}

@@ -4,7 +4,7 @@ export const Connection = (streamId: string, token: string): WebSocket => {
   const ws = new WebSocket(SOCKET_URL)
 
   ws.onopen = () => {
-    ws.send(JSON.stringify({ streamId, token }))
+    ws.send(JSON.stringify({ type: 'connect', streamId, token }))
   }
 
   ws.onmessage = (msg: MessageEvent) => {
@@ -20,9 +20,6 @@ export const Connection = (streamId: string, token: string): WebSocket => {
 
   return ws
 }
-
-
-
 
 // import io from 'socket.io-client'
 

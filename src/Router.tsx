@@ -7,7 +7,6 @@ import { Error404 } from './pages/Error404'
 import { Stream } from './pages/Stream'
 // import {View} from './pages/View'
 
-
 export const routes = [
   {
     path: '/',
@@ -42,7 +41,6 @@ export const routes = [
 ]
 
 export const Router: React.FC = (props) => {
-  // @ts-ignore
   return (
     <BrowserRouter>
       <Switch>
