@@ -1,8 +1,7 @@
 import Peer from "simple-peer";
 import {
-  Message,
-  PayloadConnections,
-  PayloadNewConnection,
+  MessageToClient,
+  MessageToServer,
 } from "../../../social-slam-streaming/lib/types";
 import { SOCKET_URL } from "../Constants";
 
@@ -10,7 +9,7 @@ export const Connection = (streamId: string, token: string): WebSocket => {
   const ws = new WebSocket(SOCKET_URL);
 
   ws.onopen = () => {
-    const payload: Message = {
+    const payload: MessageToServer = {
       type: "connect_to_room",
       streamId,
       token,
@@ -34,7 +33,7 @@ export const Connection = (streamId: string, token: string): WebSocket => {
 
 const onWsMessage = (
   ws: WebSocket,
-  msg: PayloadConnections | PayloadNewConnection,
+  msg: MessageToClient,
 ) => {
   const peers: Peer.Instance[] = [];
   const peersStreamers: Record<string, Peer.Instance> = {};
@@ -46,7 +45,7 @@ const onWsMessage = (
       });
 
       peer.on("signal", (signal) => {
-        const payload: Message = {
+        const payload: MessageToServer = {
           type: "send_signal",
           connId: el,
           signal: signal,
@@ -66,7 +65,7 @@ const onWsMessage = (
       trickle: false,
     });
     peer.on("signal", (signal) => {
-      const payload: Message = {
+      const payload: MessageToServer = {
         type: "confirm_signal",
         signal: signal,
         originId: msg.originId,
