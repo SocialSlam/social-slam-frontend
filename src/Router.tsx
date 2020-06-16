@@ -1,11 +1,10 @@
 import * as React from 'react'
-import { Home } from './pages/Home'
-import { Landing } from './pages/Landing/Landing'
-import { Route, Switch, BrowserRouter } from 'react-router-dom'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import { Debug } from './pages/Debug'
 import { Error404 } from './pages/Error404'
+import { Home } from './pages/Home'
+import { Landing } from './pages/Landing/Landing'
 import { Stream } from './pages/Stream'
-// import {View} from './pages/View'
 
 export const routes = [
   {
@@ -32,12 +31,6 @@ export const routes = [
     exact: true,
     component: Stream,
   },
-  // {
-  //   path: '/view',
-  //   name: 'View',
-  //   exact: undefined,
-  //   component: View,
-  // },
 ]
 
 export const Router: React.FC = (props) => {
