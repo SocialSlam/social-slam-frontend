@@ -1,60 +1,10 @@
 import * as React from 'react'
+import SimplePeer from 'simple-peer'
 import styled from 'styled-components'
 
-export interface Event {
-  host: any
-  title: string
-  datetime: string
-  video: any
-}
-export interface VideoCardProps {
-  event: Event
-}
-
-const StyledVideoContainer = styled.div`
-  margin-right: 20px;
-  .host-span {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-  }
-`
-// const VideoContainer = (props) => {
-//   return (
-//     <Box
-//       id="video-container"
-//       sx={{
-//         display: 'grid',
-//         gridGap: 4,
-//         gridTemplateColumns: 'repeat(auto-fit, minmax(128px, 1fr))',
-//       }}
-//     >
-//       {props.streams.map((el, i) => {
-//         return <Video key={i} stream={el} totalStreams={props.streams.length} />
-//       })}
-//     </Box>
-//   )
-export const VideoCard: React.FC<VideoCardProps> = ({ event }) => {
-  const host_full_name =
-    event.host.last_name !== undefined
-      ? event.host.first_name + ' ' + event.host.last_name
-      : event.host.first_name
-
-  return (
-    <StyledVideoContainer>
-      <StyledVideo
-        width="320"
-        height="240"
-        poster="icons/logo.png"
-        stream={event.video}
-      />
-      <h3>{event.title}</h3>
-      <div className="host-span">
-        <span>{host_full_name}</span>
-        <span>{event.datetime}</span>
-      </div>
-    </StyledVideoContainer>
-  )
+export interface VideoContainerProps {
+  streams?: Record<string, SimplePeer.Instance>
+  userMedia: React.MutableRefObject<HTMLVideoElement>
 }
 
 export interface StyledVideoProps {
@@ -73,4 +23,26 @@ export const StyledVideo: React.FC<StyledVideoProps> = ({
   `
 
   return <VideoEl autoPlay controls ref={stream} {...props} />
+}
+
+export const VideoContainer: React.FC<VideoContainerProps> = ({
+  userMedia,
+  streams,
+}) => {
+  return (
+    <React.Fragment>
+      <StyledVideo stream={userMedia} />
+      {streams &&
+        Object.values(streams).map((el) => {
+          const ref = React.useRef<HTMLVideoElement>()
+
+          React.useEffect(() => {
+            el.on('stream', (stream) => {
+              ref.current.srcObject = stream
+            })
+          }, [])
+          return <StyledVideo stream={ref} />
+        })}
+    </React.Fragment>
+  )
 }
