@@ -4,12 +4,13 @@
   "repository": "https://github.com/SocialSlam/social-slam-frontend.git",
   "license": "MIT",
   "scripts": {
-    "prettier": "./node_modules/.bin/prettier --single-quote --check 'src/**/*.{js,jsx,ts,tsx,json,css,scss,md}'",
-    "prettier:fix": "./node_modules/.bin/prettier --single-quote --write 'src/**/*.{js,jsx,ts,tsx,json,css,scss,md}'",
+    "build": "yarn run copy && parcel build src/index.html",
+    "copy": "rm -rf dist && cp -r ./static ./dist",
+    "prestart": "yarn run copy",
+    "prettier:test": "prettier --single-quote --check 'src/**/*.{js,jsx,ts,tsx,json,css,scss,md}'",
+    "prettier": "./node_modules/.bin/prettier --single-quote --write 'src/**/*.{js,jsx,ts,tsx,json,css,scss,md}'",
     "start": "parcel serve src/index.html",
-    "build": "parcel build src/index.html",
-    "prestart": "npm run copy",
-    "copy": "rm -rf dist && cp -r ./static ./dist"
+    "test": "yarn run prettier:test"
   },
   "dependencies": {
     "@apollo/client": "^3.0.0-rc.2",
