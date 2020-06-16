@@ -9,9 +9,6 @@
     "start": "parcel serve src/index.html",
     "build": "parcel build src/index.html",
     "prestart": "npm run copy",
-    "prestart:prod": "npm run build",
-    "prebuild": "npm run copy",
-    "start:prod": "HOST=http://social-slam.herokuapp.com/ NODE_ENV=production node build/server.js",
     "copy": "rm -rf dist && cp -r ./static ./dist"
   },
   "dependencies": {
