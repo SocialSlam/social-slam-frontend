@@ -1,21 +1,26 @@
 import * as React from 'react'
-import { Header } from './Header'
-import { SideNav } from './SideNav'
 import { Helmet } from 'react-helmet'
 import { Box, Flex } from 'rebass/styled-components'
-import { ThemeProvider } from 'styled-components'
+import styled, { ThemeProvider } from 'styled-components'
 import { defaultTheme, GlobalStyle } from '../Theme'
+import { Footer } from './Footer'
+import { Header } from './Header'
+import { SideNav } from './SideNav'
 
 interface LayoutProps {
   skipHeader?: boolean
   skipMenu?: boolean
+  skipFooter?: boolean
   debug?: boolean
 }
+
+const StyledMainContainer = styled(Box)``
 
 export const Layout: React.FC<LayoutProps> = ({
   children,
   skipHeader,
   skipMenu,
+  skipFooter,
   debug = false,
 }) => {
   const [showSidebar, setShowSidebar] = React.useState(false)
@@ -47,9 +52,10 @@ export const Layout: React.FC<LayoutProps> = ({
         {!skipHeader && (
           <Header showMenu={showSidebar} toggleMenu={setShowSidebar} px="3em" />
         )}
-        <Box as="main" p="3em">
+        <StyledMainContainer as="main">
           {children}
-        </Box>
+          {!skipFooter && <Footer />}
+        </StyledMainContainer>
       </Flex>
     </ThemeProvider>
   )

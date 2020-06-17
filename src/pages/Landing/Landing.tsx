@@ -17,7 +17,7 @@ const StyledSocialLinkIcons = styled(FontAwesomeIcon)`
 
 export const Landing: React.FC = (props) => {
   return (
-    <Layout skipHeader={true} skipMenu={true}>
+    <Layout skipHeader={true} skipMenu={true} skipFooter={true}>
       <div className="column landing_page">
         <div className="row header">
           <img src={iconLogoBlack} />
