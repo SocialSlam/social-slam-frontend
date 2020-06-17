@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { Box, Flex } from 'rebass/styled-components'
 import styled from 'styled-components'
-import { GlobalStyleProps } from './Layout'
+import { GlobalStyleProps } from '../Theme'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 

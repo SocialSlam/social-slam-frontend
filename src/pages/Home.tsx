@@ -1,10 +1,10 @@
 import * as React from 'react'
-import { Hero } from '../components/Hero/Hero'
+import { Hero } from '../components/Hero'
 import { Layout } from '../components/Layout'
 import { Featured } from '../components/Featured'
-import { GenericList } from '../components/GenericList/GenericList'
-import { ArtistCard } from '../components/ArtistCard/ArtistCard'
-import { VideoCard } from '../components/VideoCard/VideoCard'
+import { GenericList } from '../components/GenericList'
+import { ArtistCard } from '../components/ArtistCard'
+import { VideoCard } from '../components/VideoCard'
 
 export const Home: React.FC = () => {
   // @ts-ignore
@@ -97,10 +97,10 @@ export const Home: React.FC = () => {
           className="card__content"
           header="Mehr aus der Kategory Musik"
         >
-          {poetry_event_objects.length > 0 &&
+          {/* {poetry_event_objects.length > 0 &&
             poetry_event_objects.map((event) => (
-              <VideoCard key={event.id} event={event} />
-            ))}
+              // <VideoCard key={event.id} event={event} />
+            ))} */}
         </GenericList>
       </div>
       {featured && <Featured />}

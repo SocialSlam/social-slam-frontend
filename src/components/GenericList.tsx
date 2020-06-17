@@ -1,11 +1,20 @@
 import * as React from 'react'
-
-import './GenericList.scss'
+import styled from 'styled-components'
 
 export interface GenericListProps {
   header: string
   [prop: string]: any
 }
+
+const StyledGenericList = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  width: 100%;
+  height: 100%;
+  overflow-x: scroll;
+  margin-top: 10px;
+`
 
 export const GenericList: React.FC<GenericListProps> = ({
   header,
@@ -13,9 +22,9 @@ export const GenericList: React.FC<GenericListProps> = ({
   ...rest
 }) => {
   return (
-    <div {...rest}>
+    <StyledGenericList {...rest}>
       <h3>{header}</h3>
       <div className="generic-list">{children}</div>
-    </div>
+    </StyledGenericList>
   )
 }

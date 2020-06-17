@@ -2,7 +2,7 @@ import * as React from 'react'
 import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 import { routes } from '../Router'
-import { GlobalStyleProps } from './Layout'
+import { GlobalStyleProps } from '../Theme'
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 

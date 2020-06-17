@@ -1,8 +1,10 @@
 import * as React from 'react'
 import { Layout } from '../components/Layout'
+import { VideoCard } from '../components/VideoCard'
+import { Hero } from '../components/Hero'
 
-export const Debug: React.FC = () => (
-  <Layout skipHeader={true}>
+const LoremIpsum = () => (
+  <div>
     <h1>Header One</h1>
 
     <p>
@@ -177,5 +179,20 @@ export const Debug: React.FC = () => (
     </table>
 
     <address>Author text</address>
+  </div>
+)
+
+export const Debug: React.FC = () => (
+  <Layout skipHeader={true}>
+    {/* <VideoCard
+      event={{
+        video:
+          'https://cf-simple-s3-origin-social-slam-728773676825.s3.eu-central-1.amazonaws.com/julie2.mp4',
+        host: { first_name: 'fname', last_name: 'lname' },
+        title: 'Title',
+        datetime: 'asdf',
+      }}
+    /> */}
+    {/* <Hero /> */}
   </Layout>
 )

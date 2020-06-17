@@ -6,7 +6,7 @@ import { Logo } from './Logo'
 import { SearchBar } from './SearchBar'
 import styled from 'styled-components'
 import { SideNavProps } from './SideNav'
-import { GlobalStyleProps } from './Layout'
+import { GlobalStyleProps } from '../Theme'
 
 export interface HeaderProps extends FlexProps, SideNavProps {}
 export interface HeaderState {
