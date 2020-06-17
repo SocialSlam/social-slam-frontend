@@ -1,14 +1,26 @@
+import {
+  faFacebookSquare,
+  faInstagram,
+} from '@fortawesome/free-brands-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import * as React from 'react'
-import texts from './landing_page_texts.json'
-import './Landing.scss'
+import styled from 'styled-components'
+import iconLogoBlack from 'url:../../assets/icons/logo_black.svg'
 import { Layout } from '../../components/Layout'
+import './Landing.scss'
+import texts from './landing_page_texts.json'
+
+const StyledSocialLinkIcons = styled(FontAwesomeIcon)`
+  font-size: 2rem;
+  margin-left: 10px;
+`
 
 export const Landing: React.FC = (props) => {
   return (
     <Layout skipHeader={true} skipMenu={true}>
       <div className="column landing_page">
         <div className="row header">
-          <img src="icons/logo_black.svg" />
+          <img src={iconLogoBlack} />
           <section className="column">
             <h1>SOCIAL SLAM</h1>
             <p>{texts.header}</p>
@@ -54,14 +66,14 @@ export const Landing: React.FC = (props) => {
               target="_blank"
               rel="noreferrer"
             >
-              <img src="icons/facebook.svg" />
+              <StyledSocialLinkIcons icon={faFacebookSquare} />
             </a>
             <a
               href="https://www.instagram.com/socialslam_official/"
               target="_blank"
               rel="noreferrer"
             >
-              <img src="icons/instagram.svg" />
+              <StyledSocialLinkIcons icon={faInstagram} />
             </a>
           </div>
         </footer>

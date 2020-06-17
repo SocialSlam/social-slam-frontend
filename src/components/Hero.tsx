@@ -1,6 +1,8 @@
-import * as React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import * as React from 'react'
 import styled from 'styled-components'
+import iconClap from 'url:../assets/icons/clap.svg'
+import iconDonation from 'url:../assets/icons/donation_02.svg'
 
 const StyledHero = styled.div`
   display: flex;
@@ -49,12 +51,12 @@ export const Hero: React.FC = () => {
           </div>
           <div className="controls">
             <FontAwesomeIcon icon="heart" size="lg" />
-            <img src="icons/donation_02.svg" />
-            <img src="icons/clap.svg" />
+            <img src={iconDonation} />
+            <img src={iconClap} />
             <FontAwesomeIcon icon="bell" size="lg" />
           </div>
           <div>
-            <span>Viewers: </span>
+            <span>Viewers:</span>
             <span>{viewer_count}</span>
           </div>
         </div>
