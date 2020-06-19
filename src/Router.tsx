@@ -4,6 +4,7 @@ import { Debug } from './pages/Debug'
 import { Error404 } from './pages/Error404'
 import { Home } from './pages/Home'
 import { Landing } from './pages/Landing/Landing'
+import { Register } from './pages/Register'
 import { Stream } from './pages/Stream'
 
 export const routes = [
@@ -13,6 +14,14 @@ export const routes = [
     exact: true,
     component: Home,
   },
+  {
+    path: '/register',
+    name: 'Register',
+    exact: true,
+    component: Register,
+  },
+
+  //   Temp
   {
     path: '/debug',
     name: 'DEBUG',
