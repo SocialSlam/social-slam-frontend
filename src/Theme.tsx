@@ -1,23 +1,23 @@
-import { createGlobalStyle } from 'styled-components'
+import { createGlobalStyle } from "styled-components";
 
 export type GlobalStyleProps = {
-  theme: typeof defaultTheme
-}
+  theme: typeof defaultTheme;
+};
 
 export const defaultTheme = {
-  breakpoints: [0, '576px', '768px', '992px', '1200px', '1400px', '1600px'],
+  breakpoints: [0, "576px", "768px", "992px", "1200px", "1400px", "1600px"],
   colors: {
-    background: '#ffffff',
-    base: '#444444',
-    baseInverse: '#ffffff',
-    primary: '#5C63FF',
-    conture: 'rgba(0, 0, 0, 255)',
-    highlight: 'rgba(255,1,54, 255)',
+    background: "#ffffff",
+    base: "#444444",
+    primary: "#5C63FF",
+    grey: "#c4c4c4",
+    black: "#000000",
+    highlight: "rgba(255,1,54, 255)",
   },
   fonts: {
     body: '"Montserrat", sans-serif',
   },
-}
+};
 
 export const GlobalStyle = createGlobalStyle<GlobalStyleProps>`
   *,
@@ -30,7 +30,8 @@ export const GlobalStyle = createGlobalStyle<GlobalStyleProps>`
   html {
     border: 0;
     margin: 0;
-    padding: 0;
+	padding: 0;
+	height: 100%;
   }
 
   body {
@@ -40,7 +41,13 @@ export const GlobalStyle = createGlobalStyle<GlobalStyleProps>`
     font-weight: 400;
     font-size: 16px;
     line-height: 1.5;
-    min-height: 100vh;
+	min-height: 100vh;
+  }
+
+  #root{
+	  display: flex;
+	  flex-direction: column;
+	  height: 100%;
   }
 
   h1, h2, h3, h4, p, ul, ol, thead, tbody, tr {
@@ -95,4 +102,4 @@ export const GlobalStyle = createGlobalStyle<GlobalStyleProps>`
   ::-webkit-scrollbar-thumb {
       background: #FF0000;
   }
-`
+`;

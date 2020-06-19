@@ -1,20 +1,22 @@
-import * as React from 'react'
-import { Helmet } from 'react-helmet'
-import { Box, Flex } from 'rebass/styled-components'
-import styled, { ThemeProvider } from 'styled-components'
-import { defaultTheme, GlobalStyle } from '../Theme'
-import { Footer } from './Footer'
-import { Header } from './Header'
-import { SideNav } from './SideNav'
+import * as React from "react";
+import { Helmet } from "react-helmet";
+import { Box } from "rebass/styled-components";
+import styled, { ThemeProvider } from "styled-components";
+import { defaultTheme, GlobalStyle } from "../Theme";
+import { Footer } from "./Footer";
+import { Header } from "./Header";
+import { SideNav } from "./SideNav";
 
 interface LayoutProps {
-  skipHeader?: boolean
-  skipMenu?: boolean
-  skipFooter?: boolean
-  debug?: boolean
+  skipHeader?: boolean;
+  skipMenu?: boolean;
+  skipFooter?: boolean;
+  debug?: boolean;
 }
 
-const StyledMainContainer = styled(Box)``
+const StyledMainContainer = styled(Box)`
+flex: 1 0 auto
+`;
 
 export const Layout: React.FC<LayoutProps> = ({
   children,
@@ -23,7 +25,7 @@ export const Layout: React.FC<LayoutProps> = ({
   skipFooter,
   debug = false,
 }) => {
-  const [showSidebar, setShowSidebar] = React.useState(false)
+  const [showSidebar, setShowSidebar] = React.useState(false);
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -34,29 +36,16 @@ export const Layout: React.FC<LayoutProps> = ({
         />
       </Helmet>
       <GlobalStyle />
-      <Flex
-        minHeight="100vh"
-        flexDirection="column"
-        css={
-          debug
-            ? `
-          background: linear-gradient(rgba(255,0,0,0.15),rgba(255,0,0,0.15) 1px,transparent 1px);
-          background-size: 1px 1.5em;
-        `
-            : ``
-        }
-      >
-        {!skipMenu && (
-          <SideNav showMenu={showSidebar} toggleMenu={setShowSidebar} />
-        )}
-        {!skipHeader && (
-          <Header showMenu={showSidebar} toggleMenu={setShowSidebar} px="3em" />
-        )}
-        <StyledMainContainer as="main">
-          {children}
-          {!skipFooter && <Footer />}
-        </StyledMainContainer>
-      </Flex>
+      {!skipHeader && (
+        <Header showMenu={showSidebar} toggleMenu={setShowSidebar} px="3em" />
+      )}
+      {!skipMenu && (
+        <SideNav showMenu={showSidebar} toggleMenu={setShowSidebar} />
+      )}
+      <StyledMainContainer as="main">
+        {children}
+      </StyledMainContainer>
+      {!skipFooter && <Footer />}
     </ThemeProvider>
-  )
-}
+  );
+};
