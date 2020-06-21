@@ -1,19 +1,19 @@
 import {
   faFacebookSquare,
   faInstagram,
-} from '@fortawesome/free-brands-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import * as React from 'react'
-import styled from 'styled-components'
-import iconLogoBlack from 'url:../../assets/icons/logo_black.svg'
-import { Layout } from '../../components/Layout'
-import './Landing.scss'
-import texts from './landing_page_texts.json'
+} from "@fortawesome/free-brands-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import * as React from "react";
+import styled from "styled-components";
+import iconLogoBlack from "url:../../assets/images/logo_black.svg";
+import { Layout } from "../../components/Layout";
+import "./Landing.scss";
+import texts from "./landing_page_texts.json";
 
 const StyledSocialLinkIcons = styled(FontAwesomeIcon)`
   font-size: 2rem;
   margin-left: 10px;
-`
+`;
 
 export const Landing: React.FC = (props) => {
   return (
@@ -79,5 +79,5 @@ export const Landing: React.FC = (props) => {
         </footer>
       </div>
     </Layout>
-  )
-}
+  );
+};
