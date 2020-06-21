@@ -1,11 +1,12 @@
 import * as React from "react";
 import { Box, Flex, Text } from "rebass/styled-components";
 import styled from "styled-components";
-import logoBlack from "url:../assets/icons/logo_black.svg";
+import logoBlack from "url:../assets/images/logo_black.svg";
 import bgShape from "url:../assets/shapes/triangle-corner.svg";
 import { Button } from "../components/Button";
 import { Input } from "../components/Input";
 import { Layout } from "../components/Layout";
+import { GlobalStyleProps } from "../Theme";
 
 interface FooterProps {
   image: any;
@@ -19,6 +20,10 @@ const StyledBackground = styled.div`
   height: 80%;
   z-index: -1;
   `;
+const StyledBackgroundText = styled(Text)`
+color: ${({ theme }: GlobalStyleProps) => theme.colors.background};
+position: relative;
+  `;
 
 const Background: React.FC<FooterProps> = ({
   image,
@@ -26,9 +31,9 @@ const Background: React.FC<FooterProps> = ({
 }) => (
   <StyledBackground>
     <img src={image} style={{ height: "80%" }} />
-    <Text color="white" style={{ margin: "1px 1px 1px 1px" }}>
+    <StyledBackgroundText>
       Tip local<br />stay social
-    </Text>
+    </StyledBackgroundText>
   </StyledBackground>
 );
 
