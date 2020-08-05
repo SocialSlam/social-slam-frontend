@@ -11,6 +11,7 @@ import { Dispatch } from 'react'
 import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly'
 import { reducer } from './Reducer'
 import { saga } from './Saga'
+import { ActionProp } from '../TypeUtils'
 
 // export type LocalState = ReturnType<typeof reducer>
 export type LocalState = {
@@ -19,7 +20,7 @@ export type LocalState = {
 
 const STORAGE_NAME = 'slamStorage'
 const STORAGE_EXPIRE = 'updatedAt'
-const STORAGE_VERSION = 'slamStorage'
+const STORAGE_VERSION = 'slamStorageVersion'
 const STORAGE_VERSION_NUMBER = '1'
 const STORAGE_EXPIRY_TIME = 3 * (60 * 60 * 1000)
 
@@ -91,4 +92,7 @@ const enhancer = composeEnhancers(
 )
 
 export const store = createStore(reducer, hydrateStore(), enhancer)
-export const action = (type: string) => store.dispatch({ type })
+
+sagaMiddleware.run(saga)
+
+export const action = (props: ActionProp) => store.dispatch(props)
