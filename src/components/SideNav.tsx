@@ -1,10 +1,10 @@
+import { faChevronLeft } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import * as React from 'react'
 import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 import { routes } from '../Router'
 import { GlobalStyleProps } from '../Theme'
-import { faChevronLeft } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const StyledNav = styled.nav`
   height: 100%;
@@ -13,7 +13,7 @@ const StyledNav = styled.nav`
   z-index: 1;
   top: 0;
   left: 0;
-  color: ${({ theme }: GlobalStyleProps) => theme.colors.baseInverse};
+  color: ${({ theme }: GlobalStyleProps) => theme.colors.background};
   background-color: ${({ theme }: GlobalStyleProps) => theme.colors.primary};
   overflow-x: hidden;
   transition: 0.5s;
@@ -35,7 +35,7 @@ const StyledNav = styled.nav`
 `
 
 const StyledNavLink = styled(NavLink)`
-  color: ${({ theme }: GlobalStyleProps) => theme.colors.baseInverse};
+  color: ${({ theme }: GlobalStyleProps) => theme.colors.background};
   text-decoration: none;
   font-size: 1.5rem;
   font-weight: bold;

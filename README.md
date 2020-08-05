@@ -1,4 +1,4 @@
-![repo-banner](http://social-slam.herokuapp.com/icons/logo.svg)
+![repo-banner](./src/assets/images/logo.svg)
 
 # Social Slam Frontend
 

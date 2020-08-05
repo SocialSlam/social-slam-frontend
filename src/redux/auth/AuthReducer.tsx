@@ -1,67 +1,60 @@
 import { Reducer, Action } from 'redux'
-import { AUTH_ACTIONS, ASYNC_STATUS } from '../../Constants'
+import {
+  AUTH_LOGIN_STATES,
+  ASYNC_STATUS,
+  AUTH_REGISTER_STATES,
+} from '../../Constants'
 
-export type AsyncStatus = keyof typeof ASYNC_STATUS
-export type ActionType = keyof typeof AUTH_ACTIONS
 export type AuthState = {
-  status: AsyncStatus
+  status: ASYNC_STATUS
   token?: string
-  email?: string
-  password?: string
+  refreshToken?: string
   error?: string
 }
-export interface AuthAction extends Action<ActionType> {
+export interface AuthAction
+  extends Action<AUTH_LOGIN_STATES | AUTH_REGISTER_STATES> {
   token?: string
+  refreshToken?: string
   email?: string
   password?: string
   error?: string
 }
 
 const initialState: AuthState = {
-  status: ASYNC_STATUS.IDLE as AsyncStatus,
+  status: ASYNC_STATUS.IDLE,
+  token: undefined,
+  refreshToken: undefined,
+  error: undefined,
 }
 
 export const authReducer: Reducer<AuthState, AuthAction> = (
-  state = initialState,
+  state = { ...initialState },
   action
 ) => {
   switch (action.type) {
-    case AUTH_ACTIONS.START:
+    case AUTH_REGISTER_STATES.START:
       return {
         ...state,
         error: undefined,
-        status: ASYNC_STATUS.PENDING as AsyncStatus,
+        status: ASYNC_STATUS.PENDING,
       }
-
-    case AUTH_ACTIONS.SUCCESS:
+    case AUTH_REGISTER_STATES.SUCCESS:
       return {
         ...state,
         error: undefined,
+        status: ASYNC_STATUS.SUCCESS,
         token: action.token,
-        email: action.email,
-        password: action.password,
-        status: ASYNC_STATUS.SUCCESS as AsyncStatus,
+        refreshToken: action.refreshToken,
       }
-
-    case AUTH_ACTIONS.FAIL:
+    case AUTH_REGISTER_STATES.FAIL:
       return {
         ...state,
-        email: undefined,
-        password: undefined,
-        token: undefined,
         error: action.error,
-        status: ASYNC_STATUS.FAIL as AsyncStatus,
+        status: ASYNC_STATUS.FAIL,
       }
 
-    case AUTH_ACTIONS.LOGOUT:
-      return {
-        ...state,
-        email: undefined,
-        password: undefined,
-        token: undefined,
-        error: undefined,
-        status: ASYNC_STATUS.IDLE as AsyncStatus,
-      }
+    case AUTH_LOGIN_STATES.LOGOUT:
+      return { ...initialState }
 
     default:
       return state

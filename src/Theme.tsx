@@ -9,10 +9,34 @@ export const defaultTheme = {
   colors: {
     background: '#ffffff',
     base: '#444444',
-    baseInverse: '#ffffff',
     primary: '#5C63FF',
-    conture: 'rgba(0, 0, 0, 255)',
+    grey: '#c4c4c4',
+    black: '#000000',
+    error: '#FF606D',
+    success: '#00D2B3',
     highlight: 'rgba(255,1,54, 255)',
+  },
+  fontSize: {
+    highlight: '25px',
+    menu: '15px',
+    title: '13px',
+    meta: '11px',
+  },
+  buttons: {
+    primary: {
+      color: 'background',
+      bg: 'primary',
+      borderColor: 'primary',
+      borderWidth: '2px',
+      borderStyle: 'solid',
+    },
+    outline: {
+      color: 'primary',
+      bg: 'background',
+      borderColor: 'primary',
+      borderWidth: '2px',
+      borderStyle: 'solid',
+    },
   },
   fonts: {
     body: '"Montserrat", sans-serif',
@@ -30,7 +54,8 @@ export const GlobalStyle = createGlobalStyle<GlobalStyleProps>`
   html {
     border: 0;
     margin: 0;
-    padding: 0;
+	padding: 0;
+	height: 100%;
   }
 
   body {
@@ -40,7 +65,13 @@ export const GlobalStyle = createGlobalStyle<GlobalStyleProps>`
     font-weight: 400;
     font-size: 16px;
     line-height: 1.5;
-    min-height: 100vh;
+	min-height: 100vh;
+  }
+
+  #root{
+	  display: flex;
+	  flex-direction: column;
+	  height: 100%;
   }
 
   h1, h2, h3, h4, p, ul, ol, thead, tbody, tr {

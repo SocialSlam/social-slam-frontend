@@ -4,15 +4,25 @@ import { Debug } from './pages/Debug'
 import { Error404 } from './pages/Error404'
 import { Home } from './pages/Home'
 import { Landing } from './pages/Landing/Landing'
+import { Register } from './pages/Register'
 import { Stream } from './pages/Stream'
+import { ROUTE_HOME, ROUTE_REGISTER } from './Constants'
 
 export const routes = [
   {
-    path: '/',
+    path: ROUTE_HOME,
     name: 'Home',
     exact: true,
     component: Home,
   },
+  {
+    path: ROUTE_REGISTER,
+    name: 'Register',
+    exact: true,
+    component: Register,
+  },
+
+  //   Temp
   {
     path: '/debug',
     name: 'DEBUG',
