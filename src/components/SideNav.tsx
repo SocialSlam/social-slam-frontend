@@ -1,10 +1,10 @@
-import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import * as React from "react";
-import { NavLink } from "react-router-dom";
-import styled from "styled-components";
-import { routes } from "../Router";
-import { GlobalStyleProps } from "../Theme";
+import { faChevronLeft } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import * as React from 'react'
+import { NavLink } from 'react-router-dom'
+import styled from 'styled-components'
+import { routes } from '../Router'
+import { GlobalStyleProps } from '../Theme'
 
 const StyledNav = styled.nav`
   height: 100%;
@@ -32,7 +32,7 @@ const StyledNav = styled.nav`
     margin: 2rem 4rem;
     list-style-type: none;
   }
-`;
+`
 
 const StyledNavLink = styled(NavLink)`
   color: ${({ theme }: GlobalStyleProps) => theme.colors.background};
@@ -41,7 +41,7 @@ const StyledNavLink = styled(NavLink)`
   font-weight: bold;
   &.nav-link__active {
   }
-`;
+`
 
 const StyledToggleIcon = styled(FontAwesomeIcon)`
   position: absolute;
@@ -50,20 +50,20 @@ const StyledToggleIcon = styled(FontAwesomeIcon)`
   margin-left: 50px;
   font-size: 2rem;
   font-weight: 100;
-`;
+`
 
 export type SideNavProps = {
-  showMenu?: boolean;
-  toggleMenu?: (hideShow: boolean) => void;
-};
+  showMenu?: boolean
+  toggleMenu?: (hideShow: boolean) => void
+}
 
 export const SideNav: React.FC<SideNavProps> = ({ showMenu, toggleMenu }) => {
-  const ref = React.createRef<HTMLElement>();
+  const ref = React.createRef<HTMLElement>()
 
   React.useEffect(() => {
     // @ts-ignore
-    ref.current.classList.toggle("side-nav__open", showMenu);
-  }, [showMenu]);
+    ref.current.classList.toggle('side-nav__open', showMenu)
+  }, [showMenu])
 
   // @ts-ignore
   return (
@@ -92,5 +92,5 @@ export const SideNav: React.FC<SideNavProps> = ({ showMenu, toggleMenu }) => {
         </>
       )}
     </StyledNav>
-  );
-};
+  )
+}
