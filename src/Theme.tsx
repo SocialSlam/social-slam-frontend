@@ -1,23 +1,47 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from 'styled-components'
 
 export type GlobalStyleProps = {
-  theme: typeof defaultTheme;
-};
+  theme: typeof defaultTheme
+}
 
 export const defaultTheme = {
-  breakpoints: [0, "576px", "768px", "992px", "1200px", "1400px", "1600px"],
+  breakpoints: [0, '576px', '768px', '992px', '1200px', '1400px', '1600px'],
   colors: {
-    background: "#ffffff",
-    base: "#444444",
-    primary: "#5C63FF",
-    grey: "#c4c4c4",
-    black: "#000000",
-    highlight: "rgba(255,1,54, 255)",
+    background: '#ffffff',
+    base: '#444444',
+    primary: '#5C63FF',
+    grey: '#c4c4c4',
+    black: '#000000',
+    error: '#FF606D',
+    success: '#00D2B3',
+    highlight: 'rgba(255,1,54, 255)',
+  },
+  fontSize: {
+    highlight: '25px',
+    menu: '15px',
+    title: '13px',
+    meta: '11px',
+  },
+  buttons: {
+    primary: {
+      color: 'background',
+      bg: 'primary',
+      borderColor: 'primary',
+      borderWidth: '2px',
+      borderStyle: 'solid',
+    },
+    outline: {
+      color: 'primary',
+      bg: 'background',
+      borderColor: 'primary',
+      borderWidth: '2px',
+      borderStyle: 'solid',
+    },
   },
   fonts: {
     body: '"Montserrat", sans-serif',
   },
-};
+}
 
 export const GlobalStyle = createGlobalStyle<GlobalStyleProps>`
   *,
@@ -102,4 +126,4 @@ export const GlobalStyle = createGlobalStyle<GlobalStyleProps>`
   ::-webkit-scrollbar-thumb {
       background: #FF0000;
   }
-`;
+`
