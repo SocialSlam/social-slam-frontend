@@ -8,48 +8,19 @@ import { Register } from './pages/Register'
 import { Stream } from './pages/Stream'
 import { ROUTE_HOME, ROUTE_REGISTER } from './Constants'
 
-export const routes = [
-  {
-    path: ROUTE_HOME,
-    name: 'Home',
-    exact: true,
-    component: Home,
-  },
-  {
-    path: ROUTE_REGISTER,
-    name: 'Register',
-    exact: true,
-    component: Register,
-  },
-
-  //   Temp
-  {
-    path: '/debug',
-    name: 'DEBUG',
-    exact: true,
-    component: Debug,
-  },
-  {
-    path: '/landing',
-    name: 'Landing Page',
-    exact: true,
-    component: Landing,
-  },
-  {
-    path: '/stream/:streamId',
-    name: 'Stream',
-    exact: true,
-    component: Stream,
-  },
-]
-
 export const Router: React.FC = (props) => {
   return (
     <BrowserRouter>
       <Switch>
-        {routes.map((props, i) => (
-          <Route key={i} {...props} />
-        ))}
+        <Route exact path={ROUTE_HOME} component={Home} />
+        <Route exact path={ROUTE_REGISTER} component={Register} />
+
+        {/* Temp */}
+        <Route exact path={'/debug'} component={Debug} />
+        <Route exact path={'/landing'} component={Landing} />
+        <Route exact path={'/stream/:streamId'} component={Stream} />
+
+        {/* Fallback */}
         <Route component={Error404} />
       </Switch>
     </BrowserRouter>
