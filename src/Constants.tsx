@@ -5,6 +5,7 @@ export const URL_LOGIN = BASE_URL + '/login'
 
 export const ROUTE_HOME = '/'
 export const ROUTE_REGISTER = '/register'
+export const ROUTE_LOGIN = '/login'
 
 export const FLOW_LOGIN = 'FLOW_LOGIN'
 export const FLOW_REGISTER = 'FLOW_REGISTER'

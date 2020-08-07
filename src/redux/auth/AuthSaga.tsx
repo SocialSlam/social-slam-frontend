@@ -1,40 +1,24 @@
 import axios from 'axios'
+import { call, cancel, cancelled, put, take } from 'redux-saga/effects'
 import {
-  call,
-  cancel,
-  cancelled,
-  fork,
-  put,
-  take,
-  takeLatest,
-} from 'redux-saga/effects'
-import {
-  BASE_URL,
-  URL_LOGIN,
-  FLOW_LOGIN,
-  FLOW_LOGOUT,
   AUTH_LOGIN_STATES,
-  FLOW_REGISTER,
   AUTH_REGISTER_STATES,
+  FLOW_LOGOUT,
+  URL_LOGIN,
 } from '../../Constants'
-import { UserRegister, UserRegisterResponse } from '../../TypeUtils'
 import { mutation } from '../../services/GraphQL'
-
-export type AuthRequestBody = {
-  email: string
-  password: string
-}
-
-export type AuthResponseBody = {
-  token: string
-  password: string
-}
+import {
+  UserRegister,
+  UserRegisterResponse,
+  UserLogin,
+  UserLoginResponse,
+} from '../../TypeUtils'
 
 export function requestAuthorize(
   email: string,
   password: string
-): Promise<AuthResponseBody> {
-  const body: AuthRequestBody = {
+): Promise<UserLogin> {
+  const body: UserLogin = {
     email,
     password,
   }
@@ -51,31 +35,36 @@ export function requestAuthorize(
   })
 }
 
-export function* authorize(payload: any) {
-  const { email, password } = payload
-  yield put({ type: AUTH_LOGIN_STATES.START })
-  try {
-    const { token }: AuthResponseBody = yield call(
-      requestAuthorize,
-      email,
-      password
-    )
-    yield put({ type: AUTH_LOGIN_STATES.SUCCESS, email, password, token })
-  } catch (error) {
-    yield put({ type: AUTH_LOGIN_STATES.FAIL, error })
-  } finally {
-    if (yield cancelled()) {
-      yield put({ type: AUTH_LOGIN_STATES.LOGOUT })
+async function apiLogin(payload: any) {
+  const queryString = `mutation {
+    tokenAuth(
+      email:"${payload.email}",
+      password: "${payload.password}",
+    ) {
+      success,
+      errors,
+      token,
+      refreshToken
     }
+  }`
+
+  const result = await mutation<UserLoginResponse>(queryString)
+
+  if (result.tokenAuth.errors)
+    throw new Error(Object.keys(result.tokenAuth.errors).toString())
+
+  return {
+    token: result.tokenAuth.token,
+    refreshToken: result.tokenAuth.refreshToken,
   }
 }
 
 export function* loginFlow(payload: any) {
-  // const { email, password } = yield take(FLOW_LOGIN)
-  const task = yield put(authorize, payload)
-  const action = yield take([FLOW_LOGOUT, AUTH_LOGIN_STATES.FAIL])
-  if (action.type === FLOW_LOGOUT) {
-    yield cancel(task)
+  try {
+    const response = yield call(apiLogin, payload)
+    yield put({ type: AUTH_LOGIN_STATES.SUCCESS, ...response })
+  } catch (error) {
+    yield put({ type: AUTH_LOGIN_STATES.FAIL, error: error.message })
   }
 }
 

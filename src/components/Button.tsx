@@ -44,6 +44,7 @@ export const Button: React.FC<ButtonProps> = ({
       onClick={onClick}
       disabled={disabled}
       variant={disabled ? 'outline' : 'primary'}
+      className="cursor-pointer"
     >
       <span>{text}</span>
       {isLoading && (

@@ -7,6 +7,11 @@ export type GlobalStyleProps = {
 export const defaultTheme = {
   breakpoints: [0, '576px', '768px', '992px', '1200px', '1400px', '1600px'],
   colors: {
+    blue: '#5C63FF',
+    beige: '#FFBE8F',
+    green: '#00D2B3',
+    red: '#FF606D',
+    lightBlue: '#00DFFF',
     background: '#ffffff',
     base: '#444444',
     primary: '#5C63FF',
@@ -109,6 +114,10 @@ export const GlobalStyle = createGlobalStyle<GlobalStyleProps>`
     margin-bottom: 1.12em;
   }
 
+  a {
+    text-decoration: none;
+  }
+
   li {
     margin-left: 1.06em;
   }
@@ -125,5 +134,40 @@ export const GlobalStyle = createGlobalStyle<GlobalStyleProps>`
   /* Optional: show position indicator in red */
   ::-webkit-scrollbar-thumb {
       background: #FF0000;
+  }
+
+  /* Colors */
+  .color-blue {
+    color: ${({ theme }) => theme.colors.blue};
+  }
+  .color-beige {
+    color: ${({ theme }) => theme.colors.beige};
+  }
+  .color-green {
+    color: ${({ theme }) => theme.colors.green};
+  }
+  .color-red {
+    color: ${({ theme }) => theme.colors.red};
+  }
+  .color-light-blue {
+    color: ${({ theme }) => theme.colors.lightBlue};
+  }
+
+  /* Font sizes */
+  .font-size-s {
+    font-size: ${({ theme }) => theme.fontSize.meta};
+  }
+  .font-size-m {
+    font-size: ${({ theme }) => theme.fontSize.title};
+  }
+  .font-size-l {
+    font-size: ${({ theme }) => theme.fontSize.menu};
+  }
+  .font-size-xl {
+    font-size: ${({ theme }) => theme.fontSize.highlight};
+  }
+
+  .cursor-pointer {
+    cursor: pointer;
   }
 `
