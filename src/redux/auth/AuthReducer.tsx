@@ -32,12 +32,14 @@ export const authReducer: Reducer<AuthState, AuthAction> = (
   action
 ) => {
   switch (action.type) {
+    case AUTH_LOGIN_STATES.START:
     case AUTH_REGISTER_STATES.START:
       return {
         ...state,
         error: undefined,
         status: ASYNC_STATUS.PENDING,
       }
+    case AUTH_LOGIN_STATES.SUCCESS:
     case AUTH_REGISTER_STATES.SUCCESS:
       return {
         ...state,
@@ -46,6 +48,7 @@ export const authReducer: Reducer<AuthState, AuthAction> = (
         token: action.token,
         refreshToken: action.refreshToken,
       }
+    case AUTH_LOGIN_STATES.FAIL:
     case AUTH_REGISTER_STATES.FAIL:
       return {
         ...state,

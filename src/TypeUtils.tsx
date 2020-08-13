@@ -10,23 +10,33 @@ export type UserRegister = {
   location: string
 }
 
-export type UserRegisterResponse =
-  | {
-      register: {
-        success: true
-        errors: null
-        token: string
-        refreshToken: string
-      }
-    }
-  | {
-      register: {
-        success: false
-        errors: Record<string, any>
-        token: null
-        refreshToken: null
-      }
-    }
+export type UserLogin = {
+  email: string
+  password: string
+}
+
+export type GraphQLValidAuthResponse = {
+  success: true
+  errors: null
+  token: string
+  refreshToken: string
+}
+
+export type GraphQLInvalidAuthResponse = {
+  success: false
+  errors: Record<string, any>
+  token: null
+  refreshToken: null
+}
+
+export type UserRegisterResponse = {
+  register: GraphQLValidAuthResponse | GraphQLInvalidAuthResponse
+}
+export type UserLoginResponse = {
+  tokenAuth: GraphQLValidAuthResponse | GraphQLInvalidAuthResponse
+}
+
+export type InputLabel = { title: string; state: string }
 
 export type ActionProp = {
   type: string
