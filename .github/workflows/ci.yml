@@ -25,8 +25,11 @@ jobs:
         run: yarn install
       - name: Build static site
         run: yarn run build
-      - name: dir
-        run: ls
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: dist
+          path: dist
 
   deploy:
     needs: build
@@ -34,3 +37,11 @@ jobs:
     steps:
       - name: dir
         run: ls
+      - name: Download a single artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: dist
+      - name: dir
+          run: ls
+      - name: dir
+          run: ls dist
