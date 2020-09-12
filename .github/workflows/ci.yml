@@ -60,36 +60,30 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: eu-central-1
 
-      - name: Set deployment status
-        uses: pbrandone/create-status-action@master
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          state: pending
-          description: Preparing deploy preview
-          context: Deploy Preview URL
-
       - name: Deploy site to S3 bucket
         if: success()
         run: aws s3 sync ./dist/ s3://${{ secrets.AWS_S3_APP_BUCKET }}/pr/${{ github.event.number }} --delete
 
-      - name: Set success deployment status
+      - name: Deploy success message
+        uses: phulsechinmay/rewritable-pr-comment@v0.2.1
         if: success()
-        uses: pbrandone/create-status-action@master
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          state: success
-          description: Deploy preview ready!
-          url: https://${{ secrets.AWS_S3_APP_BUCKET }}.s3-website.eu-central-1.amazonaws.com/pr/${{ github.event.number }}
-          context: Deploy Preview URL
+          message: |
+            Deploy preview ready!
+            https://${{ secrets.AWS_S3_APP_BUCKET }}.s3-website.eu-central-1.amazonaws.com/pr/${{ github.event.number }}
+            built from ${{ github.sha }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          COMMENT_IDENTIFIER: pr-${{ github.event.number }}
 
-      - name: Set failed deployment status
+      - name: Deploy failure message
+        uses: phulsechinmay/rewritable-pr-comment@v0.2.1
         if: failure()
-        uses: pbrandone/create-status-action@master
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          state: failure
-          description: Failed to deploy preview
-          context: Deploy Preview URL
+          message: |
+            Failed to deploy preview
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          COMMENT_IDENTIFIER: pr-${{ github.event.number }}
+
 
   deploy:
     needs: build
