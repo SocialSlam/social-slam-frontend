@@ -3,8 +3,8 @@ name: CI
 on:
   push:
     branches: [ master ]
-#  pull_request:
-#    branches: [ master ]
+  pull_request:
+    branches: [ master ]
 
 jobs:
   build:
@@ -28,8 +28,13 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
-      - name: Build site
+      - name: Build production
+        if: contains(github.ref, 'master')
         run: yarn run build
+
+      - name: Build preview
+        if: !contains(github.ref, 'master')
+        run: yarn run build -- --public-url pr/${{ github.event.number }}
 
       - name: Archive build artifacts
         uses: actions/upload-artifact@v2
@@ -37,8 +42,58 @@ jobs:
           name: dist
           path: dist
 
+  preview:
+    needs: build
+    if: !contains(github.ref, 'master')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download dist
+        uses: actions/download-artifact@v2
+        with:
+          name: dist
+          path: dist
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: eu-central-1
+
+      - name: Set deployment status
+        uses: pbrandone/create-status-action@master
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          state: pending
+          description: Preparing deploy preview
+          context: Deploy Preview URL
+
+      - name: Deploy site to S3 bucket
+        if: success()
+        run: aws s3 sync ./dist/ s3://${{ secrets.AWS_S3_APP_BUCKET }}/pr/${{ github.event.number }} --delete
+
+      - name: Set success deployment status
+        if: success()
+        uses: pbrandone/create-status-action@master
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          state: success
+          description: Deploy preview ready!
+          url: https://${{ secrets.AWS_S3_APP_BUCKET }}.s3-website.eu-central-1.amazonaws.com/pr/${{ github.event.number }}
+          context: Deploy Preview URL
+
+      - name: Set failed deployment status
+        if: failure()
+        uses: pbrandone/create-status-action@master
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          state: failure
+          description: Failed to deploy preview
+          context: Deploy Preview URL
+
   deploy:
     needs: build
+    if: contains(github.ref, 'master')
     runs-on: ubuntu-latest
     steps:
       - name: Download dist
