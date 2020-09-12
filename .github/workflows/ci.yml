@@ -29,11 +29,11 @@ jobs:
         run: yarn install --frozen-lockfile
 
       - name: Build production
-        if: contains(github.ref, 'master')
+        if: github.ref == 'refs/heads/master'
         run: yarn run build
 
       - name: Build preview
-        if: !contains(github.ref, 'master')
+        if: github.ref != 'refs/heads/master'
         run: yarn run build -- --public-url pr/${{ github.event.number }}
 
       - name: Archive build artifacts
@@ -44,7 +44,7 @@ jobs:
 
   preview:
     needs: build
-    if: !contains(github.ref, 'master')
+    if: github.ref != 'refs/heads/master'
     runs-on: ubuntu-latest
     steps:
       - name: Download dist
@@ -93,7 +93,7 @@ jobs:
 
   deploy:
     needs: build
-    if: contains(github.ref, 'master')
+    if: github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
     steps:
       - name: Download dist
