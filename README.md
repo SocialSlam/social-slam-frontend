@@ -1,6 +1,9 @@
+# Social Slam Frontend
+
+![CI](https://github.com/SocialSlam/social-slam-frontend/workflows/CI/badge.svg)
+
 ![repo-banner](./src/assets/images/logo.svg)
 
-# Social Slam Frontend
 
 ## Quick Start
 
