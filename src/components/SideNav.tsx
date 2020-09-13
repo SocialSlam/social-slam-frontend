@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import * as React from 'react'
 import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
-import { routes } from '../Router'
 import { GlobalStyleProps } from '../Theme'
 
 const StyledNav = styled.nav`
@@ -65,6 +64,7 @@ export const SideNav: React.FC<SideNavProps> = ({ showMenu, toggleMenu }) => {
     ref.current.classList.toggle('side-nav__open', showMenu)
   }, [showMenu])
 
+  const routes = []
   // @ts-ignore
   return (
     <StyledNav ref={ref}>
