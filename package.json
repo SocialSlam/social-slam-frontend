@@ -4,7 +4,7 @@
   "repository": "https://github.com/SocialSlam/social-slam-frontend.git",
   "license": "MIT",
   "scripts": {
-    "build": "([ -d dist ] && rm -R dist/*) ; parcel build src/index.html --no-cache --public-url production",
+    "build": "([ -d dist ] && rm -R dist/*) ; parcel build src/index.html --no-cache",
     "prettier:test": "prettier --single-quote --check 'src/**/*.{js,jsx,ts,tsx,json,css,scss,md}'",
     "prettier": "./node_modules/.bin/prettier --single-quote --write 'src/**/*.{js,jsx,ts,tsx,json,css,scss,md}'",
     "start": "parcel serve src/index.html",
