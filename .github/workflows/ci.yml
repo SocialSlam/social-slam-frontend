@@ -8,6 +8,8 @@ on:
 
 env:
   AWS_REGION: eu-central-1
+  BUCKET_FOLDER_PREVIEW: preview
+  BUCKET_FOLDER_PRODUCTION: production
 
 jobs:
   build:
@@ -33,11 +35,11 @@ jobs:
 
       - name: Build production
         if: github.ref == 'refs/heads/master'
-        run: yarn run build
+        run: yarn run build -- --public-url production
 
       - name: Build preview
         if: github.ref != 'refs/heads/master'
-        run: yarn run build -- --public-url pr/${{ github.event.number }}
+        run: yarn run build -- --public-url preview/${{ github.event.number }}
 
       - name: Archive build artifacts
         uses: actions/upload-artifact@v2
@@ -65,7 +67,7 @@ jobs:
 
       - name: Deploy site to S3 bucket
         if: success()
-        run: aws s3 sync ./dist/ s3://${{ secrets.AWS_S3_APP_BUCKET }}/pr/${{ github.event.number }} --delete
+        run: aws s3 sync ./dist/ s3://${{ secrets.AWS_S3_APP_BUCKET }}/${{ env.BUCKET_FOLDER_PREVIEW }}/${{ github.event.number }} --delete
 
       - name: Deploy success message
         uses: phulsechinmay/rewritable-pr-comment@v0.2.1
@@ -73,7 +75,7 @@ jobs:
         with:
           message: |
             Deploy preview ready!
-            https://${{ secrets.AWS_S3_APP_BUCKET }}.s3-website.${{ env.AWS_REGION }}.amazonaws.com/pr/${{ github.event.number }}
+            https://${{ secrets.AWS_S3_APP_BUCKET }}.s3-website.${{ env.AWS_REGION }}.amazonaws.com/${{ env.BUCKET_FOLDER_PREVIEW }}/${{ github.event.number }}
             built from ${{ github.sha }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           COMMENT_IDENTIFIER: pr-${{ github.event.number }}
@@ -106,4 +108,4 @@ jobs:
           aws-region: ${{ env.AWS_REGION }}
 
       - name: Deploy site to S3 bucket
-        run: aws s3 sync ./dist/ s3://${{ secrets.AWS_S3_APP_BUCKET }} --delete
+        run: aws s3 sync ./dist/ s3://${{ secrets.AWS_S3_APP_BUCKET }}/${{ env.BUCKET_FOLDER_PRODUCTION }} --delete
