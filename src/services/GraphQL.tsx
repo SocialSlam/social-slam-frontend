@@ -1,9 +1,5 @@
-import {
-  ApolloClient,
-  InMemoryCache,
-  gql,
-  ApolloQueryResult,
-} from '@apollo/client'
+import { ApolloClient, InMemoryCache, ApolloQueryResult } from '@apollo/client'
+import gql from 'graphql-tag'
 
 export type QueryResult<T = any> =
   | {

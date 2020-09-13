@@ -2,9 +2,9 @@ import React, { useEffect, useRef } from 'react'
 import { useParams } from 'react-router-dom'
 import { Layout } from '../components/Layout'
 import { VideoContainer } from '../components/VideoCard'
-import { Connection } from '../services/WSConnection'
+import { StreamConnection } from '../services/StreamConnection'
 
-export type StreamProps = {}
+export type StreamProps = unknown
 
 export type StreamParams = {
   streamId: string
@@ -12,11 +12,11 @@ export type StreamParams = {
 
 export const Stream: React.FC<StreamProps> = (props) => {
   const { streamId } = useParams<StreamParams>()
-  const socketRef = useRef<Connection>()
+  const socketRef = useRef<StreamConnection>()
   const mediaRef = useRef<HTMLVideoElement>()
 
   useEffect(() => {
-    socketRef.current = new Connection(streamId, '')
+    socketRef.current = new StreamConnection(streamId, '')
   }, [])
 
   const toggleStream = async () => {
@@ -29,7 +29,6 @@ export const Stream: React.FC<StreamProps> = (props) => {
         video: true,
         audio: true,
       })
-      socketRef.current.toggleStream(mediaRef.current.srcObject)
     }
   }
 
@@ -38,11 +37,6 @@ export const Stream: React.FC<StreamProps> = (props) => {
       <button onClick={() => toggleStream()}>Toggle Video</button>
 
       {/* <video controls autoPlay ref={mediaRef} /> */}
-
-      <VideoContainer
-        streams={socketRef.current?.streamers}
-        userMedia={mediaRef}
-      />
     </Layout>
   )
 }
