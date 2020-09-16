@@ -18,6 +18,7 @@ import {
   ASYNC_STATUS,
   REG_EXP_EMAIL,
   REG_EXP_PASSWORD,
+  ROUTE_RESET_PASSWORD,
   ROUTE_HOME,
 } from '../Constants'
 
@@ -135,7 +136,7 @@ export const Login: React.FC = () => {
               padding: '2rem 0',
             }}
           />
-          {true && (
+          {(
             <Box mx="auto" maxWidth="500px">
               {inputLabels.map((el, i) => (
                 <Input
@@ -156,14 +157,15 @@ export const Login: React.FC = () => {
 
               <Flex pt={4}>
                 <Box width={1 / 2}>
-                  <Text
-                    onClick={() => setResetPassword(true)}
-                    color="primary"
-                    fontWeight="bold"
-                    className="cursor-pointer"
-                  >
-                    Forgot password?
+                  <link to={ROUTE_RESET_PASSWORD}>
+                    <Text
+                      color="primary"
+                      fontWeight="bold"
+                      className="cursor-pointer"
+                    >
+                      Forgot password?
                   </Text>
+                  </link>
                   <br />
                   <Link to={ROUTE_REGISTER}>
                     <Text color="primary" fontWeight="bold">
