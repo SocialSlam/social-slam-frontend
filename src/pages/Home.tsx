@@ -1,113 +1,68 @@
 import * as React from 'react'
-import { Hero } from '../components/Hero'
-import { Layout } from '../components/Layout'
-import { Featured } from '../components/Featured'
-import { GenericList } from '../components/GenericList'
-import { ArtistCard } from '../components/ArtistCard'
-import { VideoCard } from '../components/VideoCard'
+import {Layout} from '../components/Layout'
+import {Button} from '../components/Button'
+import {Input} from '../components/Input'
+import {GQLEvent} from "../TypeUtils";
+import styled from "styled-components";
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {faSearch} from '@fortawesome/free-solid-svg-icons'
+import {Card, Flex, Image, Text} from "rebass/styled-components";
+
+const StyledHomeHero = styled(Flex)`
+border: black 1px solid;
+height: 580px;
+max-height: 60%;
+background-image: url(https://afmec.org/images/no-image-available-icon.jpg);
+`
+
+const StyledSearch = styled(Flex)`
+   background-color: white;
+    width: 40%;
+    margin: auto;
+`
+
+const StyledFeaturedStreamsWrapper = styled(Flex)``
 
 export const Home: React.FC = () => {
-  // @ts-ignore
-  const { featured, categories = [] } = {}
+    const [search, setSearch] = React.useState<string>("")
 
-  const artists = [
-    {
-      id: 0,
-      first_name: 'Peter',
-      last_name: 'Maffay',
-      avatar_image: '/images/Peter_Maffay.jpg',
-    },
-    { id: 1, first_name: 'Heino', avatar_image: '/images/Heino.jpeg' },
-    {
-      id: 2,
-      first_name: 'Christina Wocinte',
-      avatar_image:
-        '/images/Profilbilder/christina-wocintechchat-com-Kpd-JMLeKJk-unsplash.png',
-    },
-    {
-      id: 3,
-      first_name: 'Christie Campbell',
-      avatar_image:
-        'images/Profilbilder/christopher-campbell-rDEOVtE7vOs-unsplash.png',
-    },
-    {
-      id: 4,
-      first_name: 'Craig McKay',
-      avatar_image: '/images/Profilbilder/craig-mckay-jmURdhtm7Ng-unsplash.png',
-    },
-    {
-      id: 5,
-      first_name: 'Dan',
-      avatar_image: '/images/Profilbilder/dan-ROJFuWCsfmA-unsplash.png',
-    },
-    {
-      id: 6,
-      first_name: 'Eddy Klaus',
-      avatar_image: '/images/Profilbilder/eddy-klaus-BHNxfaeNCTI-unsplash.png',
-    },
-    {
-      id: 7,
-      first_name: 'Roberto Blanco',
-      avatar_image: '/images/Roberto_Blanco.jpg',
-    },
-    {
-      id: 8,
-      first_name: 'Svetlana Pochatun',
-      avatar_image:
-        '/images/Profilbilder/svetlana-pochatun-piIgyF0-gcY-unsplash.png',
-    },
-    {
-      id: 9,
-      first_name: 'Yucel Moran',
-      avatar_image: '/images/Profilbilder/yucel-moran-nd0AqhGk5ZI-unsplash.png',
-    },
-  ]
+    // @ts-ignore
+    const {featured, categories = []} = {}
 
-  const poetry_event_objects = [
-    {
-      id: 0,
-      datetime: '21.03.20',
-      video:
-        'https://cf-simple-s3-origin-social-slam-728773676825.s3.eu-central-1.amazonaws.com/julie2.mp4',
-      title: 'Fetzige Gesangsparade',
-      host: artists[0],
-    },
-    {
-      id: 1,
-      datetime: '27.04.20',
-      video: '/videos/HD Epic Sax Gandalf.mp4',
-      title: 'Corona verliert! #Wirvsvirus',
-      host: artists[1],
-    },
-  ]
+    const events: Array<GQLEvent> = [
+        {
+            id: 0,
+            datetime: '21.03.20',
+            title: 'Fetzige Gesangsparade',
+            description: 'lorem ipsum'
+        },
+        {
+            id: 1,
+            datetime: '27.04.20',
+            title: 'Corona verliert! #Wirvsvirus',
+            description: 'lorem ipsum'
+        },
+    ]
 
-  return (
-    <Layout>
-      <Hero />
-      <div className="card card--feature">
-        <GenericList className="card__content" header="Slammer der Woche">
-          {artists.length > 0 &&
-            artists.map((artist) => (
-              <ArtistCard key={artist.id} artist={artist} />
-            ))}
-        </GenericList>
-      </div>
-      <div className="card card--feature">
-        <GenericList
-          className="card__content"
-          header="Mehr aus der Kategory Musik"
-        >
-          {/* {poetry_event_objects.length > 0 &&
-            poetry_event_objects.map((event) => (
-              // <VideoCard key={event.id} event={event} />
-            ))} */}
-        </GenericList>
-      </div>
-      {featured && <Featured />}
-      {/*{categories.length > 0 &&*/}
-      {/*  categories.map(category => (*/}
-      {/*    <Category key={category.id} category={category} />*/}
-      {/*  ))}*/}
-    </Layout>
-  )
+    return (
+        <Layout>
+            <StyledHomeHero>
+                <StyledSearch>
+                    <Input sx={{width: '100%'}} value={search} onChange={(e) => setSearch(e.target.value)} />
+                    <Button sx={{whiteSpace: 'nowrap'}}
+                            text={<React.Fragment>Search <FontAwesomeIcon icon={faSearch} /></React.Fragment>} />
+                </StyledSearch>
+            </StyledHomeHero>
+
+            <StyledFeaturedStreamsWrapper mx={4} my={4}>
+                {events.map((el, i) => {
+                    return <Card key={i} width={256} mx={2}>
+                        <Image src={"https://afmec.org/images/no-image-available-icon.jpg"} />
+                        <Text fontSize={1} fontWeight='bold'>{el.title}</Text>
+                        <Text fontSize={1} color='grey'>{el.datetime}</Text>
+                    </Card>
+                })}
+            </StyledFeaturedStreamsWrapper>
+        </Layout>
+    )
 }
