@@ -1,9 +1,9 @@
 import * as React from 'react'
-import {SxStyleProp} from 'rebass'
-import {Button as ButtonC} from 'rebass/styled-components'
-import styled, {keyframes} from 'styled-components'
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {faSpinner} from '@fortawesome/free-solid-svg-icons'
+import { SxStyleProp } from 'rebass'
+import { Button as ButtonC } from 'rebass/styled-components'
+import styled, { keyframes } from 'styled-components'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 
 interface ButtonProps {
   text?: string | React.ReactNode

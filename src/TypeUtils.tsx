@@ -1,98 +1,100 @@
 export type ValueOf<T> = T[keyof T]
 
 export type UserRegister = {
-    firstName: string
-    lastName: string
-    username: string
-    email: string
-    password: string
-    passwordRepeat: string
-    location: string
+  firstName: string
+  lastName: string
+  username: string
+  email: string
+  password: string
+  passwordRepeat: string
+  location: string
 }
 
 export type UserLogin = {
-    email: string
-    password: string
+  email: string
+  password: string
 }
 
+export type EventInfo = {}
+
 export type GraphQLValidAuthResponse = {
-    success: true
-    errors: null
-    token: string
-    refreshToken: string
+  success: true
+  errors: null
+  token: string
+  refreshToken: string
 }
 
 export type GraphQLInvalidAuthResponse = {
-    success: false
-    errors: Record<string, any>
-    token: null
-    refreshToken: null
+  success: false
+  errors: Record<string, any>
+  token: null
+  refreshToken: null
 }
 
 export type UserRegisterResponse = {
-    register: GraphQLValidAuthResponse | GraphQLInvalidAuthResponse
+  register: GraphQLValidAuthResponse | GraphQLInvalidAuthResponse
 }
 export type UserLoginResponse = {
-    tokenAuth: GraphQLValidAuthResponse | GraphQLInvalidAuthResponse
+  tokenAuth: GraphQLValidAuthResponse | GraphQLInvalidAuthResponse
 }
 
 export type InputLabel = { title: string; state: string }
 
 export type ActionProp = {
-    type: string
-    [props: string]: any
+  type: string
+  [props: string]: any
 }
 
 export type GQLUser = {
-    id: number
-    lastLogin?: string
-    username: string
-    firstName: string
-    lastName: string
-    email: string
-    isStaff: boolean
-    isActive: boolean
-    dateJoined: string
-    skills: GQLSkill[]
-    userSkillLevels: GQLSkillLevel[]
-    slams: Event[]
-    performances: Event[]
-    pk?: number
-    archived?: boolean
-    verified?: boolean
-    secondaryEmail?: string
+  id: number
+  lastLogin?: string
+  username: string
+  firstName: string
+  lastName: string
+  email: string
+  isStaff: boolean
+  isActive: boolean
+  dateJoined: string
+  skills: GQLSkill[]
+  userSkillLevels: GQLSkillLevel[]
+  slams: Event[]
+  performances: Event[]
+  pk?: number
+  archived?: boolean
+  verified?: boolean
+  secondaryEmail?: string
 }
 
 export type GQLSkill = {
-    id: number
-    skillCategory: GQLSkillCategory
-    userSkillLevels: GQLSkillLevel[]
+  id: number
+  skillCategory: GQLSkillCategory
+  userSkillLevels: GQLSkillLevel[]
 }
 export type GQLSkillLevel = {
-    id: number
-    skillLevel: GQLSkillLevelE
-    skill: GQLSkill
+  id: number
+  skillLevel: GQLSkillLevelE
+  skill: GQLSkill
 }
 export type GQLEvent = {
-    id: number
-    datetime: string
-    title: string
-    description: string
+  id: number
+  datetime: string
+  title: string
+  description: string
 }
 
 export enum GQLSkillCategory {
-    A_0 = "Music",
-    A_1 = 'Dance',
-    A_2 = 'Poetry',
-    A_3 = 'Art',
-    A_4 = 'Fitness',
-    A_5 = 'Pitch'
+  A_0 = 'Music',
+  A_1 = 'Dance',
+  A_2 = 'Poetry',
+  A_3 = 'Art',
+  A_4 = 'Fitness',
+  A_5 = 'Pitch',
 }
 
 export enum GQLSkillLevelE {
-    A_0 = "Beginner",
-    A_1 = 'Novice',
-    A_2 = 'Intermediate',
-    A_3 = 'Expert',
-    A_4 = 'Professional'
+  A_0 = 'Beginner',
+  A_1 = 'Novice',
+  A_2 = 'Intermediate',
+  A_3 = 'Expert',
+  A_4 = 'Professional',
 }

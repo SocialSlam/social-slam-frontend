@@ -1,7 +1,7 @@
-import React, {useEffect, useRef} from 'react'
-import {useParams} from 'react-router-dom'
-import {Layout} from '../components/Layout'
-import {StreamConnection} from '../services/StreamConnection'
+import React, { useEffect, useRef } from 'react'
+import { useParams } from 'react-router-dom'
+import { Layout } from '../components/Layout'
+import { StreamConnection } from '../services/StreamConnection'
 
 export type StreamProps = unknown
 
@@ -10,30 +10,29 @@ export type StreamParams = {
 }
 
 const VideoConference = () => {
-  const jitsiContainerId = "jitsi-container-id";
+  const jitsiContainerId = 'jitsi-container-id'
 
   const loadJitsiScript = () => {
-    let resolveLoadJitsiScriptPromise = null;
+    let resolveLoadJitsiScriptPromise = null
 
     const loadJitsiScriptPromise = new Promise((resolve) => {
-      resolveLoadJitsiScriptPromise = resolve;
-    });
+      resolveLoadJitsiScriptPromise = resolve
+    })
 
-    const script = document.createElement("script");
-    script.src = "https://meet.jit.si/external_api.js";
-    script.async = true;
+    const script = document.createElement('script')
+    script.src = 'https://meet.jit.si/external_api.js'
+    script.async = true
     script.onload = resolveLoadJitsiScriptPromise
-    document.body.appendChild(script);
+    document.body.appendChild(script)
 
-    return loadJitsiScriptPromise;
-  };
+    return loadJitsiScriptPromise
+  }
 
-  return <div id={jitsiContainerId} style={{height: 720, width: "100%"}} />;
-};
-
+  return <div id={jitsiContainerId} style={{ height: 720, width: '100%' }} />
+}
 
 export const SlamStream: React.FC<StreamProps> = (props) => {
-  const {streamId} = useParams<StreamParams>()
+  const { streamId } = useParams<StreamParams>()
   const socketRef = useRef<StreamConnection>()
   const mediaRef = useRef<HTMLVideoElement>()
 
@@ -44,8 +43,8 @@ export const SlamStream: React.FC<StreamProps> = (props) => {
   const toggleStream = async () => {
     if (mediaRef.current.srcObject) {
       ;(mediaRef.current.srcObject as MediaStream)
-          .getTracks()
-          .forEach((el) => el.stop())
+        .getTracks()
+        .forEach((el) => el.stop())
     } else {
       mediaRef.current.srcObject = await navigator.mediaDevices.getUserMedia({
         video: true,
@@ -55,10 +54,10 @@ export const SlamStream: React.FC<StreamProps> = (props) => {
   }
 
   return (
-      <Layout>
-        <button onClick={() => toggleStream()}>Toggle Video</button>
+    <Layout>
+      <button onClick={() => toggleStream()}>Toggle Video</button>
 
-        {/* <video controls autoPlay ref={mediaRef} /> */}
-      </Layout>
+      {/* <video controls autoPlay ref={mediaRef} /> */}
+    </Layout>
   )
 }
