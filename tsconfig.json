@@ -1,5 +1,8 @@
 {
   "compilerOptions": {
+    "typeRoots": [
+      "./types"
+    ],
     "outDir": "./dist/",
     "sourceMap": true,
     "module": "commonjs",
