@@ -6,8 +6,9 @@ import { Home } from './pages/Home'
 import { Landing } from './pages/Landing/Landing'
 import { Register } from './pages/Register'
 import { SlamStream } from './pages/SlamStream'
-import { ROUTE_HOME, ROUTE_LOGIN, ROUTE_REGISTER } from './Constants'
+import { ROUTE_HOME, ROUTE_LOGIN, ROUTE_REGISTER, ROUTE_RESET_PASSWORD } from './Constants'
 import { Login } from './pages/Login'
+import { ResetPassword } from './pages/ResetPassword'
 
 export const Router: React.FC = (props) => {
   return (
@@ -16,6 +17,7 @@ export const Router: React.FC = (props) => {
         <Route exact path={ROUTE_HOME} component={Home} />
         <Route exact path={ROUTE_REGISTER} component={Register} />
         <Route exact path={ROUTE_LOGIN} component={Login} />
+        <Route exact path={ROUTE_RESET_PASSWORD} component={ResetPassword} />
 
         {/* Temp */}
         <Route exact path={'/debug'} component={Debug} />

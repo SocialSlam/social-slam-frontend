@@ -1,5 +1,9 @@
 export type ValueOf<T> = T[keyof T]
 
+export type UserResetPassword = {
+  email: string
+}
+
 export type UserRegister = {
   firstName: string
   lastName: string
