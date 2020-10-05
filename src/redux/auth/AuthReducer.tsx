@@ -1,16 +1,18 @@
-import { Reducer, Action } from 'redux'
+import { Action, Reducer } from 'redux'
 import {
-  AUTH_LOGIN_STATES,
   ASYNC_STATUS,
+  AUTH_LOGIN_STATES,
   AUTH_REGISTER_STATES,
 } from '../../Constants'
 
 export type AuthState = {
   status: ASYNC_STATUS
+  email?: string
   token?: string
   refreshToken?: string
   error?: string
 }
+
 export interface AuthAction
   extends Action<AUTH_LOGIN_STATES | AUTH_REGISTER_STATES> {
   token?: string
@@ -22,6 +24,7 @@ export interface AuthAction
 
 const initialState: AuthState = {
   status: ASYNC_STATUS.IDLE,
+  email: undefined,
   token: undefined,
   refreshToken: undefined,
   error: undefined,
@@ -45,6 +48,7 @@ export const authReducer: Reducer<AuthState, AuthAction> = (
         ...state,
         error: undefined,
         status: ASYNC_STATUS.SUCCESS,
+        email: action.email,
         token: action.token,
         refreshToken: action.refreshToken,
       }

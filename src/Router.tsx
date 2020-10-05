@@ -5,8 +5,8 @@ import { Error404 } from './pages/Error404'
 import { Home } from './pages/Home'
 import { Landing } from './pages/Landing/Landing'
 import { Register } from './pages/Register'
-import { Stream } from './pages/Stream'
-import { ROUTE_HOME, ROUTE_REGISTER, ROUTE_LOGIN, ROUTE_RESET_PASSWORD } from './Constants'
+import { SlamStream } from './pages/SlamStream'
+import { ROUTE_HOME, ROUTE_LOGIN, ROUTE_REGISTER, ROUTE_RESET_PASSWORD } from './Constants'
 import { Login } from './pages/Login'
 import { ResetPassword } from './pages/ResetPassword'
 
@@ -22,7 +22,7 @@ export const Router: React.FC = (props) => {
         {/* Temp */}
         <Route exact path={'/debug'} component={Debug} />
         <Route exact path={'/landing'} component={Landing} />
-        <Route exact path={'/stream/:streamId'} component={Stream} />
+        <Route exact path={'/stream/:streamId'} component={SlamStream} />
 
         {/* Fallback */}
         <Route component={Error404} />

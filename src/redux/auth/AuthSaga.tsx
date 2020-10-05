@@ -1,17 +1,16 @@
 import axios from 'axios'
-import { call, cancel, cancelled, put, take } from 'redux-saga/effects'
+import { call, put } from 'redux-saga/effects'
 import {
   AUTH_LOGIN_STATES,
   AUTH_REGISTER_STATES,
-  FLOW_LOGOUT,
   URL_LOGIN,
 } from '../../Constants'
 import { mutation } from '../../services/GraphQL'
 import {
-  UserRegister,
-  UserRegisterResponse,
   UserLogin,
   UserLoginResponse,
+  UserRegister,
+  UserRegisterResponse,
 } from '../../TypeUtils'
 
 export function requestAuthorize(
@@ -59,10 +58,14 @@ async function apiLogin(payload: any) {
   }
 }
 
-export function* loginFlow(payload: any) {
+export function* loginFlow(payload: UserLogin) {
   try {
     const response = yield call(apiLogin, payload)
-    yield put({ type: AUTH_LOGIN_STATES.SUCCESS, ...response })
+    yield put({
+      type: AUTH_LOGIN_STATES.SUCCESS,
+      email: payload.email,
+      ...response,
+    })
   } catch (error) {
     yield put({ type: AUTH_LOGIN_STATES.FAIL, error: error.message })
   }

@@ -1,7 +1,6 @@
 import React, { useEffect, useRef } from 'react'
 import { useParams } from 'react-router-dom'
 import { Layout } from '../components/Layout'
-import { VideoContainer } from '../components/VideoCard'
 import { StreamConnection } from '../services/StreamConnection'
 
 export type StreamProps = unknown
@@ -10,7 +9,29 @@ export type StreamParams = {
   streamId: string
 }
 
-export const Stream: React.FC<StreamProps> = (props) => {
+const VideoConference = () => {
+  const jitsiContainerId = 'jitsi-container-id'
+
+  const loadJitsiScript = () => {
+    let resolveLoadJitsiScriptPromise = null
+
+    const loadJitsiScriptPromise = new Promise((resolve) => {
+      resolveLoadJitsiScriptPromise = resolve
+    })
+
+    const script = document.createElement('script')
+    script.src = 'https://meet.jit.si/external_api.js'
+    script.async = true
+    script.onload = resolveLoadJitsiScriptPromise
+    document.body.appendChild(script)
+
+    return loadJitsiScriptPromise
+  }
+
+  return <div id={jitsiContainerId} style={{ height: 720, width: '100%' }} />
+}
+
+export const SlamStream: React.FC<StreamProps> = (props) => {
   const { streamId } = useParams<StreamParams>()
   const socketRef = useRef<StreamConnection>()
   const mediaRef = useRef<HTMLVideoElement>()
