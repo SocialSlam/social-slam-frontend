@@ -27,7 +27,7 @@
     "@fortawesome/react-fontawesome": "^0.1.10",
     "@rebass/forms": "^4.0.6",
     "@types/simple-peer": "^9.6.0",
-    "axios": "^0.20.0",
+    "axios": "^0.21.1",
     "graphql": "^15.1.0",
     "graphql-tag": "^2.10.3",
     "react": "^16.13.1",
